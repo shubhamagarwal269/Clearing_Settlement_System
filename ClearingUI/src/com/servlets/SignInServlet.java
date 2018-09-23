@@ -46,13 +46,21 @@ public class SignInServlet extends HttpServlet {
 		
 		boolean status = signindao.login(userType, username, password);
 		
-		if (status) {
+		if (status && (userType==0)) {
 			//writer.println("correct");
 			//writer.println(option);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("dashAdmin.jsp");
 			dispatcher.forward(request, response);
 			
-		} else {
+		} 
+		else if (status && (userType==1)) {
+			//writer.println("correct");
+			//writer.println(option);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("dashMember.jsp");
+			dispatcher.forward(request, response);
+			
+		} 
+		else {
 			//RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
 			writer.println("wrong");
 		}
