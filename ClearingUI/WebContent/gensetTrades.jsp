@@ -277,7 +277,7 @@
 	                          <td><c:out value="${trade.settlementDate}"></c:out></td>
 							  <td>
 							  <button type="button" class="btn btn-danger"> 							  
-							  <a href="delete?tradeId=<c:out value='${trade.tradeId}'/>">
+							  <a style="color:inherit" href="delete?tradeId=<c:out value='${trade.tradeId}'/>">
 							  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 							  </a>
 							  </button>
