@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Trades | Admin</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -34,6 +35,15 @@
 
     <!-- Custom Theme Style -->
     <link href="dashboard/build/css/custom.min.css" rel="stylesheet">
+    
+    <style type="text/css">
+    
+    .disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
+    }
+    
+    </style>
 
 </head>
 
@@ -43,7 +53,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="dashAdmin.jsp" class="site_title"><span>Welcome</span></a>
+              <a href="index.html" class="site_title"><span>Welcome</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -122,7 +132,7 @@
                     <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
-                
+
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
@@ -197,179 +207,126 @@
         <div class="right_col" role="main">
           <div class="">
           
-       
-       	   <div class="col-md-12 col-sm-12 col-xs-12">
-             <div class="x_panel">
-               <div class="x_title">
-                 <h2>Update securities market price</h2>
-                 <ul class="nav navbar-right panel_toolbox">
-                   <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                   </li>
-                 </ul>
-                 <div class="clearfix"></div>
-               </div>
-               <div class="x_content">
-                 
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>S.No.</th>
-                          <th>ISIN</th>
-                          <th>Security Name</th>
-                          <th>Current Market Price</th>
-                          <th>New Market Price</th>
-                          <th>Update</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>280</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>280</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>280</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
-                      </tbody>
-                    </table>
-                 
-                 
-                 
-                           
-       	       </div>
-       	       </div>
-       	       </div>   
-           
-			<div class="col-md-12 col-sm-12 col-xs-12">
+          	  <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Update Fund borrowing interest rate</h2>
+                      
+                      
+                      <h3>Shortage Settlement</h3> &nbsp;
+                      <!-- 
+                      <button type="button" class="btn btn-info btn-sm">
+                           Refresh	
+					  </button> 
+					  -->
+                 
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    
-                    <table class="table table-bordered">
+                  
+                  	<h4>Defaulting Member name:</h4> 
+                    <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>Current Interest Rate(%p.a.)</th>
-                          <th>New Interest Rate(%p.a.)</th>
-                          <th>Update</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          
-                          <td>1.25</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
                         
-                      </tbody>
-                    </table>
-                
-                    
-                    
-                    
-          	       </div>
-          	       </div>
-          	       </div>   
-          	       
-          <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Update securities borrowing interest rate</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>S.No.</th>
-                          <th>ISIN</th>
-                          <th>Security Name</th>
-                          <th>Current Borrowing Rate(%p.a.)</th>
-                          <th>New Borrowing Rate(%p.a.)</th>
-                          <th>Update</th>
+                          <th>Fund Shortage</th>
+                          <th>Security shortage</th>
                         </tr>
                       </thead>
+                      
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>8.2</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>8.2</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>8.2</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
-                      </tbody>
+                            <tr>
+	                          
+	                          <td>
+	                          <div>
+	                          <form action="" method="get">
+	                          
+								Bank Account number: &nbsp;&nbsp; 81341030<br><br>
+								Current fund balance: &nbsp;&nbsp; 1030<br><br>
+								Required fund balance: &nbsp;&nbsp; 5000<br><br>
+								Fund borrowing rate(% p.a.): &nbsp;&nbsp; 5<br><br>
+								<button type="button" class="btn btn-success"> Settle </button>
+
+							  
+							  </form>
+	                          </div>
+							  </td>
+	                          
+	                          <!------------------------------>
+	                          
+	                          <td>
+	                          <div class="disabledbutton">
+	                          <form action="" method="get">
+	                          
+								<table id="datatable-buttons" class="table table-striped table-bordered">
+			                      <thead>
+			                        <tr>
+			                        
+			                          <th>ISIN</th>
+			                          <th>Security name</th>
+			                          <th>Market price</th>
+			                          <th>Holding volume</th>
+			                          <th>Required volume</th>
+			                          <th>Borrowing rate</th>
+			                          <th>Settle</th>
+			                          
+			                        </tr>
+			                      </thead>
+			
+			
+			                      <tbody>
+				                        <tr>
+				                          <td>1001</td>
+				                          <td>Facebook</td>
+				                          <td>208.2</td>
+				                          <td>200</td>
+				                          <td>350</td>
+				                          <td>5%</td>
+				                          <td>
+				                          <button type="button" class="btn btn-success"> Settle </button>
+										  </td>
+				                        </tr>
+				                        
+				                        				                        <tr>
+				                          <td>1001</td>
+				                          <td>Facebook</td>
+				                          <td>208.2</td>
+				                          <td>200</td>
+				                          <td>350</td>
+				                          <td>5%</td>
+				                          <td>
+				                          <button type="button" class="btn btn-success"> Settle </button>
+										  </td>
+				                        </tr>
+				                        
+				                        				                        <tr>
+				                          <td>1001</td>
+				                          <td>Facebook</td>
+				                          <td>208.2</td>
+				                          <td>200</td>
+				                          <td>350</td>
+				                          <td>5%</td>
+				                          <td>
+				                          <button type="button" class="btn btn-success"> Settle </button>
+										  </td>
+				                        </tr>			
+			                      </tbody>
+			                    </table>
+						 
+							  </form>
+	                          </div>
+							  </td>
+							  
+	                        </tr>
+	                  </tbody>
+
+
                     </table>
-                 
-                    
-          	       </div>
-          	       </div>
-          	       </div>   
+                  </div>
+                </div>
+              </div>
+              
               
           
           </div>
@@ -428,7 +385,11 @@
 
     <!-- Custom Theme Scripts -->
     <script src="dashboard/build/js/custom.min.js"></script>
-	
+    
+    <script type="text/javascript">
+    $("#mydiv").addClass("disabledbutton");
+    </script>
+    
   </body>
 
 </html>

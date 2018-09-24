@@ -67,20 +67,21 @@
               <div class="menu_section">
                 <h3>MENU</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-home"></i> Main <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                      <li><a href="dashAdmin.jsp">Home</a></li> 
                       <li><a href="fetch">Trade List</a></li>
-                      <li><a href="guestAccess.jsp">Guest Access</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i>Clearing Member Stats<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="form.html">Profiles</a></li>
                       <li><a href="form_advanced.html">Reports</a></li>
-                      <li><a href="form_validation.html">Settlement Summary</a></li>
+                      <li><a href="shortSettle.jsp">Shortage Settlement</a></li>
             
                     </ul>
                   </li>
+            
                   <li><a><i class="fa fa-desktop"></i> Algorithm Stats<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="general_elements.html">Algorithm</a></li>
@@ -89,11 +90,7 @@
                     </ul>
                   </li>
                   
-                  <li><a><i class="fa fa-bar-chart-o"></i> Market Stats <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="updateMarket.jsp">Update Market Stats</a></li>
-                    </ul>
-                  </li>
+                  <li><a href="updateMarket.jsp"><i class="fa fa-bar-chart-o"></i> Update Market Stats <span class="fa fa-chevron"></span></a></li>
                   
                 </ul>
               </div>

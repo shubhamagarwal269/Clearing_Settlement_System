@@ -33,12 +33,12 @@
             }
         }
         
-//        else if($(input).attr('type') == 'password' || $(input).attr('name') == 'pass') {
-//            if($(input).val().trim().match("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{4,}$") == null) {
-//                return false;
-//            }
-//        }
-//        
+        else if($(input).attr('type') == 'password' || $(input).attr('name') == 'pass') {
+            if($(input).val().trim().match("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$") == null) {
+                return false;
+            }
+        }
+        
         
         else {
             if($(input).val().trim() == ''){
