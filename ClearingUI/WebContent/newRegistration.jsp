@@ -120,10 +120,8 @@
 						</a>
 					</div> -->
 
-					<div class="container-login100-form-btn m-b-20">
-						<button class="login100-form-btn">
-							<h4>Register</h4>
-						</button>
+					<div class="container-login100-form-btn p-b-30">	
+	                        <input type="submit" id="register" value="Register" class="login100-form-btn">
 					</div>
 
 <!-- 					<div class="flex-col-c p-t-170 p-b-40">
@@ -157,6 +155,21 @@
 	<script src="login/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="login/js/main.js"></script>
+	
+	<!-- confirm password and password validation -->
+	<script type="text/javascript">
+	    $(function () {
+	        $("#register").click(function () {
+	            var password = $("#pass").val();
+	            var confirmPassword = $("#confirmpass").val();
+	            if (password != confirmPassword) {
+	                alert("Passwords do not match.");
+	                return false;
+	            }
+	            return true;
+	        });
+	    });
+	</script>
 	
 </body>
 </html>
