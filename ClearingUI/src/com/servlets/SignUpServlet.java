@@ -3,6 +3,7 @@ package com.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,6 +45,7 @@ public class SignUpServlet extends HttpServlet {
 		String password = request.getParameter("pass");
 		
 		SignUpPage signUpDao = new SignUpPageImpl();
+		
 		CommonFunctionalities commonFunc = new CommonFunctionalitiesImpl();
 		String memId = commonFunc.getNextMemberId();
 		
@@ -51,16 +53,17 @@ public class SignUpServlet extends HttpServlet {
 		UserDetails user = new UserDetails(emailid,password,1);
 		
 		PrintWriter writer = response.getWriter();
-		
+		System.out.println("hi");
 		int status = signUpDao.registerMember(mem, user);
+		System.out.println("hi1");
 		if(status>0) {
-			writer.println("correct");
-			//RequestDispatcher dispatcher = request.getRequestDispatcher("dashAdmin.jsp");
-			//dispatcher.forward(request, response);
+			//writer.println("correct");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
+			dispatcher.forward(request, response);
 			
 		} else {
-			//RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
-			writer.println("wrong");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("signup.jsp");
+			//writer.println("wrong");
 		}
 	}
 

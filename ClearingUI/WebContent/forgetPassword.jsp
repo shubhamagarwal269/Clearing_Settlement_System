@@ -31,7 +31,7 @@
 <body>
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		  <a class="navbar-brand" href="#">Group 5</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -46,100 +46,50 @@
 			  <li class="nav-item active">
 				<a class="nav-link" href="signin.jsp">Sign In<span class="sr-only">(current)</span></a>
 			  </li>
-			  <!-- 
-			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				  Dropdown
-				</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-				  <a class="dropdown-item" href="#">Action</a>
-				  <a class="dropdown-item" href="#">Another action</a>
-				  <div class="dropdown-divider"></div>
-				  <a class="dropdown-item" href="#">Something else here</a>
-				</div>
-			  </li> 
-			  <li class="nav-item">
-				<a class="nav-link disabled" href="#">Disabled</a>
-			  </li>  -->
-			  
 			</ul>
-			<!-- <form class="form-inline my-2 my-lg-0">
-			  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-			  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form> -->
 		  </div>
 		</nav>
 		
 
-	
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" action="signup" method="post">
+				<form action="forgetpassmail"  method="post" class="login100-form validate-form p-l-55 p-r-55 p-t-178" >
 					<span class="login100-form-title">
-						<h2>New Clearing Member Registration</h2>
+						Forget Member Password 
 					</span>
 
-					<div class="wrap-input100 validate-input m-b-20" data-validate="Please enter name">
-						<input class="input100" type="text" name="membername" placeholder="Member Name">
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter Member Email Id">
+						<input class="input100" type="email" name="email" placeholder="Registered Email Id">
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter email-Id">
-						<input class="input100" type="email" name="emailid" placeholder="Email Id">
-						<span class="focus-input100"></span>
-					</div>
 					
-					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter 10 digit Bank A/C number">
-						<input class="input100" type="number" name="bankac" placeholder="Bank Account Number">
-						<span class="focus-input100"></span>
-					</div>
-					
-					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter 10 digit DEMAT A/C number">
-						<input class="input100" type="number" name="dematac" placeholder="Demat Account Number">
-						<span class="focus-input100"></span>
-					</div>
-					
-					<div class="wrap-input100 validate-input m-b-20" data-validate = "Minimum 6 characters, atleast one alphabet, number and special character">
-						<input class="input100" type="password" id ="pass" name="pass" placeholder="Password">
-						<span class="focus-input100"></span>
-					</div>
-					
-					<div class="wrap-input100 validate-input m-b-30" data-validate = "Please enter same password as above">
-						<input class="input100" type="password" id="confirmpass" name="confirmpass" placeholder="Confirm Password">
-						<span class="focus-input100"></span>
-					</div>
-<!-- 
-					<div class="text-right p-t-13 p-b-23">
+					<div class="text-center p-t-13 p-b-23">
 						<span class="txt1">
-							Forgot
+							Temporary password will be sent to registered email-Id.
 						</span>
-
-						<a href="#" class="txt2">
-							Username / Password?
-						</a>
-					</div> -->
-
-					<div class="container-login100-form-btn m-b-20">
-						<button class="login100-form-btn">
-							<h4>Register</h4>
-						</button>
+					</div>
+					
+					<div class="container-login100-form-btn p-b-30">	
+	                        <input type="submit" value="Proceed" class="login100-form-btn">
 					</div>
 
-<!-- 					<div class="flex-col-c p-t-170 p-b-40">
+
+<!-- 					<div class="flex-col-c p-t-120 p-b-40">
 						<span class="txt1 p-b-9">
 							Don’t have an account?
 						</span>
 
-						<a href="#" class="txt3">
+						<a href="registration.html" class="txt3">
 							Sign up now
-						</a> -->
-					</div>
+						</a>
+					</div> -->
 				</form>
 			</div>
 		</div>
 	</div>
-		
+
 	
 <!--===============================================================================================-->
 	<script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -157,6 +107,7 @@
 	<script src="login/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="login/js/main.js"></script>
-	
+
+
 </body>
 </html>

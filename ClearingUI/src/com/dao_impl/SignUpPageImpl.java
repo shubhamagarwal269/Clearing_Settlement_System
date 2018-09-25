@@ -48,7 +48,7 @@ public class SignUpPageImpl implements SignUpPage{
 		int rowsAdded1 = 0;
 		String addUser = "INSERT INTO User_Details VALUES(?,?,?)";
 		Connection con1 = MyConnection.openConnection();
-		
+		if(rowsAdded>0 ) {
 		try {
 		
 			con1.setAutoCommit(false);
@@ -70,6 +70,7 @@ public class SignUpPageImpl implements SignUpPage{
 			}
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
 		}
 		if(rowsAdded>0 && rowsAdded1>0)
 		{	

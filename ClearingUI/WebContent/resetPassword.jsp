@@ -40,11 +40,11 @@
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 			  <li class="nav-item active">
-				<a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+				<a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
 			  </li>
 			  
 			  <li class="nav-item active">
-				<a class="nav-link" href="signin.html">Sign In<span class="sr-only">(current)</span></a>
+				<a class="nav-link" href="signin.">Sign In<span class="sr-only">(current)</span></a>
 			  </li>
 			  <!-- 
 			  <li class="nav-item dropdown">
@@ -76,11 +76,21 @@
 			<div class="wrap-login100">
 				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178">
 					<span class="login100-form-title">
-						Reset Member Password 
+						Reset password using temporary password 
 					</span>
 
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter Member Email Id">
-						<input class="input100" type="text" name="username" placeholder="Registered Email Id">
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter temporary password send to email Id">
+						<input class="input100" type="password" name="temppass" placeholder="Temporary Password">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter temporary password send to email Id">
+						<input class="input100" type="password" name="newpass" placeholder="New Password">
+						<span class="focus-input100"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter temporary password send to email Id">
+						<input class="input100" type="password" name="confirmpass" placeholder="Confirm Password">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -95,10 +105,8 @@
 						</a> -->
 					</div>
 
-					<div class="container-login100-form-btn p-b-23">
-						<button class="login100-form-btn">
-							<h4>Proceed</h4>
-						</button>
+					<div class="container-login100-form-btn p-b-30">	
+	                        <input type="submit" value="Change password" class="login100-form-btn">
 					</div>
 
 <!-- 					<div class="flex-col-c p-t-120 p-b-40">

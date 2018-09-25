@@ -38,7 +38,7 @@ public class SignInServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String option = request.getParameter("options");
 		String password = request.getParameter("password");
-		
+		boolean message = true;
 		PrintWriter writer = response.getWriter();
 		
 		int userType= Integer.parseInt(option);
@@ -60,10 +60,22 @@ public class SignInServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			
 		} 
+		else if (status && (userType==2)) {
+			//writer.println("correct");
+			//writer.println(option);
+			//RequestDispatcher dispatcher = request.getRequestDispatcher("dashMember.jsp");
+			//dispatcher.forward(request, response);
+			
+		} 
 		else {
-			//RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
-			writer.println("wrong");
+			
+			message  = false;
+			//String message = "You have entered wrong credentials, Please try again";
+			request.setAttribute("alert", message);
+				
 		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

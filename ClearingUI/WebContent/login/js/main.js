@@ -27,24 +27,30 @@
     });
 
     function validate (input) {
-        if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
-            if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
-                return false;
-            }
+    	
+    	if($(input).val().trim() == ''){
+            return false;
         }
-        
-        else if($(input).attr('type') == 'password' || $(input).attr('name') == 'pass') {
-            if($(input).val().trim().match("^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$") == null) {
-                return false;
+    	else{
+    		var pass = $('#pass').val();
+    		var comfirmpass = $('#confirmpass').val();
+    		if($(input).attr('type') == 'email') {
+                if($(input).val().trim().match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) == null) {
+                    return false;
+                }
             }
-        }
-        
-        
-        else {
-            if($(input).val().trim() == ''){
-                return false;
+           
+            if($(input).attr('type') == 'password') {
+            	
+                if($(input).val().trim().match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/) == null) {
+                    return false;
+                }
             }
-        }
+            if($(input).attr('type') == 'number')
+            	if($(input).val().trim().length!=10) {
+                  return false;
+            }
+    	}     
     }
 
     function showValidate(input) {

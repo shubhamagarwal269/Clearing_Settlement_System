@@ -1,5 +1,8 @@
+<%@page import="java.util.concurrent.TimeUnit"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +29,27 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="login/css/util.css">
 	<link rel="stylesheet" type="text/css" href="login/css/main.css">
+	
+	<style>
+	
+		#snackbar {
+		    visibility: visible;
+		    min-width: 250px;
+		    margin-left: -125px;
+		    background-color: #333;
+		    color: #fff;
+		    text-align: center;
+		    border-radius: 2px;
+		    padding: 16px;
+		    position: fixed;
+		    z-index: 1;
+		    left: 50%;
+		    bottom: 30px;
+		    font-size: 17px;
+		}
+				
+	</style>
+	
 <!--===============================================================================================-->
 </head>
 <body>
@@ -45,21 +69,6 @@
 			  <li class="nav-item active">
 				<a class="nav-link" href="signin.jsp">Sign In<span class="sr-only">(current)</span></a>
 			  </li>
-			  <!-- 
-			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				  Dropdown
-				</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-				  <a class="dropdown-item" href="#">Action</a>
-				  <a class="dropdown-item" href="#">Another action</a>
-				  <div class="dropdown-divider"></div>
-				  <a class="dropdown-item" href="#">Something else here</a>
-				</div>
-			  </li> 
-			  <li class="nav-item">
-				<a class="nav-link disabled" href="#">Disabled</a>
-			  </li>  -->
 			  
 			</ul>
 			<!-- <form class="form-inline my-2 my-lg-0">
@@ -76,7 +85,8 @@
 					<span class="login100-form-title">
 						Sign In
 					</span>
-
+					
+					
 					<div class="btn-group btn-group-toggle m-b-16 center-block" data-toggle="buttons">
 					  <label class="btn btn-info active">
 					    <input type="radio" name="options" id="option1" autocomplete="off" checked value="1"> &nbsp;&nbsp;&nbsp;&nbsp; Member &nbsp;&nbsp;&nbsp;&nbsp;
@@ -100,10 +110,22 @@
 					</div>
 
 					<div class="text-right p-t-13 p-b-23">
-						<a href="resetPassword1.jsp" class="txt2">
+						<a href="forgetPassword.jsp" class="txt2">
 							Forgot Password ?
 						</a>
 					</div>
+					
+					<%
+						try{
+							boolean flag = (boolean) request.getAttribute("alert") ;
+							out.println("<div id='snackbar'> You have entered wrong credentials, Please try again</div>");
+							//TimeUnit.SECONDS.sleep(2);
+						}
+						catch(NullPointerException e){
+							
+						}
+					%>
+					
 
 					<div class="container-login100-form-btn">
 						
@@ -167,6 +189,22 @@
 	});
 	
 	</script>
+	
+	
+	
+	<script>
+		$(document).ready(function(){
+			setTimeout(
+					function(){
+						document.getElementById("snackbar").style.visibility = "hidden";
+					}, 
+				3000);
+			}
+		);
+		
+	</script>
+
+	
 
 
 </body>
