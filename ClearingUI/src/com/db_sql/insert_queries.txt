@@ -28,7 +28,7 @@ CommonFunc.testViewAllMembers
 CommonFunc.test
 
 
-SQL MEMBER VALUES:
+SQL MEMBER VALUES :
 
 memberId memberName memberPassword memberEmail bankAcNo dematAcNo
 0		Citi		Citi123			citi@email		90123	890123
