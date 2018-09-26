@@ -101,7 +101,7 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 		// TODO Auto-generated method stub
 		int nextTradeId = 0;
 		
-		String FETCHLASTTRADEID = "SELECT top(1) tradeId  FROM TRADE order by desc";
+		String FETCHLASTTRADEID = "SELECT top(1) tradeId  FROM TRADE order by tradeId desc";
 		
 		Connection con = MyConnection.openConnection();
 		
@@ -330,7 +330,7 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 	public int getNextMemberId() {
 		// TODO Auto-generated method stub
 		int nextMemberId = 0;
-		String FETCHLASTMEMBERID = "SELECT top(1) memberId  FROM MEMBER order by desc";
+		String FETCHLASTMEMBERID = "SELECT top(1) memberId  FROM MEMBER order by memberId desc";
 		Connection con = MyConnection.openConnection();
 		Statement st;
 		try {
@@ -351,7 +351,7 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 	public int getNextBatchNum() {
 		// TODO Auto-generated method stub
 		int nextBatchNum = 0;
-		String FETCHLASTBATCHNUM = "SELECT top(1) batchNum  FROM Trade order by desc";
+		String FETCHLASTBATCHNUM = "SELECT top(1) batchNum  FROM Trade order by batchNum desc";
 		Connection con = MyConnection.openConnection();
 		Statement st;
 		try {

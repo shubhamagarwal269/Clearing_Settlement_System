@@ -40,20 +40,22 @@ public class SignUpPageImpl implements SignUpPage{
 		
 		if(rowsAdded>0){	
 			try {	
-				String addBA = "INSERT INTO Bank_Details VALUES(?,?)";
+				String addBA = "INSERT INTO Bank_Details VALUES(?,?,?)";
 				Connection con = MyConnection.openConnection();
 				PreparedStatement ps = con.prepareStatement(addBA);
 				ps.setInt(1,bankAcNumber);
-				ps.setDouble(2, 0);
+				ps.setInt(2, member.getMemberId());
+				ps.setDouble(3, 0);
 				rowsAdded += ps.executeUpdate();
-				String addDA = "INSERT INTO Demat_Details VALUES(?,?,?)";
+				String addDA = "INSERT INTO Demat_Details VALUES(?,?,?,?)";
 				ps = con.prepareStatement(addDA);
 				CommonFunctionalities commonFunc = new CommonFunctionalitiesImpl();
 				int noOfSecurities = commonFunc.getNumOfSecurity();
 				for(int i=0;i<noOfSecurities;i++) {
 					ps.setInt(1,dematAcNumber);
-					ps.setInt(2,i);
-					ps.setDouble(3,0);
+					ps.setInt(2,member.getMemberId());
+					ps.setInt(3,i);
+					ps.setInt(4,0);
 					rowsAdded += ps.executeUpdate();
 				}
 			} catch (SQLException e) {
