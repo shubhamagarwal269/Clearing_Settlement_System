@@ -141,7 +141,7 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 				int ISIN = set.getInt("ISIN");
 				String securityName = set.getString("securityName");
 				double marketPrice = set.getDouble("marketPrice");
-				double borrowingRate = set.getDouble("borrowiingRate");
+				double borrowingRate = set.getDouble("borrowingRate");
 				Security security = new Security(ISIN, securityName,marketPrice,borrowingRate);
 				
 				secList.add(security);
@@ -170,10 +170,10 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 			
 			while(set.next())
 			{
-				int memberID = set.getInt("memberID");
+				int memberID = set.getInt("memberId");
 				String memberName = set.getString("memberName");
 				String memberEmail = set.getString("memberEmail");
-				int bankAcNo = set.getInt("memberBankAcNo");
+				int bankAcNo = set.getInt("bankAcNo");
 				int dematAcNo = set.getInt("dematAcNo");
 				String password = "ENCRYPTED";
 				
@@ -240,10 +240,10 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 				
 				int tradeId = set.getInt("tradeId");
 				int ISIN = set.getInt("ISIN");
-				int quantity = set.getInt("tradeQuantity");
+				int quantity = set.getInt("quantity");
 				double price = set.getFloat("price");
-				int buyerId = set.getInt("buyerId");
-				int sellerId = set.getInt("sellerId");
+				int buyerId = set.getInt("buyerMemberId");
+				int sellerId = set.getInt("sellerMemberId");
 				int batchNum = set.getInt("batchNum");
 				Trade trade = new Trade(tradeId, ISIN, quantity, price, buyerId, sellerId, batchNum);
 				tradeList.add(trade);
@@ -439,5 +439,32 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 		}
 		
 		return borrowingRateList;
+	}
+
+	@Override
+	public int getMemberId(String memberName) {
+		// TODO Auto-generated method stub
+		int memberId = 0;
+			
+			String FETCHMEMID  = "select memberId from Member where memberName = ?";
+			
+			try(Connection con=MyConnection.openConnection();)
+			{
+				PreparedStatement ps = con.prepareStatement(FETCHMEMID);
+				
+				ps.setString(1, memberName);
+				
+				ResultSet set = ps.executeQuery();
+				
+				while(set.next()) {
+					memberId = set.getInt("memberId");
+				}
+			}catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			
+			return memberId;
+			
 	}
 }

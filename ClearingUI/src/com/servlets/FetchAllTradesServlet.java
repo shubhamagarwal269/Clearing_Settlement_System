@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dao.CommonFunctionalities;
 import com.dao_impl.CommonFunctionalitiesImpl;
+import com.pojo.Member;
+import com.pojo.Security;
 import com.pojo.Trade;
 
 /**
@@ -39,7 +41,12 @@ public class FetchAllTradesServlet extends HttpServlet {
 		CommonFunctionalities commFunc = new CommonFunctionalitiesImpl();
 		
 		List<Trade> trades = commFunc.viewAllTrades();
+		List<Security> securities = commFunc.viewAllSecurities();
+		List<Member> members = commFunc.viewAllMembers();
+		
 		request.setAttribute("trades", trades);
+		request.setAttribute("securities", securities);
+		request.setAttribute("members", members);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("gensetTrades.jsp");
 		dispatcher.forward(request, response);

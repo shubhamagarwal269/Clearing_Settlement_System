@@ -30,7 +30,7 @@ public class AdminDashboardImpl implements AdminDashboard{
 		
 		int tradeId = commonFunc.getNextTradeId();
 		
-		String ADDTRADE = "INSERT INTO TRADE VALUES(?,?,?,?,?,?,?,?,?)";
+		String ADDTRADE = "INSERT INTO TRADE VALUES(?,?,?,?,?,?,?)";
 		
 		Connection con = MyConnection.openConnection();
 		

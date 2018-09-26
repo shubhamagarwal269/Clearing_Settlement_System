@@ -16,6 +16,7 @@ public interface CommonFunctionalities {
 	public int getNextBatchNum();
 	public List<Security> viewAllSecurities();
 	public List<Trade> viewAllTradesByMemberId(int memberId);
+	public int getMemberId(String memberName);
 	public List<Trade> viewAllTrades();
 	public int updateDematBalance(int memberId, int ISIN, int changeInQuantity);
 	public int updateBankBalance(int memberId, double changeInBalance);

@@ -207,7 +207,7 @@
 					  <label for="usr">Enter Trade List Size:</label>
 					  <input type="text" class="form-control" id="usr" name="noOfTrade">
 					</div>
-                    <button type="button" class="btn btn-success">Generate Trade List</button>
+					<input type="submit" class="btn btn-success" value="Generate Random Trade List">
                     
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -222,6 +222,101 @@
           	       </div>
           	       </div>
           	       </div>   
+          	       
+          	  
+          	  <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                      
+                      <h2>Add New Trade</h2> &nbsp;
+                 
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                  <form action="addnewtrade" method="post">
+                    <table id="datatable-buttons" class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Security</th>
+                          <th>Quantity</th>
+                          <th>Price</th>
+                          <th>buyerMemberId</th>
+                          <th>sellerMemberId</th>
+                          <th>Batch</th>
+                          <th>Add Trade</th>
+                        </tr>
+                      </thead>
+
+
+                      <tbody>
+	                        <tr>
+	                          <td>
+	                          	<select name ="security">
+									<c:forEach var="security" items="${securities}">
+									<option>${security.securityName}</option>
+									</c:forEach>
+								</select>
+	                          
+	                          </td>
+	                          <td><input type="number" name="quantity"></td>
+	                          <td>
+	                          
+	                          <select name="price">
+								  <option value="2">+ 2%</option>
+								  <option value="3">+ 3%</option>
+								  <option value="3">+ 5%</option>
+								  <option value="-2">-  2%</option>
+								  <option value="-3">-  3%</option>
+								  <option value="-5">-  5%</option>
+							 </select>
+	                          
+	                          </td>
+	                          <td>
+	                          	 <select name="buyer">
+									<c:forEach var="member" items="${members}">
+									<option>${member.memberName}</option>
+									</c:forEach>
+								</select>
+	                          </td>
+	                          <td>
+	                          	 <select name="seller">
+									<c:forEach var="member" items="${members}">
+									<option>${member.memberName}</option>
+									</c:forEach>
+								</select>
+	                          </td>
+	                          
+	                          <td>
+	                          
+	                          <select name="batch">
+								  <option value="1">Add in new batch</option>
+								  <option value="2">Add in previous batch</option>
+							 </select>
+	                          
+	                          </td>
+	                          
+	                          <td>
+	                          <!--  <button type="button" class="btn btn-primary"> 							  
+							  <a style="color:inherit" href="addnewtrade?security=<c:out value='${security.securityName}'/>&quantity=quantity&price=price&buyer=<c:out value='${member.memberName}'/>&seller=<c:out value='${member.memberName}'/>">
+							  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							  </a>
+							  </button> -->
+							  <input type="submit" class="btn btn-success" value="Add">
+	                          </td>
+	                        </tr>
+	                        
+
+                      </tbody>
+                    </table>
+                    </form>
+                  </div>
+                </div>
+              </div>
+          	       
         
           	  <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -229,11 +324,7 @@
                       
                       
                       <h2>Trade List</h2> &nbsp;
-                      <button type="button" class="btn btn-info btn-sm">
-                           Refresh List	
-					  </button>
-					  
-                 
+
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -251,10 +342,9 @@
                           <th>Price</th>
                           <th>buyerMemberId</th>
                           <th>sellerMemberId</th>
-                          <th>tradeDate</th>
-                          <th>Status</th>
-                          <th>Settlement Date</th>
+                          <th>batchNum</th>
                           <th>Delete</th>
+                          
                         </tr>
                       </thead>
 
@@ -269,9 +359,7 @@
 	                          <td><c:out value="${trade.price}"></c:out></td>
 	                          <td><c:out value="${trade.buyerMemberId}"></c:out></td>
 	                          <td><c:out value="${trade.sellerMemberId}"></c:out></td>
-	                          <td><c:out value="${trade.tradeDate}"></c:out></td>
-	                          <td><c:out value="${trade.status}"></c:out></td>
-	                          <td><c:out value="${trade.settlementDate}"></c:out></td>
+	                          <td><c:out value="${trade.batchNum}"></c:out></td>
 							  <td>
 							  <button type="button" class="btn btn-danger"> 							  
 							  <a style="color:inherit" href="delete?tradeId=<c:out value='${trade.tradeId}'/>">

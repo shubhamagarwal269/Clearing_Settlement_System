@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Trades | Admin</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -61,6 +62,7 @@
             <!-- /menu profile quick info -->
 
             <br />
+
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
@@ -122,7 +124,7 @@
                     <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
-                
+
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
@@ -195,78 +197,14 @@
 
         <!-- page content -->        
         <div class="right_col" role="main">
-          <div class="">
-          
-       
-       	   <div class="col-md-12 col-sm-12 col-xs-12">
-             <div class="x_panel">
-               <div class="x_title">
-                 <h2>Update securities market price</h2>
-                 <ul class="nav navbar-right panel_toolbox">
-                   <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                   </li>
-                 </ul>
-                 <div class="clearfix"></div>
-               </div>
-               <div class="x_content">
-                 <form action="updatemarket" method="post">
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>S.No.</th>
-                          <th>ISIN</th>
-                          <th>Security Name</th>
-                          <th>Current Market Price</th>
-                          <th>New Market Price</th>
-                          <th>Update</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>0</td>
-                          <td>Facebook</td>
-                          <td>280</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><input type="submit" class="btn btn-success" value="Update"></td>
-                          
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>280</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>280</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
-                      </tbody>
-                    </table>
-                 
-               </form>            
-       	       </div>
-       	       </div>
-       	       </div>   
-           
-			<div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="">       
+          	       
+          	 <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Update Fund borrowing interest rate</h2>
+                      
+                      
+                    <h2>Add New Trade</h2> 
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -274,40 +212,140 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    
-                    <table class="table table-bordered">
+                  
+                  
+                    <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>Current Interest Rate(%p.a.)</th>
-                          <th>New Interest Rate(%p.a.)</th>
-                          <th>Update</th>
+                          <th>Security</th>
+                          <th>Quantity</th>
+                          <th>Price</th> 
+                          <th>buyerMemberId</th>  
+                          <th>sellerMemberId</th> 
                         </tr>
                       </thead>
+                      
+                      <form action="update" method="post">
+
+						SELECT ISBN<select name="isbn">
+						<c:forEach var="book" items="${books }">
+						<option>${book.ISBN }</option>
+						</c:forEach>
+						</select><br>
+						
+						UPDATED PRICE:<input type="text" name="price"><br>
+						<input type="submit" value="CHANGE PRICE">
+						
+					</form> 
+                      
+
                       <tbody>
-                        <tr>
-                          
-                          <td>1.25</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
+                        <c:forEach var="trade" items="${trades}">
                         
+	                        <tr>
+	                          <td><c:out value="${trade.tradeId}"></c:out></td>
+	                          <td><c:out value="${trade.ISIN}"></c:out></td>
+	                          <td><c:out value="${trade.quantity}"></c:out></td>
+	                          <td><c:out value="${trade.price}"></c:out></td>
+	                          <td><c:out value="${trade.buyerMemberId}"></c:out></td>
+	                          <td><c:out value="${trade.sellerMemberId}"></c:out></td>
+	                          <td><c:out value="${trade.tradeDate}"></c:out></td>
+	                          <td><c:out value="${trade.status}"></c:out></td>
+	                          <td><c:out value="${trade.settlementDate}"></c:out></td>
+							  <td>
+							  <button type="button" class="btn btn-danger"> 							  
+							  <a style="color:inherit" href="delete?tradeId=<c:out value='${trade.tradeId}'/>">
+							  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							  </a>
+							  </button>
+							  </td>
+	                        </tr>
+	                        
+                        </c:forEach>
+                        
+
                       </tbody>
                     </table>
-                
-                    
-                    
-                    
-          	       </div>
-          	       </div>
-          	       </div>   
+                  </div>
+                </div>
+              </div>
           	       
+        
+          	  <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                      
+                      
+                      <h2>Trade List</h2> &nbsp;
+                      <button type="button" class="btn btn-info btn-sm">
+                           Refresh List	
+					  </button>
+					  
+					  
+			
+					  
+                 
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <table id="datatable-buttons" class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                        
+                          <th>Trade ID</th>
+                          <th>ISIN</th>
+                          <th>Quantity</th>
+                          <th>Price</th>
+                          <th>buyerMemberId</th>
+                          <th>sellerMemberId</th>
+                          <th>tradeDate</th>
+                          <th>Status</th>
+                          <th>Settlement Date</th>
+                          <th>Delete</th>
+                        </tr>
+                      </thead>
+
+
+                      <tbody>
+                        <c:forEach var="trade" items="${trades}">
+                        
+	                        <tr>
+	                          <td><c:out value="${trade.tradeId}"></c:out></td>
+	                          <td><c:out value="${trade.ISIN}"></c:out></td>
+	                          <td><c:out value="${trade.quantity}"></c:out></td>
+	                          <td><c:out value="${trade.price}"></c:out></td>
+	                          <td><c:out value="${trade.buyerMemberId}"></c:out></td>
+	                          <td><c:out value="${trade.sellerMemberId}"></c:out></td>
+	                          <td><c:out value="${trade.tradeDate}"></c:out></td>
+	                          <td><c:out value="${trade.status}"></c:out></td>
+	                          <td><c:out value="${trade.settlementDate}"></c:out></td>
+							  <td>
+							  <button type="button" class="btn btn-danger"> 							  
+							  <a style="color:inherit" href="delete?tradeId=<c:out value='${trade.tradeId}'/>">
+							  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+							  </a>
+							  </button>
+							  </td>
+	                        </tr>
+	                        
+                        </c:forEach>
+                        
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              
+              
           <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Update securities borrowing interest rate</h2>
+                    <button type="button" class="btn btn-primary">Execute Settlement</button>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -315,56 +353,9 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>S.No.</th>
-                          <th>ISIN</th>
-                          <th>Security Name</th>
-                          <th>Current Borrowing Rate(%p.a.)</th>
-                          <th>New Borrowing Rate(%p.a.)</th>
-                          <th>Update</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>8.2</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>8.2</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>8.2</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
-                      </tbody>
-                    </table>
-                 
-                    
+                    <p class="text-muted font-13 m-b-30">
+                      Proceed to initiate netting algorithm to settle trades from the trade list and display summary
+                    </p>
           	       </div>
           	       </div>
           	       </div>   
