@@ -27,3 +27,15 @@ CommonFunc.testViewAllSecurities
 CommonFunc.testViewAllMembers
 CommonFunc.test
 
+
+SQL MEMBER VALUES:
+
+memberId memberName memberPassword memberEmail bankAcNo dematAcNo
+0		Citi		Citi123			citi@email		90123	890123
+1		Deutsche Bank			deutschebank123			deutschebank@email		89012	789012
+2		Goldman Sachs			goldmansachs123			goldmansachs@email		78901	678901
+3		JP Morgan				jpmorgan123				jpmorgan@email			67890	567890
+
+
+
+
