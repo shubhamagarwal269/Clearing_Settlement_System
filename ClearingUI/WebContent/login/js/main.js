@@ -46,10 +46,6 @@
                     return false;
                 }
             }
-            if($(input).attr('type') == 'number')
-            	if($(input).val().trim().length!=10) {
-                  return false;
-            }
     	}     
     }
 

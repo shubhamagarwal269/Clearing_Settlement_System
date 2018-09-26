@@ -1,7 +1,7 @@
 package com.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,38 +34,30 @@ public class SignInServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String username = request.getParameter("username");
-		String option = request.getParameter("options");
+		//String option = request.getParameter("options");
 		String password = request.getParameter("password");
 		boolean message = true;
 		String notice = null; 
-		PrintWriter writer = response.getWriter();
+		//PrintWriter writer = response.getWriter();
 		
-		int userType= Integer.parseInt(option);
 		SignInPage signindao = new SignInPageImpl();
 		
-		boolean status = signindao.login(userType, username, password);
+		int rowsUpdated = signindao.login(username, password);
 		
-		if (status && (userType==0)) {
+		if (rowsUpdated>0 && username.equals("admin@cns.com")) {
 			//writer.println("correct");
 			//writer.println(option);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("dashAdmin.jsp");
 			dispatcher.forward(request, response);
 			
 		} 
-		else if (status && (userType==1)) {
+		else if (rowsUpdated>0) {
 			//writer.println("correct");
 			//writer.println(option);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("dashMember.jsp");
 			dispatcher.forward(request, response);
 			
-		} 
-		else if (status && (userType==2)) {
-			//writer.println("correct");
-			//writer.println(option);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("guestAccess.jsp");
-			dispatcher.forward(request, response);
-			
-		} 
+		}  
 		else {
 			
 			message  = false;

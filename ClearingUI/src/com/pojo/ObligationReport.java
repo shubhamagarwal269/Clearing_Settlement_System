@@ -1,67 +1,52 @@
 package com.pojo;
 
-import java.sql.Date;
 
 public class ObligationReport {
 
-	private String reportId;
-	private String memberId;
-	private String memberName;
-	private String securityName;
+	private int memberId;
+	private int batchNum;
+	private int ISIN;
 	private int quantity;
-	private Date dueDate;
+	private double fundAmt;
 	
 	public ObligationReport() {
-		// TODO Auto-generated constructor stub
-		reportId = "0000000000";
-		memberId = "0000000000";
-		memberName = "NULL";
-		securityName = "NULL";
-		this.quantity = 0;
-		this.dueDate = new Date(000);
+		memberId = 0;
+		ISIN = 0;
+		batchNum = 0;
+		fundAmt = 0;
+		quantity = 0;
 	}
 
-	public ObligationReport(String reportId, String memberId, String memberName, String securityName, int quantity,
-			Date dueDate) {
-		
-		this.reportId = reportId;
+	public ObligationReport(int memberId, int batchNum, int ISIN, int quantity, double fundAmt) {
 		this.memberId = memberId;
-		this.memberName = memberName;
-		this.securityName = securityName;
+		this.batchNum = batchNum;
+		this.ISIN = ISIN;
 		this.quantity = quantity;
-		this.dueDate = dueDate;
+		this.fundAmt = fundAmt;
 	}
 
-	public String getReportId() {
-		return reportId;
-	}
-
-	public void setReportId(String reportId) {
-		this.reportId = reportId;
-	}
-
-	public String getMemberId() {
+	public int getMemberId() {
 		return memberId;
 	}
 
-	public void setMemberId(String memberId) {
+	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
 
-	public String getMemberName() {
-		return memberName;
+	public int getBatchNum() {
+		return batchNum;
 	}
 
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
+	public void setBatchNum(int batchNum) {
+		this.batchNum = batchNum;
 	}
 
-	public String getSecurityName() {
-		return securityName;
+	public int getISIN() {
+		return ISIN;
 	}
 
-	public void setSecurityName(String securityName) {
-		this.securityName = securityName;
+	public void setISIN(int iSIN) {
+		ISIN = iSIN;
 	}
 
 	public int getQuantity() {
@@ -72,19 +57,20 @@ public class ObligationReport {
 		this.quantity = quantity;
 	}
 
-	public Date getDueDate() {
-		return dueDate;
+	public double getFundAmt() {
+		return fundAmt;
 	}
 
-	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
+	public void setFundAmt(double fundAmt) {
+		this.fundAmt = fundAmt;
 	}
 
 	@Override
 	public String toString() {
-		return "ObligationReport [reportId=" + reportId + ", memberId=" + memberId + ", memberName=" + memberName
-				+ ", securityName=" + securityName + ", quantity=" + quantity + ", dueDate=" + dueDate + "]";
+		return "ObligationReport [memberId=" + memberId + ", batchNum=" + batchNum + ", ISIN=" + ISIN + ", quantity="
+				+ quantity + ", fundAmt=" + fundAmt + "]";
 	}
+
 	
 	
 }

@@ -1,99 +1,68 @@
 package com.dao_impl;
-//comment1
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.connections.MyConnection;
+import com.dao.CommonFunctionalities;
 import com.dao.SignUpPage;
 import com.pojo.Member;
-import com.pojo.UserDetails;
 
 public class SignUpPageImpl implements SignUpPage{
 
 	@Override
-	public int registerMember(Member member, UserDetails user) {
+	public int registerMember(Member member) {
 		// TODO Auto-generated method stub
 		
-		// check error in 1 affects another ? 
-		String bankAccNumber = "abc";
-		String dematAccNumber = "";
+		int bankAcNumber = 0;
+		int dematAcNumber = 0;
 		int rowsAdded = 0;
-		String AddMember = "INSERT INTO Member VALUES(?,?,?,?,?)";
-		Connection con = MyConnection.openConnection();
+		String AddMember = "INSERT INTO Member VALUES(?,?,?,?,?,?)";
 		
-		try {
-			con.setAutoCommit(false);
+		
+		try(Connection con = MyConnection.openConnection()){
 			PreparedStatement ps = con.prepareStatement(AddMember);
-			ps.setString(1,member.getMemberId());
-			ps.setString(2, member.getName());
-			ps.setString(3, member.getEmail());
-			ps.setString(4, member.getBankAcNo());
-			bankAccNumber = member.getBankAcNo();
-			ps.setString(5, member.getDematAcNo());
-			dematAccNumber = member.getDematAcNo();
+			ps.setInt(1, member.getMemberId());
+			ps.setString(2, member.getMemberName());
+			ps.setString(3, member.getMemberPassword());
+			ps.setString(4, member.getMemberEmail());
+			ps.setInt(5, member.getBankAcNo());
+			bankAcNumber = member.getBankAcNo();
+			ps.setInt(6, member.getDematAcNo());
+			dematAcNumber = member.getDematAcNo();
 			
 			rowsAdded = ps.executeUpdate();
 		} catch (SQLException e) {
-			try {
-				con.rollback();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		int rowsAdded1 = 0;
-		String addUser = "INSERT INTO User_Details VALUES(?,?,?)";
-		Connection con1 = MyConnection.openConnection();
-		if(rowsAdded>0 ) {
-		try {
 		
-			con1.setAutoCommit(false);
-			PreparedStatement ps = con1.prepareStatement(addUser);
-			ps.setString(1,user.getEmail());
-			ps.setString(2, user.getUserPass());
-			ps.setInt(3, user.getUserType());
-			
-			rowsAdded1 = ps.executeUpdate();
-			System.out.println("h1");
-			
-		
-		} catch (SQLException e) {
-			try {
-				con1.rollback();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		}
-		if(rowsAdded>0 && rowsAdded1>0)
-		{	
-			try {
-				
-				con.commit();
-				con1.commit();
-				
+		if(rowsAdded>0){	
+			try {	
 				String addBA = "INSERT INTO Bank_Details VALUES(?,?)";
-				//System.out.println("hello");
-				Connection con2 = MyConnection.openConnection();
-				PreparedStatement ps = con2.prepareStatement(addBA);
-				ps.setString(1,bankAccNumber);
-				ps.setFloat(2, 0);
-				ps.executeUpdate();
+				Connection con = MyConnection.openConnection();
+				PreparedStatement ps = con.prepareStatement(addBA);
+				ps.setInt(1,bankAcNumber);
+				ps.setDouble(2, 0);
+				rowsAdded += ps.executeUpdate();
+				String addDA = "INSERT INTO Demat_Details VALUES(?,?,?)";
+				ps = con.prepareStatement(addDA);
+				CommonFunctionalities commonFunc = new CommonFunctionalitiesImpl();
+				int noOfSecurities = commonFunc.getNumOfSecurity();
+				for(int i=0;i<noOfSecurities;i++) {
+					ps.setInt(1,dematAcNumber);
+					ps.setInt(2,i);
+					ps.setDouble(3,0);
+					rowsAdded += ps.executeUpdate();
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		}
 			
-		return 1;
+		return rowsAdded;
 		
 	}
 

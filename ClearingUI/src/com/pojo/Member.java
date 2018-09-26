@@ -1,78 +1,88 @@
 package com.pojo;
 
 public class Member {
-	private String memberId;
-	private String name;
-	private String email;
-	private String bankAcNo;
-	private String dematAcNo;
+	private int memberId;
+	private String memberName;
+	private String memberPassword;
+	private String memberEmail;
+	private int bankAcNo;
+	private int dematAcNo;
 	
 	/*Default constructor for clearing member*/
 	public Member() {
-		memberId = "0000000000";
-		name = "NULL";
-		email = "NULL";
-		bankAcNo = "0000000000";
-		dematAcNo = "0000000000";
+		memberId = 0;
+		memberName = "NULL";
+		memberPassword = "NULL";
+		memberEmail = "NULL";
+		bankAcNo = 0;
+		dematAcNo = 0;
 	}
-	
-	/*Parameterized constructor for clearing member*/
-	public Member(String memberId, String name, String email, String bankAcNo, String dematAcNo) {
+
+	public Member(int memberId, String memberName, String memberPassword, String memberEmail, int bankAcNo,
+			int dematAcNo) {
 		this.memberId = memberId;
-		this.name = name;
-		this.email = email;
+		this.memberName = memberName;
+		this.memberPassword = memberPassword;
+		this.memberEmail = memberEmail;
 		this.bankAcNo = bankAcNo;
 		this.dematAcNo = dematAcNo;
 	}
-	
-	/*Getters and Setters for all data members*/
-	public String getMemberId() {
+
+	public int getMemberId() {
 		return memberId;
 	}
 
-	public void setMemberID(String memberId) {
+	public void setMemberId(int memberId) {
 		this.memberId = memberId;
 	}
 
-	public String getName() {
-		return name;
+	public String getMemberName() {
+		return memberName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getMemberPassword() {
+		return memberPassword;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMemberPassword(String memberPassword) {
+		this.memberPassword = memberPassword;
 	}
 
-	public String getBankAcNo() {
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
+	}
+
+	public int getBankAcNo() {
 		return bankAcNo;
 	}
 
-	public void setBankAcNo(String bankAcNo) {
+	public void setBankAcNo(int bankAcNo) {
 		this.bankAcNo = bankAcNo;
 	}
 
-	public String getDematAcNo() {
+	public int getDematAcNo() {
 		return dematAcNo;
 	}
 
-	public void setDematAcNo(String dematAcNo) {
+	public void setDematAcNo(int dematAcNo) {
 		this.dematAcNo = dematAcNo;
 	}
 
-
-	/*Display all data members*/
 	@Override
 	public String toString() {
-		return "ClearingMember [memberId=" + memberId + ", name=" + name + ", email=" + email + ", bankAcNo=" + bankAcNo
-				+ ", dematAcNo=" + dematAcNo + "]";
+		return "Member [memberId=" + memberId + ", memberName=" + memberName + ", memberPassword=" + memberPassword
+				+ ", memberEmail=" + memberEmail + ", bankAcNo=" + bankAcNo + ", dematAcNo=" + dematAcNo + "]";
 	}
+
 	
+
 }
 

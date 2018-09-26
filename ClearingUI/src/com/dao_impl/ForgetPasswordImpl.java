@@ -1,12 +1,7 @@
 package com.dao_impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Properties;
 import java.util.Random;
 
-import com.connections.MyConnection;
 import com.dao.ForgetPassword;
 
 public class ForgetPasswordImpl implements ForgetPassword{
@@ -60,23 +55,13 @@ public class ForgetPasswordImpl implements ForgetPassword{
         String mailTo = emailId;
         String subject = "Reset Password";
         String message = "Hello, your temporary password is: "+tempPass;
-        
+ 
         TestMail mailer = new TestMail();
  
         try {
             mailer.sendPlainTextEmail(host, port, mailFrom, password, mailTo,
                     subject, message);
             System.out.println("Email sent.");
-            String ADDTRADE = "UPDATE USER_DETAILS SET userPassword = ? where userEmailId = ?";
-    		Connection con = MyConnection.openConnection();
-    		try {
-    			PreparedStatement ps = con.prepareStatement(ADDTRADE);
-    			ps.setString(1,tempPass);
-    			ps.setString(2,mailTo);
-    		}catch (SQLException e) {
-    				// TODO Auto-generated catch block
-    				e.printStackTrace();
-    		}
         } catch (Exception ex) {
             System.out.println("Failed to sent email.");
             ex.printStackTrace();
@@ -84,6 +69,5 @@ public class ForgetPasswordImpl implements ForgetPassword{
        
 		
 	}
-
 
 }

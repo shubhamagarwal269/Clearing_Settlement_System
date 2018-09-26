@@ -1,0 +1,29 @@
+insert into SEC_PRICING values('1','12/12/2016',12.34,65);
+insert into SEC_PRICING values('2','12/12/2016',12.74,65);
+
+insert into SEC_PRICING values('3','12/12/2016',12.94,65);
+
+security table initiated as:
+		List<Security> ls = new ArrayList<>();
+		ls.add(new Security("ISIN_1", "Apple"));
+		ls.add(new Security("ISIN_2", "Walmart"));
+		ls.add(new Security("ISIN_3", "GE"));
+		ls.add(new Security("ISIN_4", "LinkedIn"));
+		ls.add(new Security("ISIN_5", "Facebook"));
+Sec_Pricing table initiated as:
+		List<SecurityPricing> l =new ArrayList<>();
+		l.add(new SecurityPricing("ISIN_1", new Date(000), 100f, 10f));
+		l.add(new SecurityPricing("ISIN_2", new Date(000), 101f, 11f));
+		l.add(new SecurityPricing("ISIN_3", new Date(000), 102f, 12f));
+		l.add(new SecurityPricing("ISIN_4", new Date(000), 103f, 13f));
+		l.add(new SecurityPricing("ISIN_5", new Date(000), 104f, 14f));
+		
+testing sequence:
+com.dao.InitiateImpl.populateSecTable
+com.dao.InitiateImpl.populateSecPricingTable
+InitiateImplTest
+SignUpPageTest
+CommonFunc.testViewAllSecurities
+CommonFunc.testViewAllMembers
+CommonFunc.test
+

@@ -43,23 +43,21 @@ public class SignUpServlet extends HttpServlet {
 		
 		String membername = request.getParameter("membername");
 		String emailid = request.getParameter("emailid");
-		String bankac = request.getParameter("bankac");
-		String dematac = request.getParameter("dematac");
+		int bankac = Integer.parseInt(request.getParameter("bankac"));
+		int dematac = Integer.parseInt(request.getParameter("dematac"));
 		String password = request.getParameter("pass");
 		
 		SignUpPage signUpDao = new SignUpPageImpl();
 		
 		CommonFunctionalities commonFunc = new CommonFunctionalitiesImpl();
-		String memId = commonFunc.getNextMemberId();
+		int memId = commonFunc.getNextMemberId();
 		
-		Member mem = new Member(memId,membername,emailid,bankac,dematac);
-		UserDetails user = new UserDetails(emailid,password,1);
+		Member mem = new Member(memId,membername,password,emailid,bankac,dematac);
 		
 		PrintWriter writer = response.getWriter();
-		System.out.println("hi");
-		int status = signUpDao.registerMember(mem, user);
-		System.out.println("hi1");
-		if(status>0) {
+		int rowsUpdated = signUpDao.registerMember(mem);
+
+		if(rowsUpdated>0) {
 			//writer.println("correct");
 			message  = false;
 			notice = "memRegistered";

@@ -1,5 +1,5 @@
 package com.dao;
 
 public interface ResetPassword {
-	boolean updatePassword(String currentPassword, String newPassword, String memberId);
+	int updatePassword(String currentPassword, String newPassword, int memberId);
 }

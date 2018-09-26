@@ -38,7 +38,7 @@ public class DeleteTrade extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		String tradeId = request.getParameter("tradeId");
+		int tradeId = Integer.parseInt(request.getParameter("tradeId"));
 		
 		AdminDashboard admin = new AdminDashboardImpl();
 		
