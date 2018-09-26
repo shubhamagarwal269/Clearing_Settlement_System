@@ -1,12 +1,6 @@
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
-
-
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -88,8 +82,9 @@
             
                     </ul>
                   </li>
+                  </ul>
             
-                  <li><a><i class="fa fa-desktop"></i> Algorithm Stats<span class="fa fa-chevron-down"></span></a>
+                  <!--  <li><a><i class="fa fa-desktop"></i> Algorithm Stats<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="general_elements.html">Algorithm</a></li>
                       <li><a href="media_gallery.html">Metrics</a></li>
@@ -99,7 +94,7 @@
                   
                   <li><a href="updateMarket.jsp"><i class="fa fa-bar-chart-o"></i> Update Market Stats <span class="fa fa-chevron"></span></a></li>
                   
-                </ul>
+                </ul>-->
               </div>
               
               <div class="menu_section"></div>
@@ -228,10 +223,10 @@
 
       
               <div class="col-md-12 col-sm-12 col-xs-12">
-               <c:forEach var="MembersReports"  items="${reps}">
+              <c:forEach var="MemberReport"  items="${reps}">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2><c:out value="${MembersReports.memName }"></c:out></h2>
+                    <h2><c:out value="${MemberReport.memberName}"></c:out></h2> 
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -241,7 +236,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-
+					
                     <table class="table table-bordered table-striped table-hover">
                       <thead>
                         <tr>
@@ -250,75 +245,75 @@
                           <th>Obligations</th>
                           <th>Shortages</th>
                           <th>Market Price</th>
-						  <th>Borrowing Rate</th>
+						  <th>Borrowing Rate (%)</th>
 						  <th>Settlement Cost</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody> 
                         <tr>
-                          
                           <td>Apple</td>
-						  <td><c:out value="${MembersReports.currentBalance.get(0) }"></c:out></td>
-                          <td><c:out value="${MembersReports.obligation.get(0) }"></c:out></td>
-                          <td><c:out value="${MembersReports.shortage.get(0) }"></c:out></td>
-						  <td><c:out value="${MembersReports.marketPriceList.get(0) }"></c:out></td>
-						  <td><c:out value="${MembersReports.borrowingRateList.get(0) }"></c:out></td>
-						  <td><c:out value="${MembersReports.settlementCost.get(0) }"></c:out></td>
+						  <td><c:out value="${MemberReport.currentBalance.get(0) }"></c:out></td>
+                          <td><c:out value="${MemberReport.obligation.get(0) }"></c:out></td>
+                          <td><c:out value="${MemberReport.shortage.get(0) }"></c:out></td>
+						  <td><c:out value="${MemberReport.marketPriceList.get(0) }"></c:out></td>
+						  <td><c:out value="${MemberReport.borrowingRateList.get(0) }"></c:out></td>
+					 	  <td><c:out value="${MemberReport.settlementCost.get(0) }"></c:out></td> 
                         </tr>
                         <tr>
                           <td>Facebook</td>
-                          <td><c:out value="${MembersReports.currentBalance.get(1) }"></c:out></td>
-                          <td><c:out value="${MembersReports.obligation.get(1) }"></c:out></td>
-                          <td><c:out value="${MembersReports.shortage.get(1) }"></c:out></td>
-						  <td><c:out value="${MembersReports.marketPriceList.get(1) }"></c:out></td>
-						  <td><c:out value="${MembersReports.borrowingRateList.get(1) }"></c:out></td>
-						  <td><c:out value="${MembersReports.settlementCost.get(1) }"></c:out></td>
+                          <td><c:out value="${MemberReport.currentBalance.get(1) }"></c:out></td>
+                          <td><c:out value="${MemberReport.obligation.get(1) }"></c:out></td>
+                          <td><c:out value="${MemberReport.shortage.get(1) }"></c:out></td>
+						  <td><c:out value="${MemberReport.marketPriceList.get(1) }"></c:out></td>
+						  <td><c:out value="${MemberReport.borrowingRateList.get(1) }"></c:out></td>
+						  <td><c:out value="${MemberReport.settlementCost.get(1) }"></c:out></td>
                         </tr>
                         <tr>
                           <td>GE</td>
-                          <td><c:out value="${MembersReports.currentBalance.get(2) }"></c:out></td>
-                          <td><c:out value="${MembersReports.obligation.get(2) }"></c:out></td>
-                          <td><c:out value="${MembersReports.shortage.get(2) }"></c:out></td>
-						  <td><c:out value="${MembersReports.marketPriceList.get(2) }"></c:out></td>
-						  <td><c:out value="${MembersReports.borrowingRateList.get(2) }"></c:out></td>
-						  <td><c:out value="${MembersReports.settlementCost.get(2) }"></c:out></td>
+                          <td><c:out value="${MemberReport.currentBalance.get(2) }"></c:out></td>
+                          <td><c:out value="${MemberReport.obligation.get(2) }"></c:out></td>
+                          <td><c:out value="${MemberReport.shortage.get(2) }"></c:out></td>
+						  <td><c:out value="${MemberReport.marketPriceList.get(2) }"></c:out></td>
+						  <td><c:out value="${MemberReport.borrowingRateList.get(2) }"></c:out></td>
+						  <td><c:out value="${MemberReport.settlementCost.get(2) }"></c:out></td>
                         </tr>
 						<tr>
                           <td>LinkedIn</td>
-                          <td><c:out value="${MembersReports.currentBalance.get(3) }"></c:out></td>
-                          <td><c:out value="${MembersReports.obligation.get(3) }"></c:out></td>
-                          <td><c:out value="${MembersReports.shortage.get(3) }"></c:out></td>
-						  <td><c:out value="${MembersReports.marketPriceList.get(3) }"></c:out></td>
-						  <td><c:out value="${MembersReports.borrowingRateList.get(3) }"></c:out></td>
-						  <td><c:out value="${MembersReports.settlementCost.get(3) }"></c:out></td>
+                          <td><c:out value="${MemberReport.currentBalance.get(3) }"></c:out></td>
+                          <td><c:out value="${MemberReport.obligation.get(3) }"></c:out></td>
+                          <td><c:out value="${MemberReport.shortage.get(3) }"></c:out></td>
+						  <td><c:out value="${MemberReport.marketPriceList.get(3) }"></c:out></td>
+						  <td><c:out value="${MemberReport.borrowingRateList.get(3) }"></c:out></td>
+						  <td><c:out value="${MemberReport.settlementCost.get(3) }"></c:out></td>
                         </tr>
 						<tr>
                           <td>Walmart</td>
-                         <td><c:out value="${MembersReports.currentBalance.get(4) }"></c:out></td>
-                          <td><c:out value="${MembersReports.obligation.get(4) }"></c:out></td>
-                          <td><c:out value="${MembersReports.shortage.get(4) }"></c:out></td>
-						  <td><c:out value="${MembersReports.marketPriceList.get(4) }"></c:out></td>
-						  <td><c:out value="${MembersReports.borrowingRateList.get(4) }"></c:out></td>
-						  <td><c:out value="${MembersReports.settlementCost.get(4) }"></c:out></td>
-                        </tr>
+                         <td><c:out value="${MemberReport.currentBalance.get(4) }"></c:out></td>
+                          <td><c:out value="${MemberReport.obligation.get(4) }"></c:out></td>
+                          <td><c:out value="${MemberReport.shortage.get(4) }"></c:out></td>
+						  <td><c:out value="${MemberReport.marketPriceList.get(4) }"></c:out></td>
+						  <td><c:out value="${MemberReport.borrowingRateList.get(4) }"></c:out></td>
+						  <td><c:out value="${MemberReport.settlementCost.get(4) }"></c:out></td>
+                        </tr> 
 						<tr>
                           <td>Funds</td>
-                          <td><c:out value="${MembersReports.currentBalance.get(5) }"></c:out></td>
-                          <td><c:out value="${MembersReports.obligation.get(5) }"></c:out></td>
-                          <td><c:out value="${MembersReports.shortage.get(5) }"></c:out></td>
-						  <td><c:out value="${MembersReports.marketPriceList.get(5) }"></c:out></td>
-						  <td><c:out value="${MembersReports.borrowingRateList.get(5) }"></c:out></td>
-						  <td><c:out value="${MembersReports.settlementCost.get(5) }"></c:out></td>
+                          <td><c:out value="${MemberReport.currentBalance.get(5) }"></c:out></td>
+                          <td><c:out value="${MemberReport.obligation.get(5) }"></c:out></td>
+                          <td><c:out value="${MemberReport.shortage.get(5) }"></c:out></td>
+						  <td></td>
+						  <td>1.25</td>
+						  <td><c:out value="${MemberReport.settlementCost.get(5) }"></c:out></td>
                         </tr>
                       </tbody>
+                      
                     </table>
 					
-					<h5><c:out value="${MembersReports.settlementCost[0]+MembersReports.settlementCost[1]+MembersReports.settlementCost[2]+MembersReports.settlementCost[3]+MembersReports.settlementCost[4]+MembersReports.settlementCost[5] }"></c:out></h5>
+					<h5><c:out value="${MemberReport.settlementCost.get(0)+MemberReport.settlementCost.get(1)+MemberReport.settlementCost.get(2)+MemberReport.settlementCost.get(3)+MemberReport.settlementCost.get(4)+MemberReport.settlementCost.get(5) }"></c:out></h5>
 					
 
                   </div>
                 </div>
-               </c:forEach>
+                </c:forEach>
               </div>
             
 

@@ -12,7 +12,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>ViewObligation | Admin</title>
+<title>ViewNetting | Admin</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -88,7 +88,7 @@
             
                     </ul>
                   </li>
-            
+            <!--  
                   <li><a><i class="fa fa-desktop"></i> Algorithm Stats<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="general_elements.html">Algorithm</a></li>
@@ -99,7 +99,7 @@
                   
                   <li><a href="updateMarket.jsp"><i class="fa fa-bar-chart-o"></i> Update Market Stats <span class="fa fa-chevron"></span></a></li>
                   
-                </ul>
+                </ul>-->
               </div>
               
               <div class="menu_section"></div>
@@ -255,17 +255,15 @@
                       </thead>
                       <tbody>
                       
-                        <c:forEach var="MembersReports"  items="${reps}">
+                        <c:forEach var="MemberReport"  items="${reps}">
                         <tr>
-                          
-                          <td></td>
-						  <td><c:out value="${MembersReports.memberName }"></c:out></td>
-                          <td><c:out value="${MembersReports.obligation.get(0) }"></c:out></td>
-                          <td><c:out value="${MembersReports.obligation.get(1) }"></c:out></td>
-						  <td><c:out value="${MembersReports.obligation.get(2) }"></c:out></td>
-						  <td><c:out value="${MembersReports.obligation.get(3)}"></c:out></td>
-						  <td><c:out value="${MembersReports.obligation.get(4) }"></c:out></td>
-						  <td><c:out value="${MembersReports.obligation.get(5) }"></c:out></td>
+						  <td><c:out value="${MemberReport.memberName }"></c:out></td>
+                          <td><c:out value="${MemberReport.obligation.get(0) }"></c:out></td>
+                          <td><c:out value="${MemberReport.obligation.get(1) }"></c:out></td>
+						  <td><c:out value="${MemberReport.obligation.get(2) }"></c:out></td>
+						  <td><c:out value="${MemberReport.obligation.get(3)}"></c:out></td>
+						  <td><c:out value="${MemberReport.obligation.get(4) }"></c:out></td>
+						  <td><c:out value="${MemberReport.obligation.get(5) }"></c:out></td>
                         </tr>
                         </c:forEach>
                        </tbody>

@@ -15,7 +15,7 @@ import com.pojo.MemberReport;
 import com.pojo.ObligationReport;
 
 public class GenerateMemberReportImpl implements GenerateMemberReport {
-
+	double fundBorrowingRate = .0125d;
 
 	@Override
 	public Member viewProfile(int memberId) {
@@ -162,12 +162,13 @@ public class GenerateMemberReportImpl implements GenerateMemberReport {
 			
 			List<Double> shortageList = new ArrayList<>();
 			shortageList = shortage(obligReportList, currentBalanceList);
-			
+			System.out.println("size of shortage:-"+shortageList.size());
 			memReport.setShortage(shortageList);
 			
 			List<Double> marketPriceList = commonFunc.fetchMarketPrice();
 			List<Double> borrowingRateList = commonFunc.fetchBorrowingRate();
-			
+			System.out.println("size of market:-"+marketPriceList.size());
+			System.out.println("size of borrow:-"+borrowingRateList.size());
 			List<Double> settlementCostList = new ArrayList<>();
 			
 			settlementCostList= settlementCost(shortageList, marketPriceList, borrowingRateList);
@@ -191,7 +192,8 @@ public class GenerateMemberReportImpl implements GenerateMemberReport {
 					settCost = (double) (marketPriceList.get(i)*shortageList.get(i)*borrowingRateList.get(i));
 					settCostList.add(settCost);
 				}
-				settCost = (double) (shortageList.get(i)*borrowingRateList.get(i));
+				System.out.println("i:-"+i);
+				settCost = (double) (shortageList.get(i)*fundBorrowingRate);
 				settCostList.add(settCost);
 				
 				return settCostList;
@@ -202,14 +204,17 @@ public class GenerateMemberReportImpl implements GenerateMemberReport {
 		
 		List<Double> shortageList = new ArrayList<>();
 		for(int i=0;i<oRList.size();i++)
-		{
-			if(oRList.get(i) < currentBalanceList.get(i))
-			{
-				Double sum = oRList.get(i) + currentBalanceList.get(i);
-				if(sum<0)
-				{
-					shortageList.set(i, (-1)*sum);
-				}
+		{	
+			System.out.println("current balance"+ currentBalanceList.get(i));
+			System.out.println("obligation"+ oRList.get(i));
+	
+			Double sum = oRList.get(i) + currentBalanceList.get(i);
+			//System.out.println("sum:"+sum);
+			if(sum<0){
+				shortageList.add(i, (-1)*sum);
+			}
+			else {
+				shortageList.add(i, 0d);
 			}
 		}
 		return shortageList;
