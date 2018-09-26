@@ -1,22 +1,14 @@
-insert into SEC_PRICING values('1','12/12/2016',12.34,65);
-insert into SEC_PRICING values('2','12/12/2016',12.74,65);
-
-insert into SEC_PRICING values('3','12/12/2016',12.94,65);
-
 security table initiated as:
-		List<Security> ls = new ArrayList<>();
-		ls.add(new Security("ISIN_1", "Apple"));
-		ls.add(new Security("ISIN_2", "Walmart"));
-		ls.add(new Security("ISIN_3", "GE"));
-		ls.add(new Security("ISIN_4", "LinkedIn"));
-		ls.add(new Security("ISIN_5", "Facebook"));
-Sec_Pricing table initiated as:
-		List<SecurityPricing> l =new ArrayList<>();
-		l.add(new SecurityPricing("ISIN_1", new Date(000), 100f, 10f));
-		l.add(new SecurityPricing("ISIN_2", new Date(000), 101f, 11f));
-		l.add(new SecurityPricing("ISIN_3", new Date(000), 102f, 12f));
-		l.add(new SecurityPricing("ISIN_4", new Date(000), 103f, 13f));
-		l.add(new SecurityPricing("ISIN_5", new Date(000), 104f, 14f));
+		insert into SECURITY values(0,'Walmart', 76.5, 7);
+		insert into SECURITY values(1,'Apple', 101.1, 7);
+		insert into SECURITY values(2,'GE', 45.4, 8);
+		insert into SECURITY values(3,'LinkedIn', 45.5, 11);
+		insert into SECURITY values(4,'Facebook', 155, 6);
+member table initiated as:
+		insert into MEMBER values(0,'DB','p1','db@gmail.com',0,0);
+		insert into MEMBER values(1,'GS','p2','gs@gmail.com',0,0);
+		insert into MEMBER values(2,'JP','p3','jp@gmail.com',0,0);
+		insert into MEMBER values(3,'Citi','p4','citi@gmail.com',0,0);
 		
 testing sequence:
 com.dao.InitiateImpl.populateSecTable

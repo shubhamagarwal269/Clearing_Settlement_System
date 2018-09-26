@@ -8,7 +8,7 @@ public class Security {
 	
 	/*Default constructor for Security*/
 	public Security() {
-		ISIN = 0;
+		ISIN = -1;
 		securityName = "NULL";
 		marketPrice = 0d;
 		borrowingRate = 0d;

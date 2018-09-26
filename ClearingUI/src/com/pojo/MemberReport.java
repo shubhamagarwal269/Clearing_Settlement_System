@@ -15,7 +15,7 @@ public class MemberReport {
 	private List<Double> borrowingRateList;
 	
 	public MemberReport() {
-		memberId = 0;
+		memberId = -2;
 		memberName = "NULL";
 		obligation = new ArrayList<>();
 		currentBalance = new ArrayList<>();

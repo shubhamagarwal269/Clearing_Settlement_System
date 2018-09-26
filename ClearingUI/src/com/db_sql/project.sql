@@ -48,12 +48,26 @@ PRIMARY KEY (memberId, ISIN)
 
 CREATE TABLE OBG_REPORT(
 memberId NUMERIC(20) NOT NULL CONSTRAINT OBG_REPORT_MEM_ID_FK FOREIGN KEY REFERENCES MEMBER(memberId),
-batchNum NUMERIC(20) NOT NULL CONSTRAINT OBG_REPORT_BATCH_NUM_FK FOREIGN KEY REFERENCES TRADE(batchNum),
+batchNum NUMERIC(20) NOT NULL,
 fundAmt NUMERIC (20,2) NOT NULL,
 ISIN NUMERIC (20) NOT NULL CONSTRAINT PAY_IN_SEC_ISIN_FK FOREIGN KEY REFERENCES SECURITY(ISIN),
 Quantity NUMERIC (20) NOT NULL,
-PRIMARY KEY (memberId, batchNum)
+PRIMARY KEY (memberId, batchNum, ISIN)
 );
 
 
+insert into SECURITY values(0,'Walmart', 76.5, 7);
+insert into SECURITY values(1,'Apple', 101.1, 7);
+insert into SECURITY values(2,'GE', 45.4, 8);
+insert into SECURITY values(3,'LinkedIn', 45.5, 11);
+insert into SECURITY values(4,'Facebook', 155, 6);
 
+insert into MEMBER values(0,'DB','p1','db@gmail.com',0,0);
+insert into MEMBER values(1,'GS','p2','gs@gmail.com',0,0);
+insert into MEMBER values(2,'JP','p3','jp@gmail.com',0,0);
+insert into MEMBER values(3,'Citi','p4','citi@gmail.com',0,0);
+
+
+
+select * from MEMBER;
+select * from SECURITY;

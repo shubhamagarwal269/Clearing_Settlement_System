@@ -141,7 +141,7 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 				int ISIN = set.getInt("ISIN");
 				String securityName = set.getString("securityName");
 				double marketPrice = set.getDouble("marketPrice");
-				double borrowingRate = set.getDouble("borrowiingRate");
+				double borrowingRate = set.getDouble("borrowingRate");
 				Security security = new Security(ISIN, securityName,marketPrice,borrowingRate);
 				
 				secList.add(security);
