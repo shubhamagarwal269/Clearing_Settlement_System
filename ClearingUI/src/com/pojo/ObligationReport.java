@@ -11,8 +11,8 @@ public class ObligationReport {
 	
 	public ObligationReport() {
 		memberId = 0;
-		ISIN = 0;
-		batchNum = 0;
+		ISIN = -1;
+		batchNum = -1;
 		fundAmt = 0;
 		quantity = 0;
 	}
@@ -67,7 +67,7 @@ public class ObligationReport {
 
 	@Override
 	public String toString() {
-		return "ObligationReport [memberId=" + memberId + ", batchNum=" + batchNum + ", ISIN=" + ISIN + ", quantity="
+		return "\n ObligationReport [memberId=" + memberId + ", batchNum=" + batchNum + ", ISIN=" + ISIN + ", quantity="
 				+ quantity + ", fundAmt=" + fundAmt + "]";
 	}
 

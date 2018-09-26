@@ -12,7 +12,7 @@ public class Trade {
 	
 	/*Default constructor for Trade*/
 	public Trade() {
-		tradeId = 0;
+		tradeId = -1;
 		ISIN = 0;
 		quantity = 0;
 		price = 0d;

@@ -10,7 +10,7 @@ public class Member {
 	
 	/*Default constructor for clearing member*/
 	public Member() {
-		memberId = 0;
+		memberId = -2;
 		memberName = "NULL";
 		memberPassword = "NULL";
 		memberEmail = "NULL";
