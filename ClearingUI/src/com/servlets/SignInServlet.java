@@ -32,13 +32,12 @@ public class SignInServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		String username = request.getParameter("username");
 		String option = request.getParameter("options");
 		String password = request.getParameter("password");
 		boolean message = true;
+		String notice = null; 
 		PrintWriter writer = response.getWriter();
 		
 		int userType= Integer.parseInt(option);
@@ -63,19 +62,21 @@ public class SignInServlet extends HttpServlet {
 		else if (status && (userType==2)) {
 			//writer.println("correct");
 			//writer.println(option);
-			//RequestDispatcher dispatcher = request.getRequestDispatcher("dashMember.jsp");
-			//dispatcher.forward(request, response);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("guestAccess.jsp");
+			dispatcher.forward(request, response);
 			
 		} 
 		else {
 			
 			message  = false;
+			notice = "wrongCred";
 			//String message = "You have entered wrong credentials, Please try again";
 			request.setAttribute("alert", message);
+			request.setAttribute("type", notice);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
+			dispatcher.forward(request, response);
 				
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
-		dispatcher.forward(request, response);
 	}
 
 }

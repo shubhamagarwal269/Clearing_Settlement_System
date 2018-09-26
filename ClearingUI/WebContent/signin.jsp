@@ -117,8 +117,17 @@
 					
 					<%
 						try{
-							boolean flag = (boolean) request.getAttribute("alert") ;
-							out.println("<div id='snackbar'> You have entered wrong credentials, Please try again</div>");
+							boolean flag = (boolean)request.getAttribute("alert");
+							String type = (String)request.getAttribute("type");
+							
+							if(type.equals("wrongCred")){
+								out.println("<div id='snackbar'> You have entered wrong credentials, Please try again</div>");
+							}
+							else if(type.equals("memRegistered")){
+								out.println("<div id='snackbar'>New Member registered, You can login using your credentials now</div>");
+							}
+							
+							
 							//TimeUnit.SECONDS.sleep(2);
 						}
 						catch(NullPointerException e){
@@ -171,7 +180,7 @@
 		   
 	    if($(this).val() === '2'){
 	        $('input[type="email"]').val("guest@hello.com");
-	        $('input[type="password"]').val("guest123");
+	        $('input[type="password"]').val("guest@123");
 	        }
 	    else if($(this).val() === '1'){
 	    	$('input[type="email"]').val("");
@@ -185,7 +194,6 @@
 	        $('input[type="email"]').attr("placeholder","Enter Admin Email-Id");
 	        
 	        }
-
 	});
 	
 	</script>
@@ -201,7 +209,6 @@
 				3000);
 			}
 		);
-		
 	</script>
 
 	

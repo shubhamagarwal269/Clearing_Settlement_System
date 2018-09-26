@@ -38,6 +38,9 @@ public class SignUpServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		String notice= null;
+		boolean message = true;
+		
 		String membername = request.getParameter("membername");
 		String emailid = request.getParameter("emailid");
 		String bankac = request.getParameter("bankac");
@@ -58,6 +61,10 @@ public class SignUpServlet extends HttpServlet {
 		System.out.println("hi1");
 		if(status>0) {
 			//writer.println("correct");
+			message  = false;
+			notice = "memRegistered";
+			request.setAttribute("alert", message);
+			request.setAttribute("type", notice);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
 			dispatcher.forward(request, response);
 			
