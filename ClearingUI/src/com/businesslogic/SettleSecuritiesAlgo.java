@@ -50,7 +50,7 @@ public class SettleSecuritiesAlgo {
 		// amount[p] indicates the net amount to be credited/debited to/from person 'p'
 		// If amount[p] is positive, then i'th person will amount[i]
 		// If amount[p] is negative, then i'th person will give -amount[i]
-		void minCashFlowRec(int amount[], List<ObligationReport> obligationReport , int sec)
+		void minCashFlowRec(int amount[], List<ObligationReport> obligationReport , int sec,int batchNum)
 		{
 			// Find the indexes of minimum and maximum values in amount[] amount[mxCredit] indicates the maximum amount to be given (or credited) to any person .
 			// And amount[mxDebit] indicates the maximum amount to be taken(or debited) from any person. So if there is a positive value in amount[], then there must be a negative value
@@ -70,12 +70,14 @@ public class SettleSecuritiesAlgo {
 			obReport.setMemberId(mxDebit);
 			obReport.setQuantity((min*-1));
 			obReport.setISIN(sec);
+			obReport.setBatchNum(batchNum);
 			obligationReport.add(obReport);
 			
 			//Adding crediter to list
 			ObligationReport obReport1=new ObligationReport();
 			obReport1.setMemberId(mxCredit);
 			obReport1.setISIN(sec);
+			obReport1.setBatchNum(batchNum);
 			obReport1.setQuantity(min);
 			obligationReport.add(obReport1);
 			
@@ -84,12 +86,12 @@ public class SettleSecuritiesAlgo {
 									+ " to " + "Person " + (mxCredit));
 		
 			// Recur for the amount array. totalMembersote that it is guaranteed that the recursion would terminate as either amount[mxCredit] or amount[mxDebit] becomes 0
-			minCashFlowRec(amount,obligationReport,sec);
+			minCashFlowRec(amount,obligationReport,sec,batchNum);
 		}
 		
 		// Given a set of persons as graph[] where graph[i][j] indicates the amount that person i needs to pay person j, this function
 		// finds and prints the minimum  cash flow to settle all debts.
-		void minCashFlow(int graph[][],List<ObligationReport> obligationReport, int sec)
+		void minCashFlow(int graph[][],List<ObligationReport> obligationReport, int sec,int batchNum)
 		{
 			// Create an array amount[], initialize all value in it as 0.
 			int amount[]=new int[totalMembers];
@@ -99,7 +101,7 @@ public class SettleSecuritiesAlgo {
 			for (int i = 0; i < totalMembers; i++)
 				amount[p] += (graph[i][p] - graph[p][i]);
 		
-			minCashFlowRec(amount, obligationReport, sec);
+			minCashFlowRec(amount, obligationReport, sec,batchNum);
 		}
 	
 		public List<ObligationReport> settleSecurities(List <Trade> tradeList) {
@@ -129,8 +131,9 @@ public class SettleSecuritiesAlgo {
 						
 					}
 				}
+				int batchNum=tradeList.get(0).getBatchNum();
 				
-				settleSecAlgo.minCashFlow(graph,obligationReport,sec);
+				settleSecAlgo.minCashFlow(graph,obligationReport,sec,batchNum);
 				//make every element of graph 0
 				for(int i=0;i<totalMembers;i++) {
 					for(int j=0;j<totalMembers;j++)

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.connections.MyConnection;
+import com.dao.AdminDashboard;
 import com.dao.CommonFunctionalities;
 import com.pojo.Member;
 import com.pojo.ObligationReport;
@@ -43,7 +44,10 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 		Random random=new Random();
 		
 		int tradeCount = commonFunc.getNextTradeId();
-		
+		int batchNum = getNextBatchNum();
+		if(!newBatch)
+			batchNum--;
+		System.out.println("batch no"+batchNum);
 		for(int i=0;i<noOfTrades;i++){
 			
 			
@@ -74,9 +78,7 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 			price +=  changeInPrice * random.nextInt(40)* tickSize ; // 0.05 is the tick size and 40*0.05 allows fluctuation by 2 units
 			price = roundToDecimalPlaces(price,2);
 			
-			int batchNum = getNextBatchNum();
-			if(!newBatch)
-				batchNum--;
+			
      		
      		Trade trade = new Trade();
      		trade.setTradeID(tradeCount);
@@ -91,6 +93,7 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 			tradeCount++;
 			
 		}
+		System.out.println(tradeList);
 		return  tradeList;
 
 	}
@@ -498,4 +501,46 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 		}
 		return obgList;
 	}
+
+	@Override
+	public void settleTrades() {
+		// TODO Auto-generated method stub
+		int batchNo = getNextBatchNum()-1;
+		List<Trade> tradeList = new ArrayList<Trade>();
+		
+		String FETCHTRADES  = "select * from TRADE where batchNum=?";
+		
+		try(Connection con=MyConnection.openConnection();)
+		{
+			PreparedStatement ps = con.prepareStatement(FETCHTRADES);
+			ps.setInt(1, batchNo);
+			ResultSet set = ps.executeQuery();
+			
+			while(set.next()) {
+				
+				int tradeId = set.getInt("tradeId");
+				int ISIN = set.getInt("ISIN");
+				int quantity = set.getInt("quantity");
+				double price = set.getFloat("price");
+				int buyerId = set.getInt("buyerMemberId");
+				int sellerId = set.getInt("sellerMemberId");
+				int batchNum = set.getInt("batchNum");
+				Trade trade = new Trade(tradeId, ISIN, quantity, price, buyerId, sellerId, batchNum);
+				tradeList.add(trade);
+			}
+			
+			AdminDashboard adminDash=new AdminDashboardImpl();
+			adminDash.applyNetting(tradeList);
+			
+		}catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+			
+	}
+		
+		
+		
+		
+	
 }

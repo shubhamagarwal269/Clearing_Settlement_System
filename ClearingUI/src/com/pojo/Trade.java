@@ -92,7 +92,7 @@ public class Trade {
 
 	@Override
 	public String toString() {
-		return "Trade [tradeId=" + tradeId + ", ISIN=" + ISIN + ", quantity=" + quantity + ", price=" + price
+		return "\n Trade [tradeId=" + tradeId + ", ISIN=" + ISIN + ", quantity=" + quantity + ", price=" + price
 				+ ", buyerMemberId=" + buyerMemberId + ", sellerMemberId=" + sellerMemberId + ", batchNum=" + batchNum + "]";
 	}
 	

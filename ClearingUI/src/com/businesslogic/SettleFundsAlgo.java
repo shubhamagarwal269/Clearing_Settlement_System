@@ -80,7 +80,7 @@ public class SettleFundsAlgo {
 			minCashFlowRecSecurityWise(amount);
 		}
 		
-		void minCashFlowRecFundsWise(double amount[], List<ObligationReport> obligationReport)
+		void minCashFlowRecFundsWise(double amount[], List<ObligationReport> obligationReport,int batchNum)
 		{
 			// Find the indexes of minimum and maximum values in amount[] amount[mxCredit] indicates the maximum amount to be given (or credited) to any person .
 			// And amount[mxDebit] indicates the maximum amount to be taken(or debited) from any person. So if there is a positive value in amount[], then there must be a negative value
@@ -100,12 +100,14 @@ public class SettleFundsAlgo {
 			ObligationReport obReport=new ObligationReport();
 			obReport.setMemberId(mxDebit);
 			obReport.setFundAmt((min*-1));
+			obReport.setBatchNum(batchNum);
 			obligationReport.add(obReport);
 			
 			//Adding crediter to list
 			ObligationReport obReport1=new ObligationReport();
 			obReport1.setMemberId(mxCredit);
 			obReport1.setFundAmt(min);
+			obReport1.setBatchNum(batchNum);
 			obligationReport.add(obReport1);
 			
 			// If minimum is the maximum amount to be
@@ -113,7 +115,7 @@ public class SettleFundsAlgo {
 									+ " to " + "Person " + (mxCredit));
 			after_net_graph[mxDebit][mxCredit]+=min;
 			// Recur for the amount array. Note that it is guaranteed that the recursion would terminate as either amount[mxCredit] or amount[mxDebit] becomes 0
-			minCashFlowRecFundsWise(amount, obligationReport);
+			minCashFlowRecFundsWise(amount, obligationReport,batchNum);
 		}
 		
 		
@@ -133,7 +135,7 @@ public class SettleFundsAlgo {
 		}
 		
 		
-		void minCashFlowFundsWise(double graph[][], List<ObligationReport> obligationReport)
+		void minCashFlowFundsWise(double graph[][], List<ObligationReport> obligationReport,int batchNum)
 		{
 			// Create an array amount[], initialize all value in it as 0.
 			double amount[]=new double[totalMembers];
@@ -143,7 +145,7 @@ public class SettleFundsAlgo {
 			for (int i = 0; i < totalMembers; i++)
 				amount[p] += (graph[i][p] - graph[p][i]);
 		
-			minCashFlowRecFundsWise(amount, obligationReport);
+			minCashFlowRecFundsWise(amount, obligationReport,batchNum);
 		}
 		
 		void display() {
@@ -174,10 +176,12 @@ public class SettleFundsAlgo {
 			
 			
 			int totalSecurities=commFunc.viewAllSecurities().size();
-			
+			System.out.println("TL "+ tradeList);
+			int batchNum=tradeList.get(0).getBatchNum();
 			for(int sec=0;sec<totalSecurities;sec++) { 
 				row=0;
 				coln=0;
+				
 				for(int x=0;x<tradeList.size();x++) {
 					if(tradeList.get(x).getISIN()==sec) { // check string conversion into int
 						coln=tradeList.get(x).getSellerMemberId();
@@ -205,7 +209,7 @@ public class SettleFundsAlgo {
 			
 			display();
 			List<ObligationReport> obligationReport= new ArrayList<>();
-			minCashFlowFundsWise(after_net_graph,obligationReport);
+			minCashFlowFundsWise(after_net_graph,obligationReport,batchNum);
 //			System.out.println(obligationReport);
 			
 			List<ObligationReport> finalObligationReport =new ArrayList<>();
