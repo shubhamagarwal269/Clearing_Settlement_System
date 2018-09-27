@@ -208,8 +208,8 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 				int ISIN = set.getInt("ISIN");
 				int quantity = set.getInt("quantity");
 				double price = set.getDouble("price");
-				int buyerId = set.getInt("buyerId");
-				int sellerId = set.getInt("sellerId");
+				int buyerId = set.getInt("buyerMemberId");
+				int sellerId = set.getInt("sellerMemberId");
 				int batchNum = set.getInt("batchNum");
 				Trade trade = new Trade(tradeId, ISIN, quantity, price, buyerId, sellerId, batchNum);
 				tradeList.add(trade);
