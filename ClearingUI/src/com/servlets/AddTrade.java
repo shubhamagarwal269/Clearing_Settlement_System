@@ -1,8 +1,6 @@
 package com.servlets;
 //comment1
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,8 +13,7 @@ import com.dao.AdminDashboard;
 import com.dao.CommonFunctionalities;
 import com.dao_impl.AdminDashboardImpl;
 import com.dao_impl.CommonFunctionalitiesImpl;
-import com.pojo.Member;
-import com.pojo.Security;
+
 import com.pojo.Trade;
 
 /**
@@ -43,9 +40,6 @@ public class AddTrade extends HttpServlet {
 		AdminDashboard admin = new AdminDashboardImpl();
 		
 		CommonFunctionalities commFunc = new CommonFunctionalitiesImpl();
-		
-		List<Security> securities = commFunc.viewAllSecurities();
-		List<Member> members = commFunc.viewAllMembers();
 		
 		int tradeId = commFunc.getNextTradeId();
 		String security = request.getParameter("security");
@@ -78,7 +72,7 @@ public class AddTrade extends HttpServlet {
 		//PrintWriter writer = response.getWriter();
 		//writer.println(isin+" "+quantity+" "+price+" "+buyerId+" "+sellerId);
 		
-		int added = admin.addNewTrade(trade, newBatch);
+		admin.addNewTrade(trade, newBatch);
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher("fetch");
 		dispatcher.forward(request, response);

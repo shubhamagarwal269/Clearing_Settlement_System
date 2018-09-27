@@ -85,8 +85,8 @@
                   
                   <li><a><i class="fa fa-edit"></i>Reports<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">Netting Report</a></li>
-                      <li><a href="form_advanced.html">Member Obligation Reports</a></li>            
+                      <li><a href="AdminViewNetting.jsp">Netting Report</a></li>
+                      <li><a href="AdminViewObligation.jsp">Member Obligation Reports</a></li>            
                     </ul>
                   </li>
                   
@@ -200,7 +200,7 @@
           
 <div class="col-md-12 col-sm-12 col-xs-12">
                     
-                    <form action="addnewtrade" method="post">
+                    <form action="addnewrandomtrade" >
                     <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
@@ -241,11 +241,11 @@
                     <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
+                          <th>buyerMemberId</th>
+                          <th>sellerMemberId</th>
                           <th>Security</th>
                           <th>Quantity</th>
                           <th>Price</th>
-                          <th>buyerMemberId</th>
-                          <th>sellerMemberId</th>
                           <th>Batch</th>
                           <th>Add Trade</th>
                         </tr>
@@ -254,28 +254,8 @@
 
                       <tbody>
 	                        <tr>
-	                          <td>
-	                          	<select name ="security">
-									<c:forEach var="security" items="${securities}">
-									<option>${security.securityName}</option>
-									</c:forEach>
-								</select>
 	                          
-	                          </td>
-	                          <td><input type="number" name="quantity"></td>
-	                          <td>
-	                          
-	                          <select name="price">
-								  <option value="2">+ 2%</option>
-								  <option value="3">+ 3%</option>
-								  <option value="3">+ 5%</option>
-								  <option value="-2">-  2%</option>
-								  <option value="-3">-  3%</option>
-								  <option value="-5">-  5%</option>
-							 </select>
-	                          
-	                          </td>
-	                          <td>
+								<td>
 	                          	 <select name="buyer">
 									<c:forEach var="member" items="${members}">
 									<option>${member.memberName}</option>
@@ -288,6 +268,20 @@
 									<option>${member.memberName}</option>
 									</c:forEach>
 								</select>
+	                          </td>
+	                          <td>
+	                          	<select name ="security">
+									<c:forEach var="security" items="${securities}">
+									<option>${security.securityName}</option>
+									</c:forEach>
+								</select>
+								</td>
+	                          
+	                          <td><input type="number" min= 1 name="quantity"></td>
+	                          <td>
+	                          
+	                          <input type="number" min= 1 name="price">
+	                          
 	                          </td>
 	                          
 	                          <td>
@@ -379,7 +373,7 @@
               </div>
               
               
-                <form action="addnewtrade" method="post">
+                <form action="executenetting">
                  <table id="datatable-buttons" class="table">
                    <thead>
                      <tr>
