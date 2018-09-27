@@ -74,20 +74,19 @@
                       <li><a href="fetch">Trade List</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i>Clearing Member Stats<span class="fa fa-chevron-down"></span></a>
+                  <!--  <li><a><i class="fa fa-edit"></i>Clearing Member Stats<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="form.html">Profiles</a></li>
                       <li><a href="form_advanced.html">Reports</a></li>
                       <li><a href="shortSettle.jsp">Shortage Settlement</a></li>
             
                     </ul>
-                  </li>
-            
-                  <li><a><i class="fa fa-desktop"></i> Algorithm Stats<span class="fa fa-chevron-down"></span></a>
+                  </li> -->
+                  
+                  <li><a><i class="fa fa-edit"></i>Reports<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="general_elements.html">Algorithm</a></li>
-                      <li><a href="media_gallery.html">Metrics</a></li>
-                     
+                      <li><a href="form.html">Netting Report</a></li>
+                      <li><a href="form_advanced.html">Member Obligation Reports</a></li>            
                     </ul>
                   </li>
                   
@@ -199,29 +198,30 @@
         <div class="right_col" role="main">
           <div class="">
           
-          <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
+<div class="col-md-12 col-sm-12 col-xs-12">
                     
-					<div class="form-group">
-					  <label for="usr">Enter Trade List Size:</label>
-					  <input type="text" class="form-control" id="usr" name="noOfTrade">
-					</div>
-					<input type="submit" class="btn btn-success" value="Generate Random Trade List">
-                    
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <p class="text-muted font-13 m-b-30">
-                      Generate Trade list generated between clearing members for different securities.
-                    </p>
-          	       </div>
-          	       </div>
-          	       </div>   
+                    <form action="addnewtrade" method="post">
+                    <table id="datatable-buttons" class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th style="vertical-align: middle;text-align: center;"><h5><b>Enter Trade List Size:</b></h5></th>
+                          <th style="vertical-align: middle;text-align: center;"><input type="text" name="noOfTrade"></th>
+                          <th style="vertical-align: middle;text-align: center;">
+                             <select name="batch">
+								  <option value="1">Add in new batch</option>
+								  <option value="2">Add in previous batch</option>
+							 </select>
+						  </th>
+                          <th style="vertical-align: middle;text-align: center;">					
+                          <input type="submit" class="btn btn-success" value="Generate Random Trade List">
+						  </th>
+                        </tr>
+                      </thead>
+                    </table>
+                    </form>
+               
+          	      
+          	       </div>      
           	       
           	  
           	  <div class="col-md-12 col-sm-12 col-xs-12">
@@ -379,24 +379,19 @@
               </div>
               
               
-          <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <button type="button" class="btn btn-primary">Execute Settlement</button>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <p class="text-muted font-13 m-b-30">
-                      Proceed to initiate netting algorithm to settle trades from the trade list and display summary
-                    </p>
-          	       </div>
-          	       </div>
-          	       </div>   
-              
+                <form action="addnewtrade" method="post">
+                 <table id="datatable-buttons" class="table">
+                   <thead>
+                     <tr>
+                     <th style="vertical-align: middle;text-align: center;">					
+                       <input type="submit" class="btn btn-primary btn-lg" value="Execute Netting of Trades">
+                     </th>
+                     </tr>
+                   </thead>
+                 </table>
+                 </form>
+       	       </div>      
+
           
           </div>
         </div>
@@ -406,7 +401,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            
           </div>
           <div class="clearfix"></div>
         </footer>
