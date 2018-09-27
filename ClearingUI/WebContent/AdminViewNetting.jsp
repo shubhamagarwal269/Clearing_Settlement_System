@@ -1,4 +1,6 @@
 
+<%@page import="com.pojo.MemberReport"%>
+<%@page import="java.util.List"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
@@ -258,14 +260,76 @@
                         <c:forEach var="MemberReport"  items="${reps}">
                         <tr>
 						  <td><c:out value="${MemberReport.memberName }"></c:out></td>
-                          <td><c:out value="${MemberReport.obligation.get(0) }"></c:out></td>
-                          <td><c:out value="${MemberReport.obligation.get(1) }"></c:out></td>
-						  <td><c:out value="${MemberReport.obligation.get(2) }"></c:out></td>
-						  <td><c:out value="${MemberReport.obligation.get(3)}"></c:out></td>
-						  <td><c:out value="${MemberReport.obligation.get(4) }"></c:out></td>
-						  <td><c:out value="${MemberReport.obligation.get(5) }"></c:out></td>
+                         
+                          <c:if  test="${MemberReport.obligation.get(0) <0}">
+                          <td  style="color:#FF0000">
+                          <c:out value="${MemberReport.obligation.get(0)*-1}"></c:out>
+                          </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.obligation.get(0) >=0}">
+                          <td  style="color:#008000">
+                          <c:out value="${MemberReport.obligation.get(0)}"></c:out>
+                          </td>
+                          </c:if>
+                             
+                          <c:if  test="${MemberReport.obligation.get(1) <0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.obligation.get(1)*-1}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.obligation.get(1) >=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.obligation.get(1)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          
+                          <c:if  test="${MemberReport.obligation.get(2) <0}">
+                          <td  style="color:#FF0000">
+                          
+                   		  <c:out value="${MemberReport.obligation.get(2)*-1}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.obligation.get(2) >=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.obligation.get(2)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          
+                          <c:if  test="${MemberReport.obligation.get(3) <0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.obligation.get(3)*-1}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.obligation.get(3) >=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.obligation.get(3)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          
+                          <c:if  test="${MemberReport.obligation.get(4) <0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.obligation.get(4)*-1}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.obligation.get(4) >=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.obligation.get(4)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          
+                          <c:if  test="${MemberReport.obligation.get(5) <0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.obligation.get(5)*-1}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.obligation.get(5) >=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.obligation.get(5)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          
                         </tr>
-                        </c:forEach>
+                       </c:forEach>
                        </tbody>
                     </table> 
                     </div>

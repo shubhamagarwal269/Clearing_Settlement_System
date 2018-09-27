@@ -1,8 +1,6 @@
 package com.servlets;
 //comment1
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,8 +13,7 @@ import com.dao.AdminDashboard;
 import com.dao.CommonFunctionalities;
 import com.dao_impl.AdminDashboardImpl;
 import com.dao_impl.CommonFunctionalitiesImpl;
-import com.pojo.Member;
-import com.pojo.Security;
+
 import com.pojo.Trade;
 
 /**
@@ -44,9 +41,6 @@ public class AddTrade extends HttpServlet {
 		
 		CommonFunctionalities commFunc = new CommonFunctionalitiesImpl();
 		
-		List<Security> securities = commFunc.viewAllSecurities();
-		List<Member> members = commFunc.viewAllMembers();
-		
 		int tradeId = commFunc.getNextTradeId();
 		String security = request.getParameter("security");
 		int quantity  = Integer.parseInt(request.getParameter("quantity"));
@@ -59,15 +53,15 @@ public class AddTrade extends HttpServlet {
 			newBatch = true;
 		
 		int isin = 0;
-		if(security.equals("Walmart"))
+		if(security.equals("Apple"))
 			isin = 0;
-		else if(security.equals("Apple"))
+		else if(security.equals("Facebook"))
 			isin = 1;
 		else if(security.equals("GE"))
 			isin = 2;
 		else if(security.equals("LinkedIn"))
 			isin = 3;
-		else if(security.equals("Facebook"))
+		else if(security.equals("Walmart"))
 			isin = 4;
 		
 		int buyerId = commFunc.getMemberId(buyerMember);
@@ -78,7 +72,7 @@ public class AddTrade extends HttpServlet {
 		//PrintWriter writer = response.getWriter();
 		//writer.println(isin+" "+quantity+" "+price+" "+buyerId+" "+sellerId);
 		
-		int added = admin.addNewTrade(trade, newBatch);
+		admin.addNewTrade(trade, newBatch);
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher("fetch");
 		dispatcher.forward(request, response);

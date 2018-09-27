@@ -1,7 +1,6 @@
 package com.servlets;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,22 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dao.AdminDashboard;
-import com.dao.CommonFunctionalities;
 import com.dao_impl.AdminDashboardImpl;
-import com.dao_impl.CommonFunctionalitiesImpl;
-import com.pojo.Trade;
 
 /**
- * Servlet implementation class DeleteTrade
+ * Servlet implementation class AddRandomTrade
  */
-@WebServlet("/delete")
-public class DeleteTrade extends HttpServlet {
+@WebServlet("/addnewrandomtrade")
+public class AddRandomTrade extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteTrade() {
+    public AddRandomTrade() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,25 +30,22 @@ public class DeleteTrade extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		int tradeId = Integer.parseInt(request.getParameter("tradeId"));
-		
-		AdminDashboard admin = new AdminDashboardImpl();
-		
-		admin.removeTrade(tradeId);
-		
-		CommonFunctionalities commFunc = new CommonFunctionalitiesImpl();
-		
-		List<Trade> trades = commFunc.viewAllTrades();
-		request.setAttribute("trades", trades);
+		int noOfTrade  = Integer.parseInt(request.getParameter("noOfTrade"));
+		int batchNum = Integer.parseInt(request.getParameter("batch"));
+		boolean newBatch = false;
+		if(batchNum==1)
+			newBatch = true;
+		AdminDashboard adminDao = new AdminDashboardImpl();
+		adminDao.addRandomTrade(noOfTrade,newBatch);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("fetch");
 		dispatcher.forward(request, response);
-		
-		
 	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 
 }

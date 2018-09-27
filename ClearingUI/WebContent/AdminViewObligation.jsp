@@ -253,8 +253,28 @@
                         <tr>
                           <td>Apple</td>
 						  <td><c:out value="${MemberReport.currentBalance.get(0) }"></c:out></td>
-                          <td><c:out value="${MemberReport.obligation.get(0) }"></c:out></td>
-                          <td><c:out value="${MemberReport.shortage.get(0) }"></c:out></td>
+						  
+                          <c:if  test="${MemberReport.obligation.get(0) <0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.obligation.get(0)*-1}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.obligation.get(0) >=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.obligation.get(0)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          
+                          <c:if  test="${MemberReport.shortage.get(0) >0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.shortage.get(0)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.shortage.get(0) <=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.shortage.get(0)}"></c:out>
+                   		  </td> 
+                          </c:if>
 						  <td><c:out value="${MemberReport.marketPriceList.get(0) }"></c:out></td>
 						  <td><c:out value="${MemberReport.borrowingRateList.get(0) }"></c:out></td>
 					 	  <td><c:out value="${MemberReport.settlementCost.get(0) }"></c:out></td> 
@@ -262,8 +282,27 @@
                         <tr>
                           <td>Facebook</td>
                           <td><c:out value="${MemberReport.currentBalance.get(1) }"></c:out></td>
-                          <td><c:out value="${MemberReport.obligation.get(1) }"></c:out></td>
-                          <td><c:out value="${MemberReport.shortage.get(1) }"></c:out></td>
+                          <c:if  test="${MemberReport.obligation.get(1) <0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.obligation.get(1)*-1}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.obligation.get(1) >=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.obligation.get(1)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.shortage.get(1) >0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.shortage.get(1)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.shortage.get(1) <=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.shortage.get(1)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <!--<td  style="color:#FF0000"><c:out value="${MemberReport.shortage.get(1) }"></c:out></td>-->
 						  <td><c:out value="${MemberReport.marketPriceList.get(1) }"></c:out></td>
 						  <td><c:out value="${MemberReport.borrowingRateList.get(1) }"></c:out></td>
 						  <td><c:out value="${MemberReport.settlementCost.get(1) }"></c:out></td>
@@ -271,8 +310,26 @@
                         <tr>
                           <td>GE</td>
                           <td><c:out value="${MemberReport.currentBalance.get(2) }"></c:out></td>
-                          <td><c:out value="${MemberReport.obligation.get(2) }"></c:out></td>
-                          <td><c:out value="${MemberReport.shortage.get(2) }"></c:out></td>
+                          <c:if  test="${MemberReport.obligation.get(2) <0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.obligation.get(2)*-1}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.obligation.get(2) >=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.obligation.get(2)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.shortage.get(2) >0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.shortage.get(2)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.shortage.get(2) <=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.shortage.get(2)}"></c:out>
+                   		  </td> 
+                          </c:if>
 						  <td><c:out value="${MemberReport.marketPriceList.get(2) }"></c:out></td>
 						  <td><c:out value="${MemberReport.borrowingRateList.get(2) }"></c:out></td>
 						  <td><c:out value="${MemberReport.settlementCost.get(2) }"></c:out></td>
@@ -280,8 +337,26 @@
 						<tr>
                           <td>LinkedIn</td>
                           <td><c:out value="${MemberReport.currentBalance.get(3) }"></c:out></td>
-                          <td><c:out value="${MemberReport.obligation.get(3) }"></c:out></td>
-                          <td><c:out value="${MemberReport.shortage.get(3) }"></c:out></td>
+                          <c:if  test="${MemberReport.obligation.get(3) <0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.obligation.get(3)*-1}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.obligation.get(3) >=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.obligation.get(3)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                         <c:if  test="${MemberReport.shortage.get(3) >0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.shortage.get(3)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.shortage.get(3) <=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.shortage.get(3)}"></c:out>
+                   		  </td> 
+                          </c:if>
 						  <td><c:out value="${MemberReport.marketPriceList.get(3) }"></c:out></td>
 						  <td><c:out value="${MemberReport.borrowingRateList.get(3) }"></c:out></td>
 						  <td><c:out value="${MemberReport.settlementCost.get(3) }"></c:out></td>
@@ -289,8 +364,26 @@
 						<tr>
                           <td>Walmart</td>
                          <td><c:out value="${MemberReport.currentBalance.get(4) }"></c:out></td>
-                          <td><c:out value="${MemberReport.obligation.get(4) }"></c:out></td>
-                          <td><c:out value="${MemberReport.shortage.get(4) }"></c:out></td>
+                           <c:if  test="${MemberReport.obligation.get(4) <0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.obligation.get(4)*-1}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.obligation.get(4) >=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.obligation.get(4)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.shortage.get(4) >0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.shortage.get(4)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.shortage.get(4) <=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.shortage.get(4)}"></c:out>
+                   		  </td> 
+                          </c:if>
 						  <td><c:out value="${MemberReport.marketPriceList.get(4) }"></c:out></td>
 						  <td><c:out value="${MemberReport.borrowingRateList.get(4) }"></c:out></td>
 						  <td><c:out value="${MemberReport.settlementCost.get(4) }"></c:out></td>
@@ -298,8 +391,26 @@
 						<tr>
                           <td>Funds</td>
                           <td><c:out value="${MemberReport.currentBalance.get(5) }"></c:out></td>
-                          <td><c:out value="${MemberReport.obligation.get(5) }"></c:out></td>
-                          <td><c:out value="${MemberReport.shortage.get(5) }"></c:out></td>
+                           <c:if  test="${MemberReport.obligation.get(5) <0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.obligation.get(5)*-1}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.obligation.get(5) >=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.obligation.get(5)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.shortage.get(5) >0}">
+                          <td  style="color:#FF0000">
+                   		  <c:out value="${MemberReport.shortage.get(5)}"></c:out>
+                   		  </td> 
+                          </c:if>
+                          <c:if  test="${MemberReport.shortage.get(5) <=0}">
+                          <td  style="color:#008000">
+                   		  <c:out value="${MemberReport.shortage.get(5)}"></c:out>
+                   		  </td> 
+                          </c:if>
 						  <td></td>
 						  <td>1.25</td>
 						  <td><c:out value="${MemberReport.settlementCost.get(5) }"></c:out></td>

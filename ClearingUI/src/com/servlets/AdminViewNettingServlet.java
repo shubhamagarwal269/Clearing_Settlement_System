@@ -39,7 +39,7 @@ public class AdminViewNettingServlet extends HttpServlet {
 		
 		GenerateMemberReport dao = new GenerateMemberReportImpl();
 		List<MemberReport> list = dao.viewAllMembersReports();
-		
+		System.out.println(list.get(2).getObligation().get(5));
 		request.setAttribute("reps", list);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminViewNetting.jsp");

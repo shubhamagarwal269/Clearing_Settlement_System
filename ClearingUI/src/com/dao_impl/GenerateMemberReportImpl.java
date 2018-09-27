@@ -13,7 +13,6 @@ import com.dao.GenerateMemberReport;
 import com.pojo.Member;
 import com.pojo.MemberReport;
 import com.pojo.ObligationReport;
-
 public class GenerateMemberReportImpl implements GenerateMemberReport {
 	double fundBorrowingRate = .0125d;
 
@@ -67,12 +66,16 @@ public class GenerateMemberReportImpl implements GenerateMemberReport {
 	@Override
 	public ObligationReport generateObligationReport(int memberId, int ISIN) {
 		ObligationReport obligReport = new ObligationReport();
-		String VIEW_OBLIG_REPORT = "select * from OBG_REPORT where memberId =? and ISIN = ?";
+		CommonFunctionalities commonFunc = new CommonFunctionalitiesImpl();
+		int batchNo = commonFunc.getNextBatchNum()-1;
+		
+		String VIEW_OBLIG_REPORT = "select * from OBG_REPORT where memberId =? and ISIN = ? and batchNum = ?";
 		Connection con = MyConnection.openConnection();
 		try {
 			PreparedStatement ps = con.prepareStatement(VIEW_OBLIG_REPORT);
 			ps.setInt(1, memberId);
 			ps.setInt(2, ISIN);
+			ps.setInt(3, batchNo);			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
