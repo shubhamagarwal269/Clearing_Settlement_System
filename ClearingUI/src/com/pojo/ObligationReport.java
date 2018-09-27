@@ -2,6 +2,7 @@ package com.pojo;
 
 
 public class ObligationReport {
+	
 	private int memberId;
 	private int batchNum;
 	private int ISIN;
