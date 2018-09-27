@@ -44,6 +44,7 @@ public class AdminDashboardImpl implements AdminDashboard{
 				ps1.executeUpdate();
 			}
 			
+			
 		String UPDATEFUNDNETTING = "update OBG_REPORT set fundAmt = ? where memberId = ? and batchNum = ?";
 		
 		Connection con2 = MyConnection.openConnection();

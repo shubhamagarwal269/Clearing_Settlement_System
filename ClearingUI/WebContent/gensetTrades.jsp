@@ -201,7 +201,7 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
                     
                     <form action="addnewrandomtrade" >
-                    <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <table class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th style="vertical-align: middle;text-align: center;"><h5><b>Enter Trade List Size:</b></h5></th>
@@ -238,14 +238,15 @@
                   </div>
                   <div class="x_content">
                   <form action="addnewtrade">
-                    <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <table class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>Buyer</th>
-                          <th>Seller</th>
+                          
                           <th>Security</th>
                           <th>Quantity</th>
                           <th>Price</th>
+                          <th>Buyer</th>
+                          <th>Seller</th>
                           <th>Batch</th>
                           <th>Add Trade</th>
                         </tr>
@@ -254,8 +255,24 @@
 
                       <tbody>
 	                        <tr>
+	                         
+	                          <td>
+	                          	<select name ="security">
+									<c:forEach var="security" items="${securities}">
+									<option>${security.securityName}</option>
+									</c:forEach>
+								</select>
+								</td>
 	                          
-								<td>
+	                          <td><input type="number" min= 1 name="quantity"/></td>
+	                          
+	                          <td>
+	                          
+	                          <input type="number" min= 1 name="price" step="any"/>
+	                          
+	                          </td>
+	                          
+	                          <td>
 	                          	 <select name="buyer">
 									<c:forEach var="member" items="${members}">
 									<option>${member.memberName}</option>
@@ -269,21 +286,6 @@
 									</c:forEach>
 								</select>
 	                          </td>
-	                          <td>
-	                          	<select name ="security">
-									<c:forEach var="security" items="${securities}">
-									<option>${security.securityName}</option>
-									</c:forEach>
-								</select>
-								</td>
-	                          
-	                          <td><input type="number" min= 1 name="quantity"/></td>
-	                          <td>
-	                          
-	                          <input type="number" min= 1 name="price" step="any"/>
-	                          
-	                          </td>
-	                          
 	                          <td>
 	                          
 	                          <select name="batch">
@@ -331,28 +333,58 @@
                         <tr>
                         
                           <th>Trade ID</th>
-                          <th>ISIN</th>
+                          <th>Security</th>
                           <th>Quantity</th>
                           <th>Price</th>
-                          <th>buyerMemberId</th>
-                          <th>sellerMemberId</th>
-                          <th>batchNum</th>
+                          <th>Buyer Member</th>
+                          <th>Seller Member</th>
+                          <th>Batch Num</th>
                           <th>Delete</th>
                           
                         </tr>
                       </thead>
-
 
                       <tbody>
                         <c:forEach var="trade" items="${trades}">
                         
 	                        <tr>
 	                          <td><c:out value="${trade.tradeId}"></c:out></td>
-	                          <td><c:out value="${trade.ISIN}"></c:out></td>
+	                          <td>
+	                          
+	                          <c:choose>
+								    <c:when test="${trade.ISIN == 0}">
+								        <c:out value="Apple"></c:out>
+								    </c:when>    
+								    <c:when test="${trade.ISIN == 2}">
+								        <c:out value="GE"></c:out>
+								    </c:when>
+								    <c:when test="${trade.ISIN == 1}">
+								        <c:out value="Facebook"></c:out>
+								    </c:when>
+								    <c:when test="${trade.ISIN == 3}">
+								        <c:out value="LinkedIn"></c:out>
+								    </c:when>
+								    <c:when test="${trade.ISIN == 4}">
+								        <c:out value="Walmart"></c:out>
+								    </c:when>
+							  </c:choose>
+	                          </td>
 	                          <td><c:out value="${trade.quantity}"></c:out></td>
 	                          <td><c:out value="${trade.price}"></c:out></td>
-	                          <td><c:out value="${trade.buyerMemberId}"></c:out></td>
-	                          <td><c:out value="${trade.sellerMemberId}"></c:out></td>
+	                          <td>
+		                          <c:forEach var="member" items="${members}">
+			                          <c:if test="${trade.buyerMemberId == member.memberId}">
+			                          	<c:out value="${member.memberName}"></c:out>
+			                          </c:if>
+		                          </c:forEach>
+	                          </td>
+	                          <td>
+		                          <c:forEach var="member" items="${members}">
+			                          <c:if test="${trade.sellerMemberId == member.memberId}">
+			                          	<c:out value="${member.memberName}"></c:out>
+			                          </c:if>
+		                          </c:forEach>
+	                          </td>
 	                          <td><c:out value="${trade.batchNum}"></c:out></td>
 							  <td>
 							  <button type="button" class="btn btn-danger"> 							  
@@ -367,6 +399,7 @@
                         
 
                       </tbody>
+
                     </table>
                   </div>
                 </div>
@@ -440,9 +473,24 @@
     <!-- bootstrap-daterangepicker -->
     <script src="dashboard/vendors/moment/min/moment.min.js"></script>
     <script src="dashboard/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-
     <!-- Custom Theme Scripts -->
     <script src="dashboard/build/js/custom.min.js"></script>
+        <!-- Datatables -->
+    <script src="dashboard/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="dashboard/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="dashboard/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="dashboard/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="dashboard/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="dashboard/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="dashboard/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="dashboard/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="dashboard/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="dashboard/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="dashboard/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="dashboard/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="dashboard/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="dashboard/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="dashboard/vendors/pdfmake/build/vfs_fonts.js"></script>
 	
   </body>
 
