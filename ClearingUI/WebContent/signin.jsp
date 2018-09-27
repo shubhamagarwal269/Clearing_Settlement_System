@@ -87,16 +87,14 @@
 					</span>
 					
 					
-					<div class="btn-group btn-group-toggle m-b-16 center-block" data-toggle="buttons">
-					  <label class="btn btn-info active">
-					    <input type="radio" name="options" id="option1" autocomplete="off" checked value="1"> &nbsp;&nbsp;&nbsp;&nbsp; Member &nbsp;&nbsp;&nbsp;&nbsp;
+					<div class="btn-group btn-group-toggle m-b-16 center-block" data-toggle="buttons" style="paddding:40px">
+					  <label class="btn btn-info active" style="border-top-left-radius:75px ; border-bottom-left-radius:75px ">
+					    <input type="radio" name="options" id="option1" autocomplete="off" checked value="1" > &nbsp;&nbsp;&nbsp;&nbsp; Administrator &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
 					  </label>
-					  <label class="btn btn-info">
-					    <input type="radio" name="options" id="option2" autocomplete="off" value="0"> &nbsp;&nbsp;&nbsp;&nbsp; Administrator &nbsp;&nbsp;&nbsp;&nbsp;
+					  <label class="btn btn-info" style="border-top-right-radius:75px ; border-bottom-right-radius:75px">
+					    <input type="radio" name="options" id="option2" autocomplete="off" value="0" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Member &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					  </label>
-					  <label class="btn btn-info">
-					    <input type="radio" name="options" id="option3" autocomplete="off" value="2"> &nbsp;&nbsp;&nbsp;&nbsp; Guest &nbsp;&nbsp;&nbsp;
-					  </label>
+					 
 					</div>					
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
@@ -135,17 +133,16 @@
 						}
 					%>
 					
-
 					<div class="container-login100-form-btn">
 						
 	                        <input type="submit" value="Sign In" class="login100-form-btn">
 						
 					</div>
-
-					<div class="flex-col-c p-t-90 p-b-30">
+					<div style="padding-top:20px; padding-bottom:20px ; text-align:center">
 						<span class="txt1 p-b-9">
 							Don't have an account?
 						</span>
+						<br>
 
 						<a href="newRegistration.jsp" class="txt3">
 							Sign up now

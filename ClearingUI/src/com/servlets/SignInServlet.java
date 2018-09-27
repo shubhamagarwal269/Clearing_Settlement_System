@@ -41,41 +41,38 @@ public class SignInServlet extends HttpServlet {
 		//PrintWriter writer = response.getWriter();
 		
 		SignInPage signindao = new SignInPageImpl();
-		if (option.equals("0") && username.equals("cns065918@gmail.com") && password.equals("admin@123")) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("dashAdmin.jsp");
-			dispatcher.forward(request, response);
-		} 
-		
-		else if(option.equals("1")){
+		if (option.equals("0") ) {
+			if(username.equals("cns065918@gmail.com") && password.equals("admin@123")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("dashAdmin.jsp");
+				dispatcher.forward(request, response);
+			} 
+			else {
+				message  = false;
+				notice = "wrongCred";
+				//String message = "You have entered wrong credentials, Please try again";
+				request.setAttribute("alert", message);
+				request.setAttribute("type", notice);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
+				dispatcher.forward(request, response);
+			}
+		}
+		else{
 			int rowsUpdated = signindao.login(username, password);
-			
 			  if (rowsUpdated>0) {
 					//writer.println("correct");
 					//writer.println(option);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("dashMember.jsp");
 					dispatcher.forward(request, response);
-					
-				}  
-				else {
-					
-					message  = false;
-					notice = "wrongCred";
-					//String message = "You have entered wrong credentials, Please try again";
-					request.setAttribute("alert", message);
-					request.setAttribute("type", notice);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
-					dispatcher.forward(request, response);
-						
-				}
-		}
-		else {
-			message  = false;
-			notice = "wrongCred";
-			//String message = "You have entered wrong credentials, Please try again";
-			request.setAttribute("alert", message);
-			request.setAttribute("type", notice);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
-			dispatcher.forward(request, response);
+			  }  
+			  else {
+				message  = false;
+				notice = "wrongCred";
+				//String message = "You have entered wrong credentials, Please try again";
+				request.setAttribute("alert", message);
+				request.setAttribute("type", notice);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
+				dispatcher.forward(request, response);
+			  }	
 		}
 	}
 
