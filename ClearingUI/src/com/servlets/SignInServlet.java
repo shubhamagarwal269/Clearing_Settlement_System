@@ -34,18 +34,19 @@ public class SignInServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String username = request.getParameter("username");
-		//String option = request.getParameter("options");
+		String option = request.getParameter("options");
 		String password = request.getParameter("password");
 		boolean message = true;
 		String notice = null; 
 		//PrintWriter writer = response.getWriter();
 		
 		SignInPage signindao = new SignInPageImpl();
-		if (username.equals("cns065918@gmail.com") && password.equals("admin@123")) {
+		if (option.equals('0') && username.equals("cns065918@gmail.com") && password.equals("admin@123")) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("dashAdmin.jsp");
 			dispatcher.forward(request, response);
 		} 
-		else {
+		
+		if(option.equals('1')) {
 			int rowsUpdated = signindao.login(username, password);
 			
 		  if (rowsUpdated>0) {
