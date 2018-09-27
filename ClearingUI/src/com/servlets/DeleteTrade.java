@@ -49,7 +49,7 @@ public class DeleteTrade extends HttpServlet {
 		List<Trade> trades = commFunc.viewAllTrades();
 		request.setAttribute("trades", trades);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("gensetTrades.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("fetch");
 		dispatcher.forward(request, response);
 		
 		
