@@ -187,13 +187,16 @@ public class GenerateMemberReportImpl implements GenerateMemberReport {
 				List<Double> settCostList = new ArrayList<>();
 				Double settCost = 0d;
 				int i=0;
+				CommonFunctionalities daotemp = new CommonFunctionalitiesImpl();
 				for(i=0;i<shortageList.size()-1;i++)
 				{
-					settCost = (double) (marketPriceList.get(i)*shortageList.get(i)*borrowingRateList.get(i));
+					settCost = (double)( (marketPriceList.get(i)*shortageList.get(i)+(marketPriceList.get(i)*shortageList.get(i))*borrowingRateList.get(i)*5.0d/36500.0d));
+					settCost = daotemp.roundToDecimalPlaces(settCost, 4);
 					settCostList.add(settCost);
 				}
 				System.out.println("i:-"+i);
-				settCost = (double) (shortageList.get(i)*fundBorrowingRate);
+				settCost = (double)(shortageList.get(i)+(shortageList.get(i)*fundBorrowingRate*5.0d/365.0d));
+				settCost = daotemp.roundToDecimalPlaces(settCost, 4);
 				settCostList.add(settCost);
 				
 				return settCostList;
