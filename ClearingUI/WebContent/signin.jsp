@@ -88,22 +88,21 @@
 					
 					
 					<div class="btn-group btn-group-toggle m-b-16 center-block" data-toggle="buttons" style="paddding:40px">
-					  <label class="btn btn-info active" style="border-top-left-radius:75px ; border-bottom-left-radius:75px ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Member &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					    <input type="radio" name="options" id="option1" autocomplete="off" checked value="1" > 
+					  <label class="btn btn-info active" style="border-top-left-radius:75px ; border-bottom-left-radius:75px; padding:10px 55px 10px 55px ">
+					    <input type="radio" name="options" id="option1" autocomplete="off" checked value="0">  Administrator 
 					  </label>
-					  <label class="btn btn-info" style="border-top-right-radius:75px ; border-bottom-right-radius:75px">
-					    <input type="radio" name="options" id="option2" autocomplete="off" value="0" >&nbsp;&nbsp;&nbsp;&nbsp; Administrator &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-					     
+					  <label class="btn btn-info" style="border-top-right-radius:75px ; border-bottom-right-radius:75px ; padding:10px 55px 10px 55px ">
+					    <input type="radio" name="options" id="option2" autocomplete="off" value="1" >Member
 					  </label>
 					 
 					</div>					
 
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-						<input class="input100" type="email" name="username" placeholder="Enter Member Email-Id">
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter email id">
+						<input class="input100" type="email" name="username" placeholder="Enter Admin Email-Id">
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Please enter password">
+					<div class="wrap-input100 validate-input" data-validate = "Minimum 6 characters, atleast one alphabet, number and special character">
 						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100"></span>
 					</div>

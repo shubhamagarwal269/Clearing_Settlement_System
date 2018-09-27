@@ -90,12 +90,12 @@
 						<span class="focus-input100"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter 10 digit Bank A/C number">
+					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter Bank A/C number">
 						<input class="input100" type="number" name="bankac" placeholder="Bank Account Number">
 						<span class="focus-input100"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter 10 digit DEMAT A/C number">
+					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter DEMAT A/C number">
 						<input class="input100" type="number" name="dematac" placeholder="Demat Account Number">
 						<span class="focus-input100"></span>
 					</div>
