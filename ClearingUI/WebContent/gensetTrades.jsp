@@ -265,6 +265,7 @@
 								</td>
 	                          
 	                          <td><input type="number" min= 1 name="quantity"/></td>
+	                          
 	                          <td>
 	                          
 	                          <input type="number" min= 1 name="price" step="any"/>
