@@ -10,7 +10,7 @@ public class ObligationReport {
 	private double fundAmt;
 	
 	public ObligationReport() {
-		memberId = 0;
+		memberId = -2;
 		ISIN = -1;
 		batchNum = -1;
 		fundAmt = 0;

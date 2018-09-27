@@ -3,6 +3,7 @@ package com.dao;
 import java.util.List;
 
 import com.pojo.Member;
+import com.pojo.ObligationReport;
 import com.pojo.Pair;
 import com.pojo.Security;
 import com.pojo.Trade;
@@ -24,4 +25,5 @@ public interface CommonFunctionalities {
 	public int getNumOfSecurity();
 	public List<Double> fetchMarketPrice();
 	public List<Double> fetchBorrowingRate();
+	public List<ObligationReport> viewAllObgReports();
 }

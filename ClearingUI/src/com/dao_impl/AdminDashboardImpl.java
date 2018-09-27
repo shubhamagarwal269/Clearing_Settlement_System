@@ -3,12 +3,15 @@ package com.dao_impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.businesslogic.SettleFundsAlgo;
+import com.businesslogic.SettleSecuritiesAlgo;
 import com.connections.MyConnection;
 import com.dao.AdminDashboard;
 import com.dao.CommonFunctionalities;
-
+import com.pojo.ObligationReport;
 import com.pojo.Trade;
 
 public class AdminDashboardImpl implements AdminDashboard{
@@ -18,7 +21,50 @@ public class AdminDashboardImpl implements AdminDashboard{
 	@Override
 	public int applyNetting(List<Trade> tradeList) {
 		// TODO Auto-generated method stub
+		SettleFundsAlgo fundsAlgo = new SettleFundsAlgo();
+		SettleSecuritiesAlgo securitiesAlgo = new SettleSecuritiesAlgo();
+		List<ObligationReport> obgFundList = new ArrayList<>();
+		List<ObligationReport> obgSecList = new ArrayList<>();
+		obgFundList = fundsAlgo.settleFunds(tradeList);
+		obgSecList = securitiesAlgo.settleSecurities(tradeList);
+		
+		String UPDATESECNETTING = "INSERT INTO OBG_REPORT VALUES(?,?,?,?,?)";
+		
+		Connection con1 = MyConnection.openConnection();
+		
+		try {
+			PreparedStatement ps1 = con1.prepareStatement(UPDATESECNETTING );
+			for(int i=0;i<obgSecList.size();i++)
+			{
+				ps1.setInt(1, obgSecList.get(i).getMemberId());
+				ps1.setInt(2, obgSecList.get(i).getBatchNum());
+				ps1.setDouble(3, obgSecList.get(i).getFundAmt());
+				ps1.setInt(4, obgSecList.get(i).getISIN());
+				ps1.setInt(5, obgSecList.get(i).getQuantity());
+				ps1.executeUpdate();
+			}
+			
+		String UPDATEFUNDNETTING = "update OBG_REPORT set fundAmt = ? where memberId = ? and batchNum = ?";
+		
+		Connection con2 = MyConnection.openConnection();
+		
+		PreparedStatement ps2 = con2.prepareStatement(UPDATEFUNDNETTING );
+			for(int i=0;i<obgFundList.size();i++)
+			{
+				ps2.setDouble(1, obgFundList.get(i).getFundAmt());
+				ps2.setInt(2, obgFundList.get(i).getMemberId());
+				ps2.setInt(3, obgFundList.get(i).getBatchNum());
+				ps2.executeUpdate();
+			}
+			
 		return 0;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return 1;
 	}
 
 	@Override

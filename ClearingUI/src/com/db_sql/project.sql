@@ -56,18 +56,16 @@ PRIMARY KEY (memberId, batchNum, ISIN)
 );
 
 
-insert into SECURITY values(0,'Walmart', 76.5, 7);
-insert into SECURITY values(1,'Apple', 101.1, 7);
-insert into SECURITY values(2,'GE', 45.4, 8);
+insert into SECURITY values(0,'Apple', 101.1, 7);
+insert into SECURITY values(1,'GE', 45.4, 8);
+insert into SECURITY values(2,'Facebook', 76.5, 7);
 insert into SECURITY values(3,'LinkedIn', 45.5, 11);
-insert into SECURITY values(4,'Facebook', 155, 6);
+insert into SECURITY values(4,'Walmart', 155, 6);
 
-insert into MEMBER values(0,'DB','p1','db@gmail.com',0,0);
-insert into MEMBER values(1,'GS','p2','gs@gmail.com',0,0);
-insert into MEMBER values(2,'JP','p3','jp@gmail.com',0,0);
-insert into MEMBER values(3,'Citi','p4','citi@gmail.com',0,0);
-
-
+insert into MEMBER values(0,'Citi','p1','citi@gmail.com',0,0);
+insert into MEMBER values(1,'DB','p2','db@gmail.com',0,0);
+insert into MEMBER values(2,'GS','p3','gs@gmail.com',0,0);
+insert into MEMBER values(3,'JP','p4','jp@gmail.com',0,0);
 
 select * from MEMBER;
 select * from SECURITY;

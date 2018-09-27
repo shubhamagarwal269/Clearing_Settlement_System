@@ -11,6 +11,7 @@ import java.util.Random;
 import com.connections.MyConnection;
 import com.dao.CommonFunctionalities;
 import com.pojo.Member;
+import com.pojo.ObligationReport;
 import com.pojo.Pair;
 import com.pojo.Security;
 import com.pojo.Trade;
@@ -466,5 +467,35 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 			
 			return memberId;
 			
+	}
+
+	@Override
+	public List<ObligationReport> viewAllObgReports() {
+		// TODO Auto-generated method stub
+		List<ObligationReport> obgList = new ArrayList<>();
+		
+		String FETCHALLOBG  = "select * from OBG_REPORT";
+		
+		try(Connection con=MyConnection.openConnection();)
+		{
+			PreparedStatement ps = con.prepareStatement(FETCHALLOBG);
+			
+			ResultSet set = ps.executeQuery();
+			
+			while(set.next()) {
+				
+				int memberID = set.getInt("memberId");
+				int batchNum = set.getInt("batchNum");
+				double fundAmt = set.getDouble("fundAmt");
+				int ISIN = set.getInt("ISIN");
+				int quantity = set.getInt("quantity");
+				ObligationReport obg = new ObligationReport(memberID, batchNum, ISIN, quantity, fundAmt);
+				obgList.add(obg);
+			}
+		}catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return obgList;
 	}
 }

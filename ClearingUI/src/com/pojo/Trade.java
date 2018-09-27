@@ -13,12 +13,12 @@ public class Trade {
 	/*Default constructor for Trade*/
 	public Trade() {
 		tradeId = -1;
-		ISIN = 0;
+		ISIN = -1;
 		quantity = 0;
 		price = 0d;
-		buyerMemberId = 0;
-		sellerMemberId = 0;
-		batchNum = 0;
+		buyerMemberId = -2;
+		sellerMemberId = -2;
+		batchNum = -1;
 	}
 
 	/*Parameterized constructor*/

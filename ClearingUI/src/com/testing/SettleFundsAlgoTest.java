@@ -43,10 +43,10 @@ class SettleFundsAlgoTest {
 		
 		
 		List<ObligationReport> obgList_expected = new ArrayList<>();
-		obgList_expected.add(new ObligationReport(0, 1, -1, 0, 2720250.0)); 
-		obgList_expected.add(new ObligationReport(1, 1, -1, 0, -1287500.0)); 
-		obgList_expected.add(new ObligationReport(2, 1, -1, 0, -703750.0)); 
-		obgList_expected.add(new ObligationReport(3, 1, -1, 0, -729000.0)); 
+		obgList_expected.add(new ObligationReport(0, -1, -1, 0, 2720250.0)); 
+		obgList_expected.add(new ObligationReport(1, -1, -1, 0, -1287500.0)); 
+		obgList_expected.add(new ObligationReport(2, -1, -1, 0, -703750.0)); 
+		obgList_expected.add(new ObligationReport(3, -1, -1, 0, -729000.0)); 
 		
 		assertNotNull(obgList_actual);
 		assertEquals(obgList_expected.size(), obgList_actual.size(), "size equal");
