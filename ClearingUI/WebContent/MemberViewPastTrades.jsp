@@ -149,11 +149,11 @@
                         <tr>
                         
                           <th>Trade ID</th>
-                          <th>ISIN</th>
+                          <th>Security Name</th>
                           <th>Quantity</th>
                           <th>Price</th>
-                       <!--    <th>buyerMemberId</th>
-                          <th>sellerMemberId</th>
+                          <th>Bought/Sold</th>
+                          <!--    <th>sellerMemberId</th>
                           <th>batchNum</th>
                           <th>Delete</th> -->
                           
@@ -166,11 +166,38 @@
                         
 	                        <tr>
 	                          <td><c:out value="${trade.tradeId}"></c:out></td>
-	                          <td><c:out value="${trade.ISIN}"></c:out></td>
+	                           <td>
+	                          
+	                          <c:choose>
+								    <c:when test="${trade.ISIN == 0}">
+								        <c:out value="Apple"></c:out>
+								    </c:when>    
+								    <c:when test="${trade.ISIN == 2}">
+								        <c:out value="GE"></c:out>
+								    </c:when>
+								    <c:when test="${trade.ISIN == 1}">
+								        <c:out value="Facebook"></c:out>
+								    </c:when>
+								    <c:when test="${trade.ISIN == 3}">
+								        <c:out value="LinkedIn"></c:out>
+								    </c:when>
+								    <c:when test="${trade.ISIN == 4}">
+								        <c:out value="Walmart"></c:out>
+								    </c:when>
+							  </c:choose>
+	                          </td>
+	                        
 	                          <td><c:out value="${trade.quantity}"></c:out></td>
 	                          <td><c:out value="${trade.price}"></c:out></td>
 	                        
-	                          
+	                          <td>
+	                          <c:if test="${trade.buyerMemberId == 1}">
+	                          Bought
+	                          </c:if>
+	                          <c:if test="${trade.sellerMemberId == 1}">
+	                          Sold
+	                          </c:if>
+	                          </td>
 	                       <!--   <td><c:out value="${trade.buyerMemberId}"></c:out></td>
 	                          <td><c:out value="${trade.sellerMemberId}"></c:out></td>
 	                          <td><c:out value="${trade.batchNum}"></c:out></td>
