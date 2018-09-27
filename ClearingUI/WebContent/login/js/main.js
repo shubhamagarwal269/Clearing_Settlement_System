@@ -49,7 +49,7 @@
             
             if($(input).attr('type') == 'number') {
             	
-                if($(input).val().trim().match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/) == null) {
+                if($(input).val().trim().match(/^[0-9]{1,9}$/) == null) {
                     return false;
                 }
             }

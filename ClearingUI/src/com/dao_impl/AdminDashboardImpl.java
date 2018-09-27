@@ -136,6 +136,7 @@ public class AdminDashboardImpl implements AdminDashboard{
 		List<Trade> tradeList = commonFunc.generateTrade(noOfTrade, newBatch);
 		for(int i=0;i<noOfTrade;i++) {
 			rowsAdded  += addNewTrade(tradeList.get(i),newBatch);
+			newBatch = false;
 		}
 		
 		return rowsAdded;
