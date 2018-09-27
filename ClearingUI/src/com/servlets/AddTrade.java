@@ -53,15 +53,15 @@ public class AddTrade extends HttpServlet {
 			newBatch = true;
 		
 		int isin = 0;
-		if(security.equals("Walmart"))
+		if(security.equals("Apple"))
 			isin = 0;
-		else if(security.equals("Apple"))
+		else if(security.equals("Facebook"))
 			isin = 1;
 		else if(security.equals("GE"))
 			isin = 2;
 		else if(security.equals("LinkedIn"))
 			isin = 3;
-		else if(security.equals("Facebook"))
+		else if(security.equals("Walmart"))
 			isin = 4;
 		
 		int buyerId = commFunc.getMemberId(buyerMember);

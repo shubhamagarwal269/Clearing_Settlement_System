@@ -241,8 +241,8 @@
                     <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>buyerMemberId</th>
-                          <th>sellerMemberId</th>
+                          <th>Buyer</th>
+                          <th>Seller</th>
                           <th>Security</th>
                           <th>Quantity</th>
                           <th>Price</th>
@@ -277,10 +277,10 @@
 								</select>
 								</td>
 	                          
-	                          <td><input type="number" min= 1 name="quantity"></td>
+	                          <td><input type="number" min= 1 name="quantity"/></td>
 	                          <td>
 	                          
-	                          <input type="number" min= 1 name="price">
+	                          <input type="number" min= 1 name="price" step="any"/>
 	                          
 	                          </td>
 	                          
