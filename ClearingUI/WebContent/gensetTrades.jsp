@@ -270,6 +270,7 @@
 	                          <input type="number" min= 1 name="price" step="any"/>
 	                          
 	                          </td>
+	                          
 	                          <td>
 	                          	 <select name="buyer">
 									<c:forEach var="member" items="${members}">
