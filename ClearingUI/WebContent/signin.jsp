@@ -88,11 +88,12 @@
 					
 					
 					<div class="btn-group btn-group-toggle m-b-16 center-block" data-toggle="buttons" style="paddding:40px">
-					  <label class="btn btn-info active" style="border-top-left-radius:75px ; border-bottom-left-radius:75px ">
-					    <input type="radio" name="options" id="option1" autocomplete="off" checked value="1" > &nbsp;&nbsp;&nbsp;&nbsp; Administrator &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					  <label class="btn btn-info active" style="border-top-left-radius:75px ; border-bottom-left-radius:75px ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Member &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <input type="radio" name="options" id="option1" autocomplete="off" checked value="1" > 
 					  </label>
 					  <label class="btn btn-info" style="border-top-right-radius:75px ; border-bottom-right-radius:75px">
-					    <input type="radio" name="options" id="option2" autocomplete="off" value="0" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Member &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <input type="radio" name="options" id="option2" autocomplete="off" value="0" >&nbsp;&nbsp;&nbsp;&nbsp; Administrator &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+					     
 					  </label>
 					 
 					</div>					

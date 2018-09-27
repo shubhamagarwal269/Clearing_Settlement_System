@@ -237,7 +237,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                  <form action="addnewtrade" method="post">
+                  <form action="addnewtrade">
                     <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
