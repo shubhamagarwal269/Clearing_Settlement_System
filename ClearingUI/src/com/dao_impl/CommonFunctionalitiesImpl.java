@@ -54,10 +54,6 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 			int buyerId = random.nextInt(noOfMembers); //random index for Buyer
 			int sellerId = random.nextInt(noOfMembers); //random index for Seller
 		
-			while(buyerId == sellerId){
-				sellerId = random.nextInt(noOfMembers); //eliminating trade with same clearing member 
-			}
-			
 			int securityId = random.nextInt(noOfSecurities); //random index for security
 			int quantity = random.nextInt(100);
 			
