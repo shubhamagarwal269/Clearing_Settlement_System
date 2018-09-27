@@ -241,11 +241,12 @@
                     <table class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>Buyer</th>
-                          <th>Seller</th>
+                          
                           <th>Security</th>
                           <th>Quantity</th>
                           <th>Price</th>
+                          <th>Buyer</th>
+                          <th>Seller</th>
                           <th>Batch</th>
                           <th>Add Trade</th>
                         </tr>
@@ -254,21 +255,7 @@
 
                       <tbody>
 	                        <tr>
-	                          
-								<td>
-	                          	 <select name="buyer">
-									<c:forEach var="member" items="${members}">
-									<option>${member.memberName}</option>
-									</c:forEach>
-								</select>
-	                          </td>
-	                          <td>
-	                          	 <select name="seller">
-									<c:forEach var="member" items="${members}">
-									<option>${member.memberName}</option>
-									</c:forEach>
-								</select>
-	                          </td>
+	                         
 	                          <td>
 	                          	<select name ="security">
 									<c:forEach var="security" items="${securities}">
@@ -283,7 +270,20 @@
 	                          <input type="number" min= 1 name="price" step="any"/>
 	                          
 	                          </td>
-	                          
+	                          <td>
+	                          	 <select name="buyer">
+									<c:forEach var="member" items="${members}">
+									<option>${member.memberName}</option>
+									</c:forEach>
+								</select>
+	                          </td>
+	                          <td>
+	                          	 <select name="seller">
+									<c:forEach var="member" items="${members}">
+									<option>${member.memberName}</option>
+									</c:forEach>
+								</select>
+	                          </td>
 	                          <td>
 	                          
 	                          <select name="batch">
