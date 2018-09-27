@@ -47,7 +47,6 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 		int batchNum = getNextBatchNum();
 		if(!newBatch)
 			batchNum--;
-		System.out.println("batch no"+batchNum);
 		for(int i=0;i<noOfTrades;i++){
 			
 			
@@ -89,7 +88,6 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 			tradeCount++;
 			
 		}
-		System.out.println(tradeList);
 		return  tradeList;
 
 	}

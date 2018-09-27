@@ -165,15 +165,11 @@ public class GenerateMemberReportImpl implements GenerateMemberReport {
 			
 			List<Double> shortageList = new ArrayList<>();
 			shortageList = shortage(obligReportList, currentBalanceList);
-			System.out.println("size of shortage:-"+shortageList.size());
 			memReport.setShortage(shortageList);
 			
 			List<Double> marketPriceList = commonFunc.fetchMarketPrice();
 			List<Double> borrowingRateList = commonFunc.fetchBorrowingRate();
-			System.out.println("size of market:-"+marketPriceList.size());
-			System.out.println("size of borrow:-"+borrowingRateList.size());
 			List<Double> settlementCostList = new ArrayList<>();
-			
 			settlementCostList= settlementCost(shortageList, marketPriceList, borrowingRateList);
 			
 			memReport.setSettlementCost(settlementCostList);
@@ -197,7 +193,6 @@ public class GenerateMemberReportImpl implements GenerateMemberReport {
 					settCost = daotemp.roundToDecimalPlaces(settCost, 4);
 					settCostList.add(settCost);
 				}
-				System.out.println("i:-"+i);
 				settCost = (double)(shortageList.get(i)+(shortageList.get(i)*fundBorrowingRate*5.0d/365.0d));
 				settCost = daotemp.roundToDecimalPlaces(settCost, 4);
 				settCostList.add(settCost);
@@ -211,11 +206,7 @@ public class GenerateMemberReportImpl implements GenerateMemberReport {
 		List<Double> shortageList = new ArrayList<>();
 		for(int i=0;i<oRList.size();i++)
 		{	
-			System.out.println("current balance"+ currentBalanceList.get(i));
-			System.out.println("obligation"+ oRList.get(i));
-	
 			Double sum = oRList.get(i) + currentBalanceList.get(i);
-			//System.out.println("sum:"+sum);
 			if(sum<0){
 				shortageList.add(i, (-1)*sum);
 			}
