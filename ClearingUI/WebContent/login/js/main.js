@@ -46,6 +46,13 @@
                     return false;
                 }
             }
+            
+            if($(input).attr('type') == 'number') {
+            	
+                if($(input).val().trim().match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/) == null) {
+                    return false;
+                }
+            }
     	}     
     }
 
