@@ -125,6 +125,7 @@ public class GenerateMemberReportImpl implements GenerateMemberReport {
 		for(int i=0;i<memberList.size();i++)
 	    {
 			double fundAmt = 0;
+			double fundAmtTemp = 0;
 			ObligationReport obligReport = new ObligationReport();
 			int memberId = memberList.get(i).getMemberId();
 			memberIdList.add(memberId);
@@ -135,11 +136,14 @@ public class GenerateMemberReportImpl implements GenerateMemberReport {
 			
 			List<Double> obligReportList = new ArrayList<>();
 			
+			
 			for(int j=0;j<commonFunc.getNumOfSecurity();j++){
 				Integer ISIN = j;
 				obligReport = generateObligationReport(memberId, ISIN);
+				
 				obligReportList.add((double)obligReport.getQuantity());
-				fundAmt = obligReport.getFundAmt();
+				fundAmtTemp = obligReport.getFundAmt();
+				if(fundAmtTemp != 0)fundAmt = fundAmtTemp; 
 			}
 			obligReportList.add(fundAmt);
 			memReport.setObligation(obligReportList);;
