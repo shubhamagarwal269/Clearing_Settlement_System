@@ -401,7 +401,6 @@
     				}).on('click', function (i, row) {
     					console.log(i, row);
     				});
-
     			}
     			
     			
