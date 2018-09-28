@@ -25,40 +25,55 @@ public class AdminDashboardImpl implements AdminDashboard{
 		SettleSecuritiesAlgo securitiesAlgo = new SettleSecuritiesAlgo();
 		List<ObligationReport> obgFundList = new ArrayList<>();
 		List<ObligationReport> obgSecList = new ArrayList<>();
-		obgFundList = fundsAlgo.settleFunds(tradeList);
-		obgSecList = securitiesAlgo.settleSecurities(tradeList);
+		CommonFunctionalities comDao = new CommonFunctionalitiesImpl();
 		
-		String UPDATESECNETTING = "INSERT INTO OBG_REPORT VALUES(?,?,?,?,?)";
-		
-		Connection con1 = MyConnection.openConnection();
+		String FLUSH_OBG_REP_TABLE  = "Delete from OBG_REPORT where batchNum=?";
+		Connection con = MyConnection.openConnection();
 		
 		try {
-			PreparedStatement ps1 = con1.prepareStatement(UPDATESECNETTING );
+			PreparedStatement ps = con.prepareStatement(FLUSH_OBG_REP_TABLE);
+			ps.setInt(1, tradeList.get(0).getBatchNum());
+			ps.executeUpdate();
+
+			obgFundList = fundsAlgo.settleFunds(tradeList);
+			obgSecList = securitiesAlgo.settleSecurities(tradeList);
+			
+			String UPDATE_SEC_NETTING = "INSERT INTO OBG_REPORT VALUES(?,?,?,?,?)";
+			Connection con1 = MyConnection.openConnection();
+			PreparedStatement ps1 = con1.prepareStatement(UPDATE_SEC_NETTING );
 			for(int i=0;i<obgSecList.size();i++)
 			{
+				int memId=obgSecList.get(i).getMemberId();
 				ps1.setInt(1, obgSecList.get(i).getMemberId());
 				ps1.setInt(2, obgSecList.get(i).getBatchNum());
 				ps1.setDouble(3, obgSecList.get(i).getFundAmt());
 				ps1.setInt(4, obgSecList.get(i).getISIN());
 				ps1.setInt(5, obgSecList.get(i).getQuantity());
 				ps1.executeUpdate();
+				
+				comDao.updateDematBalance(memId, obgSecList.get(i).getISIN(), obgSecList.get(i).getQuantity());
 			}
 			
 			
-		String UPDATEFUNDNETTING = "update OBG_REPORT set fundAmt = ? where memberId = ? and batchNum = ?";
-		
-		Connection con2 = MyConnection.openConnection();
-		
-		PreparedStatement ps2 = con2.prepareStatement(UPDATEFUNDNETTING );
-			for(int i=0;i<obgFundList.size();i++)
-			{
-				ps2.setDouble(1, obgFundList.get(i).getFundAmt());
-				ps2.setInt(2, obgFundList.get(i).getMemberId());
-				ps2.setInt(3, obgFundList.get(i).getBatchNum());
-				ps2.executeUpdate();
-			}
+			String UPDATE_FUND_NETTING = "update OBG_REPORT set fundAmt = ? where memberId = ? and batchNum = ?";
 			
-		return 0;
+			Connection con2 = MyConnection.openConnection();
+			
+			PreparedStatement ps2 = con2.prepareStatement(UPDATE_FUND_NETTING );
+			System.out.println("obgFundList size: "+obgFundList.size());
+				for(int i=0;i<obgFundList.size();i++)
+				{
+					int memId=obgFundList.get(i).getMemberId();
+					
+					ps2.setDouble(1, obgFundList.get(i).getFundAmt());
+					ps2.setInt(2, obgFundList.get(i).getMemberId());
+					ps2.setInt(3, obgFundList.get(i).getBatchNum());
+					ps2.executeUpdate();
+					
+					comDao.updateBankBalance(memId, obgFundList.get(i).getFundAmt());
+				}
+				
+			return 0;
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

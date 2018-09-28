@@ -45,7 +45,7 @@ public class SignUpPageImpl implements SignUpPage{
 				PreparedStatement ps = con.prepareStatement(addBA);
 				ps.setInt(1,bankAcNumber);
 				ps.setInt(2, member.getMemberId());
-				ps.setDouble(3, 0);
+				ps.setDouble(3, 100000);
 				rowsAdded += ps.executeUpdate();
 				String addDA = "INSERT INTO Demat_Details VALUES(?,?,?,?)";
 				ps = con.prepareStatement(addDA);
@@ -55,7 +55,7 @@ public class SignUpPageImpl implements SignUpPage{
 					ps.setInt(1,dematAcNumber);
 					ps.setInt(2,member.getMemberId());
 					ps.setInt(3,i);
-					ps.setInt(4,0);
+					ps.setInt(4,1000);
 					rowsAdded += ps.executeUpdate();
 				}
 			} catch (SQLException e) {

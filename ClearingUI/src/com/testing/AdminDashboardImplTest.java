@@ -29,16 +29,16 @@ class AdminDashboardImplTest {
 	@Test
 	void testApplyNetting() {
 		List<Trade> tradeList = new ArrayList<>();
-		tradeList.add(new Trade(1, 1, 25000, 100f, 1, 0, 1));
-		tradeList.add(new Trade(2, 2, 3000, 45f, 1, 3, 1));
-		tradeList.add(new Trade(3, 1, 12000, 101f, 2, 1, 1));
-		tradeList.add(new Trade(4, 2, 1000, 44f, 3, 0, 1));
-		tradeList.add(new Trade(5, 1, 5000, 102f, 3, 2, 1));
-		tradeList.add(new Trade(6, 4, 2000, 155f, 3, 0, 1));
-		tradeList.add(new Trade(7, 0, 1500, 77f, 0, 2, 1));
-		tradeList.add(new Trade(8, 4, 800, 155f, 0, 1, 1));
-		tradeList.add(new Trade(9, 3, 2250, 47f, 2, 0, 1));
-		tradeList.add(new Trade(10, 3, 250, 46f, 2, 1, 1));
+		tradeList.add(new Trade(1, 1, 25000, 100f, 1, 0, -1));
+		tradeList.add(new Trade(2, 2, 3000, 45f, 1, 3, -1));
+		tradeList.add(new Trade(3, 1, 12000, 101f, 2, 1, -1));
+		tradeList.add(new Trade(4, 2, 1000, 44f, 3, 0, -1));
+		tradeList.add(new Trade(5, 1, 5000, 102f, 3, 2, -1));
+		tradeList.add(new Trade(6, 4, 2000, 155f, 3, 0, -1));
+		tradeList.add(new Trade(7, 0, 1500, 77f, 0, 2, -1));
+		tradeList.add(new Trade(8, 4, 800, 155f, 0, 1, -1));
+		tradeList.add(new Trade(9, 3, 2250, 47f, 2, 0, -1));
+		tradeList.add(new Trade(10, 3, 250, 46f, 2, 1, -1));
 		
 		AdminDashboard dao = new AdminDashboardImpl();
 		int ret = dao.applyNetting(tradeList);

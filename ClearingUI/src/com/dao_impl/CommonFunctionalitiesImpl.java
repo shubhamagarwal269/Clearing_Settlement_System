@@ -257,7 +257,7 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 	public int updateDematBalance(int memberId, int ISIN, int changeInQuantity) {
 		// TODO Auto-generated method stub
 		int rowsUpdated = 0;
-		String UPDATEDEMATBALANCE = "UPDATE DEMAT_DETAILS SET quantity = quantity + ? WHERE memberId = ? && ISIN = ?";
+		String UPDATEDEMATBALANCE = "UPDATE DEMAT_DETAILS SET quantity = quantity + ? WHERE memberId = ? and ISIN = ?";
 		try(Connection con = MyConnection.openConnection()){
 			
 			PreparedStatement ps = con.prepareStatement(UPDATEDEMATBALANCE);
