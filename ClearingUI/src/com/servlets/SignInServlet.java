@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dao.CommonFunctionalities;
 import com.dao.SignInPage;
@@ -42,6 +43,12 @@ public class SignInServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		boolean message = true;
 		String notice = null; 
+		
+		
+		//adding session
+		HttpSession session = request.getSession();
+		
+		
 		//PrintWriter writer = response.getWriter();
 		
 		SignInPage signindao = new SignInPageImpl();
@@ -63,52 +70,17 @@ public class SignInServlet extends HttpServlet {
 		else{
 			int rowsUpdated = signindao.login(username, password);
 			  if (rowsUpdated>0) {
-					//writer.println("correct");
-					//writer.println(option);
-				    CommonFunctionalities c = new CommonFunctionalitiesImpl();
-				    List<Member> m = c.viewAllMembers();
-				    String name = null;
-				    int id =0;
-				    for(int i=0;i<m.size();i++)
-				    {
-				    	if(m.get(i).getMemberEmail().equals(username))
-				    	{
-				    		name = m.get(i).getMemberName();
-				    		id = m.get(i).getMemberId();
-				    	}
-				    		
-				    }
-					request.setAttribute("username",name );
-					request.setAttribute("memberId", id);
-					GenerateMemberReport dao = new GenerateMemberReportImpl();
-					List<MemberReport> report = dao.viewAllMembersReports();
-					List<Double> obg = new ArrayList<>();
-					for(int i=0;i<report.size();i++)
-					{
-						if(report.get(i).getMemberId() == id)
-						{
-							obg = report.get(i).getObligation();
-						}
-				}
-				request.setAttribute("report", obg);
-//				
-//				CommonFunctionalities func = new CommonFunctionalitiesImpl();
-//				List<Double> balance = new ArrayList<>();
-//				List<Pair<Integer, Integer>> securityList = new ArrayList<Pair<Integer, Integer>>();
-//				securityList = func.viewDematAcBalanceByMemberId(id);
-//				for(int i=1;i<=5;i++)
-//				{
-//					balance.add(securityList.get(i).getSecond()-obg.get(i));
-//				}
-//				request.setAttribute("DABal", securityList);
-//				
-//				request.setAttribute("SecShort", balance);
-//				double bankBal = dao.viewBankAcBalance(id);
-//				request.setAttribute("BABal", bankBal);
-//				double fundShortage = bankBal - obg.get(6);
-//				request.setAttribute("fundShort", fundShortage);
-				    RequestDispatcher dispatcher = request.getRequestDispatcher("dashMember.jsp");
-					dispatcher.forward(request, response);
+				  
+				 CommonFunctionalities dao = new CommonFunctionalitiesImpl();
+				int memberId=dao.getMemberIdbyEmail(username);
+					
+				session.setAttribute("memberId", memberId); 
+				 
+				  RequestDispatcher dispatcher = request.getRequestDispatcher("memberHome");
+				  dispatcher.forward(request, response);
+					
+					//adding data to session
+					
 			  }  
 			  else {
 				message  = false;

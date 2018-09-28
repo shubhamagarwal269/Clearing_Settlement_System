@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -39,46 +39,28 @@
     <link href="dashboard/build/css/custom.min.css" rel="stylesheet">
   </head>
 
-  <body class="nav-md">
-  
-   <%
-HttpSession session2 = request.getSession(); 
-   int memberId = (int)session2.getAttribute("memberId");
-%>
+<body class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
-          
             <div class="navbar nav_title" style="border: 0;">
               <a href="index.html" class="site_title"><i class="fa fa-bank"></i> </a>
             </div>
 
-            <div class="clearfix">
-            </div>
+            <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
-            
             <div class="profile clearfix">
-            
-	              <div class="profile_pic">
-	                <img href="memberHome" src="images/user.png" alt="..." class="img-circle profile_img">
-	              </div>
-	              
+              <div class="profile_pic">
+                <img src="images/user.png" alt="..." class="img-circle profile_img">
+              </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2> 
-					<c:forEach var="member" items="${members}">
-	                   <c:if test="${member.memberId == memberId}">
-	                      	<c:out value="${member.memberName}"></c:out>
-	                   </c:if>
-	              </c:forEach>
-				</h2>
-
+                <h2><%int id = (int)request.getAttribute("id");
+                 %></h2>
               </div>
-              
             </div>
-            
             <!-- /menu profile quick info -->
 
             <br />
@@ -88,16 +70,16 @@ HttpSession session2 = request.getSession();
               <div class="menu_section">
                 <h3>Options</h3>
                 <ul class="nav side-menu">
-                  <li ><a href="dashMember.jsp" onclick="signin"><i class="fa fa-bar-chart-o"></i> Obligation Report</a>
+                  <li ><a href="index.html"><i class="fa fa-bar-chart-o"></i> Obligation Report</a>
                   </li>
-
-                  <li><a href="balance" ><i class="fa fa-calculator"></i> View Balances </a>
-				    
+                  <li><a href="settlementdash.html"><i class="fa fa-bell"></i> Settlement Report </a>
+                  </li>
+                  <li><a href="balances.html"><i class="fa fa-calculator"></i> View Balances </a>
+				  
+                    
                   </li>  
-           
-
-                  <li><a href="viewMemberTrades"><i class="fa fa-bell"></i> View Past Trades</a>
-                  </li>
+				  <li><a><i class="fa fa-mail-reply"></i> View Past Reports </span></a></li>
+                  
                 
                 </ul>
               </div>
@@ -123,11 +105,7 @@ HttpSession session2 = request.getSession();
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					  <img src="dashboard/images/user.png" alt=""><c:forEach var="member" items="${members}">
-	                   <c:if test="${member.memberId == memberId}">
-	                      	<c:out value="${member.memberName}"></c:out>
-	                   </c:if>
-	              </c:forEach>
+                    <img src="images/user.png" alt="">Clearing Member
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -139,7 +117,7 @@ HttpSession session2 = request.getSession();
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 
@@ -155,17 +133,12 @@ HttpSession session2 = request.getSession();
           <div class="row tile_count">
             <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-shopping-cart"></i> Securities Shortage</span>
-              <div class="count"><c:out value="${DABal.get(0).getFirst() }">  </c:out>  ":" <c:out value="${SecShort.get(0) }"></c:out><br>
-              <c:out value="${DABal.get(1).getFirst() }">  </c:out> <c:out value="${SecShort.get(1) }"></c:out><br>
-              <c:out value="${DABal.get(2).getFirst() }">  </c:out> <c:out value="${SecShort.get(2) }"></c:out><br>
-              <c:out value="${DABal.get(3).getFirst() }">  </c:out> <c:out value="${SecShort.get(3) }"></c:out><br>
-             <c:out value="${DABal.get(4).getFirst() }">  </c:out>  <c:out value="${SecShort.get(4) }"></c:out>
-              <br></div>
+              <div class="count">2500</div>
               <span class="count_bottom"><i class="green">4% </i> From last Week</span>
             </div>
             <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-money"></i> Funds Shortage</span>
-              <div class="count"><c:out value="${fundShort}">  </c:out> </div>
+              <div class="count">123.50</div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
             </div>
             
@@ -179,12 +152,11 @@ HttpSession session2 = request.getSession();
           <div class="">
             <div class="page-title">
               <div class="title_left">
-
-                <p><b><h3>Dear Clearing Member, 
-				<br>Your Obligation Report Is Mentioned </h3></b></p> 
+                
               </div>
 
-				<p><b><h3>Settlement Report</h3></b></p>
+				<p><b><h3>Your Current Balances 
+				</h3></b></p>
 
             <div class="clearfix"></div>
 
@@ -192,15 +164,15 @@ HttpSession session2 = request.getSession();
               <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Securities Settlement</h2>
+                    <h2>Securities Balance</h2>
                     
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
-                      
+                      Your Current Securities Balance is
                     </p>
-                    <table class="table">
+                    <table class="table table-hover">
                       <thead>
                         <tr>
                           <th>ISIN</th>
@@ -208,38 +180,24 @@ HttpSession session2 = request.getSession();
                           <th>Quantity</th>
               
                         </tr>
-                  
                       </thead>
-                    
-
- 
                       <tbody>
                         <tr>
                           <th>1</th>
-                          <td>Apple</td>
-                          <td><c:out value="${report.get(0) }"></c:out></td>
+                          <td>Facebook</td>
+                          <td>10</td>
                        
                         </tr>
                         <tr>
                           <th>2</th>
-                          <td>Facebook</td>
-                          <td><c:out value="${report.get(1) }"></c:out></td>
+                          <td>Apple</td>
+                          <td>5</td>
                           
                         </tr>
                         <tr>
                           <th>3</th>
-                          <td>GE</td>
-                          <td><c:out value="${report.get(2) }"></c:out></td>
-                        </tr>
-                        <tr>
-                          <th>4</th>
-                          <td>LinkedIn</td>
-                          <td><c:out value="${report.get(3) }"></c:out></td>
-                        </tr>
-                        <tr>
-                          <th>5</th>
-                          <td>Walmart</td>
-                          <td><c:out value="${report.get(4) }"></c:out></td>
+                          <td>Wipro</td>
+                          <td>20</td>
                         </tr>
                       </tbody>
                     </table>
@@ -251,25 +209,24 @@ HttpSession session2 = request.getSession();
 			  <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-
-                    <h2>Fund Obligation</h2>
+                    <h2>Funds Balance</h2>
                     
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
-                      
+                      Your Current Fund Balance is 
                     </p>
-                    <table class="table">
+                    <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th>Amount To Pay</th>
+                          <th>Amount Available Currently</th>
               
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <th><c:out value="${report.get(5) }"></c:out></th>
+                          <th>$10,00,000</th>
                        
                         </tr>
                         
@@ -287,9 +244,6 @@ HttpSession session2 = request.getSession();
 
        
             </div>
-			
-			
-			
           </div>
         </div>
 
@@ -297,8 +251,6 @@ HttpSession session2 = request.getSession();
         
         <!-- /footer content -->
       </div>
-    </div>
-    </div>
     </div>
 
     <!-- jQuery -->
@@ -359,6 +311,6 @@ HttpSession session2 = request.getSession();
 
     <!-- Custom Theme Scripts -->
     <script src="dashboard/build/js/custom.min.js"></script>
-	
-  </body>
+
+</body>
 </html>

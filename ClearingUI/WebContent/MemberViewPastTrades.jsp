@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,44 +41,37 @@
 
   <body class="nav-md">
   
-   <%
-HttpSession session2 = request.getSession(); 
-   int memberId = (int)session2.getAttribute("memberId");
+ <%
+HttpSession session2 = request.getSession(); //everytime u do get, a new session will be provided if an old one doesnt already exist, or else the old active session is returned
+int memberId = (int)session2.getAttribute("memberId");
 %>
+
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
-          
             <div class="navbar nav_title" style="border: 0;">
               <a href="index.html" class="site_title"><i class="fa fa-bank"></i> </a>
             </div>
 
-            <div class="clearfix">
-            </div>
+            <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
-            
             <div class="profile clearfix">
-            
-	              <div class="profile_pic">
-	                <img href="memberHome" src="images/user.png" alt="..." class="img-circle profile_img">
-	              </div>
-	              
+              <div class="profile_pic">
+                <img src="dashboard/images/user.png" alt="..." class="img-circle profile_img">
+              </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2> 
+                <h2>
 					<c:forEach var="member" items="${members}">
 	                   <c:if test="${member.memberId == memberId}">
 	                      	<c:out value="${member.memberName}"></c:out>
 	                   </c:if>
 	              </c:forEach>
 				</h2>
-
               </div>
-              
             </div>
-            
             <!-- /menu profile quick info -->
 
             <br />
@@ -88,16 +81,17 @@ HttpSession session2 = request.getSession();
               <div class="menu_section">
                 <h3>Options</h3>
                 <ul class="nav side-menu">
-                  <li ><a href="dashMember.jsp" onclick="signin"><i class="fa fa-bar-chart-o"></i> Obligation Report</a>
+                  <li class="active"><a><i class="fa fa-bar-chart-o"></i> Obligation Report</a>
                   </li>
-
-                  <li><a href="balance" ><i class="fa fa-calculator"></i> View Balances </a>
-				    
-                  </li>  
-           
-
-                  <li><a href="viewMemberTrades"><i class="fa fa-bell"></i> View Past Trades</a>
+                  <li><a><i class="fa fa-bell"></i> View Past Trades </a>
                   </li>
+                  <li><a><i class="fa fa-money"></i> View Fund Balance </a>
+                    
+                  </li>
+                  <li><a><i class="fa fa-info"></i> View DEMAT Balance </span></a></li>
+				  
+				  <li><a><i class="fa fa-mail-reply"></i> View Past Reports </span></a></li>
+                  
                 
                 </ul>
               </div>
@@ -123,7 +117,7 @@ HttpSession session2 = request.getSession();
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					  <img src="dashboard/images/user.png" alt=""><c:forEach var="member" items="${members}">
+                    <img src="dashboard/images/user.png" alt=""><c:forEach var="member" items="${members}">
 	                   <c:if test="${member.memberId == memberId}">
 	                      	<c:out value="${member.memberName}"></c:out>
 	                   </c:if>
@@ -131,7 +125,7 @@ HttpSession session2 = request.getSession();
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="profileupdate.html"> Profile</a></li>
+                    <li><a href="javascript:;"> Profile</a></li>
                     <li>
                       <a href="javascript:;">
                     
@@ -139,7 +133,7 @@ HttpSession session2 = request.getSession();
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 
@@ -150,146 +144,100 @@ HttpSession session2 = request.getSession();
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main">
-          <!-- top tiles -->
-          <div class="row tile_count">
-            <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-shopping-cart"></i> Securities Shortage</span>
-              <div class="count"><c:out value="${DABal.get(0).getFirst() }">  </c:out>  ":" <c:out value="${SecShort.get(0) }"></c:out><br>
-              <c:out value="${DABal.get(1).getFirst() }">  </c:out> <c:out value="${SecShort.get(1) }"></c:out><br>
-              <c:out value="${DABal.get(2).getFirst() }">  </c:out> <c:out value="${SecShort.get(2) }"></c:out><br>
-              <c:out value="${DABal.get(3).getFirst() }">  </c:out> <c:out value="${SecShort.get(3) }"></c:out><br>
-             <c:out value="${DABal.get(4).getFirst() }">  </c:out>  <c:out value="${SecShort.get(4) }"></c:out>
-              <br></div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
-            <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-money"></i> Funds Shortage</span>
-              <div class="count"><c:out value="${fundShort}">  </c:out> </div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
-            </div>
-            
-          </div>
-          <!-- /top tiles -->
-
-
-          
-        <!-- /page content -->
-		<div  role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-
-                <p><b><h3>Dear Clearing Member, 
-				<br>Your Obligation Report Is Mentioned </h3></b></p> 
-              </div>
-
-				<p><b><h3>Settlement Report</h3></b></p>
-
-            <div class="clearfix"></div>
-
-            <div class="row">
-              <div class="col-md-6 col-sm-12 col-xs-12">
+       <div class="right_col" role="main">
+          <div class="">                 
+          	  <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Securities Settlement</h2>
-                    
+                      
+                      
+                      <h2>Trade List</h2> &nbsp;
+
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <p class="text-muted font-13 m-b-30">
-                      
-                    </p>
-                    <table class="table">
+                    <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>ISIN</th>
+                        
+                          <th>Trade ID</th>
                           <th>Security Name</th>
                           <th>Quantity</th>
-              
-                        </tr>
-                  
-                      </thead>
-                    
-
- 
-                      <tbody>
-                        <tr>
-                          <th>1</th>
-                          <td>Apple</td>
-                          <td><c:out value="${report.get(0) }"></c:out></td>
-                       
-                        </tr>
-                        <tr>
-                          <th>2</th>
-                          <td>Facebook</td>
-                          <td><c:out value="${report.get(1) }"></c:out></td>
+                          <th>Price</th>
+                          <th>Bought/Sold</th>
+                          <!--    <th>sellerMemberId</th>
+                          <th>batchNum</th>
+                          <th>Delete</th> -->
                           
                         </tr>
-                        <tr>
-                          <th>3</th>
-                          <td>GE</td>
-                          <td><c:out value="${report.get(2) }"></c:out></td>
-                        </tr>
-                        <tr>
-                          <th>4</th>
-                          <td>LinkedIn</td>
-                          <td><c:out value="${report.get(3) }"></c:out></td>
-                        </tr>
-                        <tr>
-                          <th>5</th>
-                          <td>Walmart</td>
-                          <td><c:out value="${report.get(4) }"></c:out></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-			  
-			  
-			  <div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-
-                    <h2>Fund Obligation</h2>
-                    
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <p class="text-muted font-13 m-b-30">
-                      
-                    </p>
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>Amount To Pay</th>
-              
-                        </tr>
                       </thead>
+
+
                       <tbody>
-                        <tr>
-                          <th><c:out value="${report.get(5) }"></c:out></th>
-                       
-                        </tr>
+                        <c:forEach var="trade" items="${reps}">
                         
+	                        <tr>
+	                          <td><c:out value="${trade.tradeId}"></c:out></td>
+	                           <td>
+	                          
+	                          <c:choose>
+								    <c:when test="${trade.ISIN == 0}">
+								        <c:out value="Apple"></c:out>
+								    </c:when>    
+								    <c:when test="${trade.ISIN == 2}">
+								        <c:out value="GE"></c:out>
+								    </c:when>
+								    <c:when test="${trade.ISIN == 1}">
+								        <c:out value="Facebook"></c:out>
+								    </c:when>
+								    <c:when test="${trade.ISIN == 3}">
+								        <c:out value="LinkedIn"></c:out>
+								    </c:when>
+								    <c:when test="${trade.ISIN == 4}">
+								        <c:out value="Walmart"></c:out>
+								    </c:when>
+							  </c:choose>
+	                          </td>
+	                        
+	                          <td><c:out value="${trade.quantity}"></c:out></td>
+	                          <td><c:out value="${trade.price}"></c:out></td>
+	                        
+	                          <td>
+	                          <c:if test="${trade.buyerMemberId == memberId}">
+	                          Bought
+	                          </c:if>
+	                          <c:if test="${trade.sellerMemberId == memberId}">
+	                          Sold
+	                          </c:if>
+	                          </td>
+	                       <!--   <td><c:out value="${trade.buyerMemberId}"></c:out></td>
+	                          <td><c:out value="${trade.sellerMemberId}"></c:out></td>
+	                          <td><c:out value="${trade.batchNum}"></c:out></td>
+							  <td>
+							  <button type="button" class="btn btn-danger"> 							  
+							  <a style="color:inherit" href="delete?tradeId=<c:out value='${trade.tradeId}'/>">
+							  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+							  </a>
+							  </button>
+							  </td>-->
+	                        </tr>
+	                        
+                        </c:forEach>
                         
+
                       </tbody>
                     </table>
                   </div>
                 </div>
               </div>
+              
+                     	       </div>      
 
-            
-
-        
-            
-
-       
-            </div>
-			
-			
-			
+          
           </div>
         </div>
 
@@ -297,8 +245,6 @@ HttpSession session2 = request.getSession();
         
         <!-- /footer content -->
       </div>
-    </div>
-    </div>
     </div>
 
     <!-- jQuery -->
