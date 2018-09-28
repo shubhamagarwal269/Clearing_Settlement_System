@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,6 +40,11 @@
   </head>
 
   <body class="nav-md">
+  
+   <%
+HttpSession session2 = request.getSession(); 
+   int memberId = (int)session2.getAttribute("memberId");
+%>
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -56,7 +62,13 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>Clearing Member</h2>
+                <h2> 
+					<c:forEach var="member" items="${members}">
+	                   <c:if test="${member.memberId == memberId}">
+	                      	<c:out value="${member.memberName}"></c:out>
+	                   </c:if>
+	              </c:forEach>
+				</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -70,7 +82,7 @@
                 <ul class="nav side-menu">
                   <li class="active"><a><i class="fa fa-bar-chart-o"></i> Obligation Report</a>
                   </li>
-                  <li><a><i class="fa fa-bell"></i> Settlement Report </a>
+                  <li><a href="viewMemberTrades"><i class="fa fa-bell"></i> View Past Trades</a>
                   </li>
                   <li><a><i class="fa fa-money"></i> View Fund Balance </a>
                     
@@ -104,7 +116,11 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="dashboard/images/user.png" alt="">Clearing Member
+                    <img src="dashboard/images/user.png" alt=""><c:forEach var="member" items="${members}">
+	                   <c:if test="${member.memberId == memberId}">
+	                      	<c:out value="${member.memberName}"></c:out>
+	                   </c:if>
+	              </c:forEach>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -116,7 +132,7 @@
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 
@@ -152,7 +168,7 @@
             <div class="page-title">
               <div class="title_left">
                 <p><b><h3>Dear Clearing Member, 
-				<br>Your Obligation Report Is Mentioned Below</h3></b></p>
+				<br>Your Obligation Report Is Mentioned Below</h3></b></p> 
               </div>
 
 
@@ -208,7 +224,7 @@
 			  <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Fund Oblition</h2>
+                    <h2>Fund Obligation</h2>
                     
                     <div class="clearfix"></div>
                   </div>
@@ -263,6 +279,8 @@
         
         <!-- /footer content -->
       </div>
+    </div>
+    </div>
     </div>
 
     <!-- jQuery -->

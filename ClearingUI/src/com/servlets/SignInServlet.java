@@ -2,6 +2,7 @@ package com.servlets;
 
 import java.io.IOException;
 //import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +10,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.dao.CommonFunctionalities;
 import com.dao.SignInPage;
+import com.dao_impl.CommonFunctionalitiesImpl;
 import com.dao_impl.SignInPageImpl;
+import com.pojo.Member;
 
 /**
  * Servlet implementation class SignInServlet
@@ -38,6 +43,12 @@ public class SignInServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		boolean message = true;
 		String notice = null; 
+		
+		
+		//adding session
+		HttpSession session = request.getSession();
+		
+		
 		//PrintWriter writer = response.getWriter();
 		
 		SignInPage signindao = new SignInPageImpl();
@@ -61,8 +72,21 @@ public class SignInServlet extends HttpServlet {
 			  if (rowsUpdated>0) {
 					//writer.println("correct");
 					//writer.println(option);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("dashMember.jsp");
-					dispatcher.forward(request, response);
+					
+				  CommonFunctionalities dao = new CommonFunctionalitiesImpl();
+					List<Member> members = dao.viewAllMembers();
+					request.setAttribute("members", members);
+					int memberId=dao.getMemberIdbyEmail(username);
+					session.setAttribute("memberId", memberId); 
+					
+				  RequestDispatcher dispatcher = request.getRequestDispatcher("dashMember.jsp");
+				  dispatcher.forward(request, response);
+					
+					
+					//adding data to session
+					
+				
+					
 			  }  
 			  else {
 				message  = false;

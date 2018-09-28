@@ -465,7 +465,60 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 			return memberId;
 			
 	}
+	
+	@Override
+	public int getMemberIdbyEmail(String memberEmail) {
+		// TODO Auto-generated method stub
+		int memberId = 0;
+			
+			String FETCHMEMID  = "select memberId from Member where memberEmail = ?";
+			
+			try(Connection con=MyConnection.openConnection();)
+			{
+				PreparedStatement ps = con.prepareStatement(FETCHMEMID);
+				
+				ps.setString(1, memberEmail);
+				
+				ResultSet set = ps.executeQuery();
+				
+				while(set.next()) {
+					memberId = set.getInt("memberId");
+				}
+			}catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			
+			return memberId;
+			
+	}
 
+	@Override
+	public String getMemberName(int memberId) {
+		// TODO Auto-generated method stub
+		String memberName = "";
+			
+			String FETCHMEMID  = "select memberName from Member where memberId = ?";
+			
+			try(Connection con=MyConnection.openConnection();)
+			{
+				PreparedStatement ps = con.prepareStatement(FETCHMEMID);
+				
+				ps.setInt(1, memberId);
+				
+				ResultSet set = ps.executeQuery();
+				
+				while(set.next()) {
+					memberName = set.getString("memberName");
+				}
+			}catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			
+			return memberName;
+			
+	}
 	@Override
 	public List<ObligationReport> viewAllObgReports() {
 		// TODO Auto-generated method stub

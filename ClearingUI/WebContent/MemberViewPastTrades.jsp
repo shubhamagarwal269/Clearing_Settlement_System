@@ -40,6 +40,12 @@
   </head>
 
   <body class="nav-md">
+  
+ <%
+HttpSession session2 = request.getSession(); //everytime u do get, a new session will be provided if an old one doesnt already exist, or else the old active session is returned
+int memberId = (int)session2.getAttribute("memberId");
+%>
+
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -57,7 +63,13 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>Clearing Member</h2>
+                <h2>
+					<c:forEach var="member" items="${members}">
+	                   <c:if test="${member.memberId == memberId}">
+	                      	<c:out value="${member.memberName}"></c:out>
+	                   </c:if>
+	              </c:forEach>
+				</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -71,7 +83,7 @@
                 <ul class="nav side-menu">
                   <li class="active"><a><i class="fa fa-bar-chart-o"></i> Obligation Report</a>
                   </li>
-                  <li><a><i class="fa fa-bell"></i> Settlement Report </a>
+                  <li><a><i class="fa fa-bell"></i> View Past Trades </a>
                   </li>
                   <li><a><i class="fa fa-money"></i> View Fund Balance </a>
                     
@@ -105,7 +117,11 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="dashboard/images/user.png" alt="">Clearing Member
+                    <img src="dashboard/images/user.png" alt=""><c:forEach var="member" items="${members}">
+	                   <c:if test="${member.memberId == memberId}">
+	                      	<c:out value="${member.memberName}"></c:out>
+	                   </c:if>
+	              </c:forEach>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -191,10 +207,10 @@
 	                          <td><c:out value="${trade.price}"></c:out></td>
 	                        
 	                          <td>
-	                          <c:if test="${trade.buyerMemberId == 1}">
+	                          <c:if test="${trade.buyerMemberId == memberId}">
 	                          Bought
 	                          </c:if>
-	                          <c:if test="${trade.sellerMemberId == 1}">
+	                          <c:if test="${trade.sellerMemberId == memberId}">
 	                          Sold
 	                          </c:if>
 	                          </td>

@@ -9,11 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dao.CommonFunctionalities;
 import com.dao.GenerateMemberReport;
 import com.dao_impl.CommonFunctionalitiesImpl;
 import com.dao_impl.GenerateMemberReportImpl;
+import com.pojo.Member;
 import com.pojo.MemberReport;
 import com.pojo.Trade;
 
@@ -37,10 +39,13 @@ public class MemberViewPastTradesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		HttpSession session2 = request.getSession(); //everytime u do get, a new session will be provided if an old one doesnt already exist, or else the old active session is returned
+		int memberId = (int)session2.getAttribute("memberId");
 		
 		CommonFunctionalities dao = new CommonFunctionalitiesImpl();
-		List<Trade> trades = dao.viewAllTradesByMemberId(1);
+		List<Member> members = dao.viewAllMembers();
+		request.setAttribute("members", members);
+		List<Trade> trades = dao.viewAllTradesByMemberId(memberId);
 		System.out.println(trades);
 		request.setAttribute("reps", trades);
 		System.out.println("after passing in servlet\n"+trades);
