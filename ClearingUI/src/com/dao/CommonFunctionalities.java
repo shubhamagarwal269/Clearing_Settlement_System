@@ -29,4 +29,5 @@ public interface CommonFunctionalities {
 	public List<Double> fetchBorrowingRate();
 	public List<ObligationReport> viewAllObgReports();
 	public void settleTrades();
+	public double getFundBorrow();
 }

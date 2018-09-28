@@ -14,6 +14,11 @@ bankAcNo NUMERIC(20) NOT NULL,
 dematAcNo NUMERIC(20) NOT NULL
 );
 
+
+CREATE TABLE FUNDBORROW(
+fundBorrowingRate NUMERIC(20,4) NOT NULL
+);
+
 CREATE TABLE SECURITY(
 ISIN NUMERIC(20) NOT NULL CONSTRAINT SECURITY_ISIN_PK PRIMARY KEY,
 securityName VARCHAR(20) NOT NULL,
@@ -71,3 +76,5 @@ select * from MEMBER;
 select * from SECURITY;
 select * from trade;
 select * from OBG_REPORT;
+
+insert into FUNDBORROW values(.0125);

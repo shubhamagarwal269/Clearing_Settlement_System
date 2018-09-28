@@ -10,5 +10,5 @@ public interface AdminDashboard {
 	int addRandomTrade(int noOfTrade, boolean newBatch);
 	int updateMarketPrice(int ISIN, double newPrice);
 	int updateBorrowingRate(int ISIN, double newRate);
-
+	int updateFundBorrowingRate(double newRate);
 }

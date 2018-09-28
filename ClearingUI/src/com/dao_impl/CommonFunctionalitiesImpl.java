@@ -585,7 +585,29 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 		}
 			
 	}
+	
+	@Override
+	public double getFundBorrow() {
+		// TODO Auto-generated method stub
+		double rate = 0d;
 		
+		String FETCHRATE  = "select fundBorrowingRate from fundborrow";
+		
+		try(Connection con=MyConnection.openConnection();)
+		{
+			PreparedStatement ps = con.prepareStatement(FETCHRATE);
+			ResultSet set = ps.executeQuery();
+			
+			while(set.next()) {
+				rate = set.getDouble("fundBorrowingRate");
+			}
+		}catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return rate;
+	}
 		
 		
 		

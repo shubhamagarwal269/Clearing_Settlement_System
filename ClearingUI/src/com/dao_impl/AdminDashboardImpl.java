@@ -183,5 +183,24 @@ public class AdminDashboardImpl implements AdminDashboard{
 		}
 		return rowsUpdated;
 	}
-
+	
+	@Override
+	public int updateFundBorrowingRate(double newRate) {
+		// TODO Auto-generated method stub
+		int rowsUpdated = 0;
+		
+		String UPDATEBORROWINGRATE = "UPDATE fundborrow SET fundBorrowingRate = ?";
+		
+		try(Connection con = MyConnection.openConnection()){
+			PreparedStatement ps = con.prepareStatement(UPDATEBORROWINGRATE);
+			ps.setDouble(1, newRate);
+		    rowsUpdated = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rowsUpdated;
+	}
+	
 }
