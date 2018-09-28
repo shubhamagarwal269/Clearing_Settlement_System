@@ -73,24 +73,24 @@
                       <li><a href="fetch">Trade List</a></li>
                     </ul>
                   </li>
-                                    <!--  <li><a><i class="fa fa-edit"></i>Clearing Member Stats<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i>Clearing Member Stats<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="form.html">Profiles</a></li>
                       <li><a href="form_advanced.html">Reports</a></li>
                       <li><a href="shortSettle.jsp">Shortage Settlement</a></li>
             
                     </ul>
-                  </li> -->
-                  
-                  <li><a><i class="fa fa-edit"></i>Reports<span class="fa fa-chevron-down"></span></a>
+                  </li>
+            
+                  <li><a><i class="fa fa-desktop"></i> Algorithm Stats<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="AdminViewNetting.jsp">Netting Report</a></li>
-                      <li><a href="AdminViewObligation.jsp">Member Obligation Reports</a></li>            
+                      <li><a href="general_elements.html">Algorithm</a></li>
+                      <li><a href="media_gallery.html">Metrics</a></li>
+                     
                     </ul>
                   </li>
                   
-                  
-                  <li><a href="fetchmarket"><i class="fa fa-bar-chart-o"></i> Update Market Stats <span class="fa fa-chevron"></span></a></li>
+                  <li><a href="updateMarket.jsp"><i class="fa fa-bar-chart-o"></i> Update Market Stats <span class="fa fa-chevron"></span></a></li>
                   
                 </ul>
               </div>
@@ -372,8 +372,71 @@
     <script src="dashboard/vendors/morris.js/morris.min.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="dashboard/build/js/custom.min.js"></script>
+    <script src="dashboard/build/js/custom.js"></script>
+    <script>
     
+    
+    $(document).ready(function()
+    {
+    	$.ajax({
+            url: "getsecuritiesdata", // getchart.php
+            dataType: 'JSON',
+            type: 'GET',
+            data: {get_values: true},
+            success: function(response) {
+            	if( typeof (Morris) === 'undefined'){ return; }
+    			console.log('init_morris_charts');
+    			
+    			if ($('#graphx').length ){
+    				
+    				Morris.Bar({
+    				  element: 'graphx',
+    				  data: response,
+    				  xkey: 'CM',
+    				  ykeys: ['Apple','Facebook','GE','LinkedIn','Walmart'],
+    				  barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+    				  hideHover: 'auto',
+    				  labels: ['Apple','Facebook','GE','LinkedIn','Walmart'],
+    				  resize: true
+    				}).on('click', function (i, row) {
+    					console.log(i, row);
+    				});
+
+    			}
+    			
+    			
+            
+    			
+
+    			
+    			
+    			if ($('#graph_bar').length){ 
+    				Morris.Bar({
+	                	element:"graph_bar",
+	                    data: response,
+	                    xkey: 'CM',
+	                    ykeys: ['Funds'],
+	                    labels: ['Funds']
+	                });
+            	}
+    			    			
+            },
+            error: function (error) {
+                alert('error ');
+            }
+            
+            
+            
+        });// closing of first ajax
+        
+        
+        
+    });//closing of ready
+
+
+    
+    
+    </script>
     </body>
     </html>
     
