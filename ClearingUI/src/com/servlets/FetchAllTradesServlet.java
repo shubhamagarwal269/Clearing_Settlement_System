@@ -44,10 +44,8 @@ public class FetchAllTradesServlet extends HttpServlet {
 		
 		for(int i=0;i<trades.size();i++) {
 			double price = trades.get(i).getPrice();
-			System.out.println("old price:-"+price);
 			price = commFunc.roundToDecimalPlaces(price, 4);
 			trades.get(i).setPrice(price);
-			System.out.println("new price:-"+price);
 		}
 			
 		List<Security> securities = commFunc.viewAllSecurities();

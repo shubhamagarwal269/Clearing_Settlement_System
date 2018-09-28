@@ -62,10 +62,10 @@ insert into SECURITY values(2,'Facebook', 76.5, 7);
 insert into SECURITY values(3,'LinkedIn', 45.5, 11);
 insert into SECURITY values(4,'Walmart', 155, 6);
 
-insert into MEMBER values(0,'Citi','p1','citi@gmail.com',0,0);
-insert into MEMBER values(1,'DB','p2','db@gmail.com',0,0);
-insert into MEMBER values(2,'GS','p3','gs@gmail.com',0,0);
-insert into MEMBER values(3,'JP','p4','jp@gmail.com',0,0);
+insert into MEMBER values(0,'Citi','citi@123','citi@gmail.com',0,0);
+insert into MEMBER values(1,'DB','db@123','db@gmail.com',0,0);
+insert into MEMBER values(2,'GS','gs@123','gs@gmail.com',0,0);
+insert into MEMBER values(3,'JP','jp@123','jp@gmail.com',0,0);
 
 select * from MEMBER;
 select * from SECURITY;
