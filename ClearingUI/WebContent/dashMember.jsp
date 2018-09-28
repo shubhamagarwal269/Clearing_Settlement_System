@@ -43,22 +43,37 @@
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
+          
             <div class="navbar nav_title" style="border: 0;">
               <a href="index.html" class="site_title"><i class="fa fa-bank"></i> </a>
             </div>
 
-            <div class="clearfix"></div>
+            <div class="clearfix">
+            </div>
 
             <!-- menu profile quick info -->
+            
             <div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="dashboard/images/user.png" alt="..." class="img-circle profile_img">
-              </div>
+            
+	              <div class="profile_pic">
+	                <img src="images/user.png" alt="..." class="img-circle profile_img">
+	              </div>
+	              
               <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>Clearing Member</h2>
+                	<span>Welcome,
+                	</span>
+                	
+                	<h2>
+	                	<% 
+						String msg = (String)request.getAttribute("username");
+						out.println(msg+"<br>");  
+						%>
+					</h2>
+					
               </div>
+              
             </div>
+            
             <!-- /menu profile quick info -->
 
             <br />
@@ -68,14 +83,12 @@
               <div class="menu_section">
                 <h3>Options</h3>
                 <ul class="nav side-menu">
-                  <li class="active"><a><i class="fa fa-bar-chart-o"></i> Obligation Report</a>
+                  <li ><a href="MemberDash.jsp" onclick="signin"><i class="fa fa-bar-chart-o"></i> Obligation Report</a>
                   </li>
-                  <li><a><i class="fa fa-bell"></i> Settlement Report </a>
-                  </li>
-                  <li><a><i class="fa fa-money"></i> View Fund Balance </a>
-                    
-                  </li>
-                  <li><a><i class="fa fa-info"></i> View DEMAT Balance </span></a></li>
+                  <li><a href="Memberbalances.jsp?id=<c:out value='${memberId }'/>" onclick="balance"><i class="fa fa-calculator"></i> View Balances </a>
+				    
+                  </li>  
+           
 				  
 				  <li><a><i class="fa fa-mail-reply"></i> View Past Reports </span></a></li>
                   
@@ -104,11 +117,11 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="dashboard/images/user.png" alt="">Clearing Member
+                    <img src="images/user.png" alt="">Clearing Member
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
+                    <li><a href="profileupdate.html"> Profile</a></li>
                     <li>
                       <a href="javascript:;">
                     
@@ -132,12 +145,17 @@
           <div class="row tile_count">
             <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-shopping-cart"></i> Securities Shortage</span>
-              <div class="count">2500</div>
+              <div class="count"><c:out value="${DABal.get(1).getFirst() }">  </c:out>  ":" <c:out value="${SecShort.get(1) }"></c:out><br>
+              <c:out value="${DABal.get(2).getFirst() }">  </c:out> <c:out value="${SecShort.get(2) }"></c:out><br>
+              <c:out value="${DABal.get(3).getFirst() }">  </c:out> <c:out value="${SecShort.get(3) }"></c:out><br>
+              <c:out value="${DABal.get(4).getFirst() }">  </c:out> <c:out value="${SecShort.get(4) }"></c:out><br>
+             <c:out value="${DABal.get(5).getFirst() }">  </c:out>  <c:out value="${SecShort.get(5) }"></c:out>
+              <br></div>
               <span class="count_bottom"><i class="green">4% </i> From last Week</span>
             </div>
             <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-money"></i> Funds Shortage</span>
-              <div class="count">123.50</div>
+              <div class="count"><c:out value="${fundShort}">  </c:out> </div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
             </div>
             
@@ -151,11 +169,10 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <p><b><h3>Dear Clearing Member, 
-				<br>Your Obligation Report Is Mentioned Below</h3></b></p>
+                
               </div>
 
-
+				<p><b><h3>Settlement Report</h3></b></p>
 
             <div class="clearfix"></div>
 
@@ -163,13 +180,13 @@
               <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Securities Oblition</h2>
+                    <h2>Securities Settlement</h2>
                     
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
-                      Your Security settlement obligation for today is:
+                      
                     </p>
                     <table class="table">
                       <thead>
@@ -179,24 +196,38 @@
                           <th>Quantity</th>
               
                         </tr>
+                  
                       </thead>
+                    
+
+ 
                       <tbody>
                         <tr>
                           <th>1</th>
-                          <td>Facebook</td>
-                          <td>10</td>
+                          <td>Apple</td>
+                          <td><c:out value="${report.get(1) }"></c:out></td>
                        
                         </tr>
                         <tr>
                           <th>2</th>
-                          <td>Apple</td>
-                          <td>5</td>
+                          <td>Facebook</td>
+                          <td><c:out value="${report.get(2) }"></c:out></td>
                           
                         </tr>
                         <tr>
                           <th>3</th>
-                          <td>Wipro</td>
-                          <td>20</td>
+                          <td>GE</td>
+                          <td><c:out value="${report.get(3) }"></c:out></td>
+                        </tr>
+                        <tr>
+                          <th>4</th>
+                          <td>LinkedIn</td>
+                          <td><c:out value="${report.get(4) }"></c:out></td>
+                        </tr>
+                        <tr>
+                          <th>5</th>
+                          <td>Walmart</td>
+                          <td><c:out value="${report.get(5) }"></c:out></td>
                         </tr>
                       </tbody>
                     </table>
@@ -208,41 +239,28 @@
 			  <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Fund Oblition</h2>
+                    <h2>Fund Settlement</h2>
                     
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
-                      Your Fund settlement obligation for today is:
+                      
                     </p>
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>ISIN</th>
-                          <th>Security Name</th>
-                          <th>Quantity</th>
+                          <th>Amount To Pay</th>
               
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <th>1</th>
-                          <td>Facebook</td>
-                          <td>10</td>
+                          <th><c:out value="${report.get(6) }"></c:out></th>
                        
                         </tr>
-                        <tr>
-                          <th>2</th>
-                          <td>Apple</td>
-                          <td>5</td>
-                          
-                        </tr>
-                        <tr>
-                          <th>3</th>
-                          <td>Wipro</td>
-                          <td>20</td>
-                        </tr>
+                        
+                        
                       </tbody>
                     </table>
                   </div>
@@ -256,6 +274,9 @@
 
        
             </div>
+			
+			
+			
           </div>
         </div>
 

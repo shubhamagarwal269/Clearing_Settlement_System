@@ -2,6 +2,7 @@ package com.servlets;
 
 import java.io.IOException;
 //import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,8 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dao.CommonFunctionalities;
 import com.dao.SignInPage;
+import com.dao_impl.CommonFunctionalitiesImpl;
 import com.dao_impl.SignInPageImpl;
+import com.pojo.Member;
 
 /**
  * Servlet implementation class SignInServlet
@@ -61,7 +65,49 @@ public class SignInServlet extends HttpServlet {
 			  if (rowsUpdated>0) {
 					//writer.println("correct");
 					//writer.println(option);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("dashMember.jsp");
+				    CommonFunctionalities c = new CommonFunctionalitiesImpl();
+				    List<Member> m = c.viewAllMembers();
+				    String name = null;
+				    int id =0;
+				    for(int i=0;i<m.size();i++)
+				    {
+				    	if(m.get(i).getMemberEmail().equals(username))
+				    	{
+				    		name = m.get(i).getMemberName();
+				    		id = m.get(i).getMemberId();
+				    	}
+				    		
+				    }
+					request.setAttribute("username",name );
+					request.setAttribute("memberId", id);
+					GenerateMemberReport dao = new GenerateMemberReportImpl();
+					List<MemberReport> report = dao.viewAllMembersReports();
+					List<Double> obg = new ArrayList<>();
+					for(int i=0;i<report.size();i++)
+					{
+						if(report.get(i).getMemberId() == id)
+						{
+							obg = report.get(i).getObligation();
+						}
+				}
+				request.setAttribute("report", obg);
+//				
+//				CommonFunctionalities func = new CommonFunctionalitiesImpl();
+//				List<Double> balance = new ArrayList<>();
+//				List<Pair<Integer, Integer>> securityList = new ArrayList<Pair<Integer, Integer>>();
+//				securityList = func.viewDematAcBalanceByMemberId(id);
+//				for(int i=1;i<=5;i++)
+//				{
+//					balance.add(securityList.get(i).getSecond()-obg.get(i));
+//				}
+//				request.setAttribute("DABal", securityList);
+//				
+//				request.setAttribute("SecShort", balance);
+//				double bankBal = dao.viewBankAcBalance(id);
+//				request.setAttribute("BABal", bankBal);
+//				double fundShortage = bankBal - obg.get(6);
+//				request.setAttribute("fundShort", fundShortage);
+				    RequestDispatcher dispatcher = request.getRequestDispatcher("dashMember.jsp");
 					dispatcher.forward(request, response);
 			  }  
 			  else {

@@ -85,8 +85,8 @@
                   
                   <li><a><i class="fa fa-edit"></i>Reports<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="AdminViewNetting.jsp">Netting Report</a></li>
-                      <li><a href="AdminViewObligation.jsp">Member Obligation Reports</a></li>            
+                      <li><a href="viewNetting">Netting Report</a></li>
+                      <li><a href="viewObligation">Member Obligation Reports</a></li>            
                     </ul>
                   </li>
                   
@@ -434,7 +434,6 @@
         </footer>
         <!-- /footer content -->
       </div>
-    </div>
 
     <!-- jQuery -->
     <script src="dashboard/vendors/jquery/dist/jquery.min.js"></script>

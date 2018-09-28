@@ -40,7 +40,7 @@
                 }
             }
            
-            if($(input).attr('name') == 'password') {
+            if($(input).attr('type') == 'password') {
             	
                 if($(input).val().trim().match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/) == null) {
                     return false;
