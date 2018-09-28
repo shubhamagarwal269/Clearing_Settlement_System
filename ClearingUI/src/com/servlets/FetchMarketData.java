@@ -1,8 +1,7 @@
 package com.servlets;
 
-import java.util.List;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,45 +17,40 @@ import com.pojo.Security;
 import com.pojo.Trade;
 
 /**
- * Servlet implementation class FetchAllTradesServlet
+ * Servlet implementation class FetchMarketData
  */
-@WebServlet("/fetch")
-public class FetchAllTradesServlet extends HttpServlet {
+@WebServlet("/fetchmarket")
+public class FetchMarketData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FetchAllTradesServlet() {
+    public FetchMarketData() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		CommonFunctionalities commFunc = new CommonFunctionalitiesImpl();
-		
-		List<Trade> trades = commFunc.viewAllTrades();
-		
-		for(int i=0;i<trades.size();i++) {
-			double price = trades.get(i).getPrice();
-			price = commFunc.roundToDecimalPlaces(price, 4);
-			trades.get(i).setPrice(price);
-		}
 			
 		List<Security> securities = commFunc.viewAllSecurities();
-		List<Member> members = commFunc.viewAllMembers();
+		double fundborrow = commFunc.getFundBorrow();
 		
-		request.setAttribute("trades", trades);
 		request.setAttribute("securities", securities);
-		request.setAttribute("members", members);
+		request.setAttribute("fundborrow", fundborrow);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("gensetTrades.jsp");
+		System.out.println("rate = "+fundborrow);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("updateMarket.jsp");
 		dispatcher.forward(request, response);
+		
 	}
 
 }

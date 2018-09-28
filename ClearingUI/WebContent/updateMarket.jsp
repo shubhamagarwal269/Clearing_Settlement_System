@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="ISO-8859-1">
-<title>Trades | Admin</title>
+<title>Update Market | Admin</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -83,8 +84,8 @@
                   
                   <li><a><i class="fa fa-edit"></i>Reports<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">Netting Report</a></li>
-                      <li><a href="form_advanced.html">Member Obligation Reports</a></li>            
+                      <li><a href="AdminViewNetting.jsp">Netting Report</a></li>
+                      <li><a href="AdminViewObligation.jsp">Member Obligation Reports</a></li>            
                     </ul>
                   </li>
             
@@ -209,11 +210,9 @@
                  <div class="clearfix"></div>
                </div>
                <div class="x_content">
-                 <form action="updatemarket" method="post">
                     <table class="table table-bordered">
                       <thead>
                         <tr>
-                          <th>S.No.</th>
                           <th>ISIN</th>
                           <th>Security Name</th>
                           <th>Current Market Price</th>
@@ -222,43 +221,26 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>0</td>
-                          <td>Facebook</td>
-                          <td>280</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><input type="submit" class="btn btn-success" value="Update"></td>
-                          
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>280</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>280</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
+                         <c:forEach var="security" items="${securities}">
+	                        <tr>
+	                        <form action="updatemarketdata">  
+	                          <td><c:out value="${security.ISIN}"></c:out><input type="hidden" value="<c:out value='${security.ISIN}'></c:out>" name="isinA"></input></td>
+	                          <td><c:out value="${security.securityName}"></c:out></td>
+	                          <td><c:out value="${security.marketPrice}"></c:out></td>
+	                          <td><input type="number" min="0" step="0.01" name="newmarketprice"></td>
+							  <td>
+							  <button type="submit" class="btn btn-primary">
+								   <span class="glyphicon glyphicon-plus"></span>
+							  </button>
+							  </td>
+							  </form>
+	                        </tr>
+	                        
+                        </c:forEach>
+
                       </tbody>
                     </table>
                  
-               </form>            
        	       </div>
        	       </div>
        	       </div>   
@@ -274,32 +256,33 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    
                     <table class="table table-bordered">
                       <thead>
                         <tr>
+                        
                           <th>Current Interest Rate(%p.a.)</th>
                           <th>New Interest Rate(%p.a.)</th>
                           <th>Update</th>
+                        
                         </tr>
+
                       </thead>
                       <tbody>
-                        <tr>
-                          
-                          <td>1.25</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
+	                        <tr>
+	                    <form action="updatemarketdata">     
+	                          <td><c:out value="${fundborrow}"></c:out></td>
+	                          <td><input type="number" step="0.0001" min="0" name="newfundborrow"></td>
+	                          <td>
+							  <button type="submit" class="btn btn-primary">
+								   <span class="glyphicon glyphicon-plus"></span>
+							  </button>
+							  </td>
+					    </form>
+	                        </tr>
+	                        
                         
                       </tbody>
                     </table>
-                
-                    
-                    
-                    
           	       </div>
           	       </div>
           	       </div>   
@@ -315,11 +298,9 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    
                     <table class="table table-bordered">
                       <thead>
                         <tr>
-                          <th>S.No.</th>
                           <th>ISIN</th>
                           <th>Security Name</th>
                           <th>Current Borrowing Rate(%p.a.)</th>
@@ -328,43 +309,25 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>8.2</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>8.2</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>SEC1</td>
-                          <td>Facebook</td>
-                          <td>8.2</td>
-                          <td>
-                          <input type="text" name="newPrice">  
-                          </td>
-                          <td><button type="button" class="btn btn-success">Update</button></td>
-                          
-                        </tr>
+						<c:forEach var="security" items="${securities}">
+	                        <tr>
+	                          <form action="updatemarketdata">  
+	                          <td><c:out value="${security.ISIN}"></c:out><input type="hidden" value="<c:out value='${security.ISIN}'></c:out>" name="isinB"></input></td>
+	                          <td><c:out value="${security.securityName}"></c:out></td>
+	                          <td><c:out value="${security.borrowingRate}"></c:out></td>
+	                          <td><input type="number" min="0" step="0.01" name="newborrowrate"></td>
+							  <td>
+							  <button type="submit" class="btn btn-primary">
+								   <span class="glyphicon glyphicon-plus"></span>
+							  </button>
+							  </td>
+							  </form>
+
+	                        </tr>
+                        </c:forEach> 
                       </tbody>
                     </table>
                  
-                    
           	       </div>
           	       </div>
           	       </div>   
