@@ -38,14 +38,17 @@
     <!-- Custom Theme Style -->
     <link href="dashboard/build/css/custom.min.css" rel="stylesheet">
   </head>
-
+ <%
+HttpSession session2 = request.getSession(); 
+   int memberId = (int)session2.getAttribute("memberId");
+%>
 <body class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-bank"></i> </a>
+              <a href="memberHome" class="site_title"><i class="fa fa-bank"></i> </a>
             </div>
 
             <div class="clearfix"></div>
@@ -57,29 +60,27 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2><%int id = (int)request.getAttribute("id");
-                 %></h2>
+                <h2>	<c:forEach var="member" items="${members}">
+	                   <c:if test="${member.memberId == memberId}">
+	                      	<c:out value="${member.memberName}"></c:out>
+	                   </c:if>
+	              </c:forEach></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
 
             <br />
 
-            <!-- sidebar menu -->
+               <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <h3>Options</h3>
-                <ul class="nav side-menu">
-                  <li ><a href="index.html"><i class="fa fa-bar-chart-o"></i> Obligation Report</a>
-                  </li>
-                  <li><a href="settlementdash.html"><i class="fa fa-bell"></i> Settlement Report </a>
-                  </li>
-                  <li><a href="balances.html"><i class="fa fa-calculator"></i> View Balances </a>
-				  
-                    
+                <ul class="nav side-menu">    
+                  <li><a href="balance" ><i class="fa fa-calculator"></i> View Balances </a>
+				    
                   </li>  
-				  <li><a><i class="fa fa-mail-reply"></i> View Past Reports </span></a></li>
-                  
+                  <li><a href="viewMemberTrades"><i class="fa fa-bell"></i> View Past Trades</a>
+                  </li>
                 
                 </ul>
               </div>
@@ -105,19 +106,19 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/user.png" alt="">Clearing Member
+					  <img src="dashboard/images/user.png" alt=""><c:forEach var="member" items="${members}">
+	                   <c:if test="${member.memberId == memberId}">
+	                      	<c:out value="${member.memberName}"></c:out>
+	                   </c:if>
+	              </c:forEach>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="profileupdate.html"> Profile</a></li>
+                  
                     <li>
                       <a href="javascript:;">
-                    
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+            
+                    <li><a href="logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 
@@ -131,16 +132,8 @@
         <div class="right_col" role="main">
           <!-- top tiles -->
           <div class="row tile_count">
-            <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-shopping-cart"></i> Securities Shortage</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
-            <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-money"></i> Funds Shortage</span>
-              <div class="count">123.50</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
-            </div>
+            
+            
             
           </div>
           <!-- /top tiles -->
@@ -155,8 +148,8 @@
                 
               </div>
 
-				<p><b><h3>Your Current Balances 
-				</h3></b></p>
+				<p><b><h1 align="center" >Your Current Balances 
+				</h1></b></p>
 
             <div class="clearfix"></div>
 
@@ -170,7 +163,7 @@
                   </div>
                   <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
-                      Your Current Securities Balance is
+                   
                     </p>
                     <table class="table table-hover">
                       <thead>
@@ -183,21 +176,31 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <th>1</th>
-                          <td>Facebook</td>
-                          <td>10</td>
+                          <th><c:out value="${DABal.get(0).getFirst() }">  </c:out></th>
+                          <td>Apple</td>
+                          <td><c:out value="${DABal.get(0).getSecond() }">  </c:out></td>
                        
                         </tr>
                         <tr>
-                          <th>2</th>
-                          <td>Apple</td>
-                          <td>5</td>
+                          <th><c:out value="${DABal.get(1).getFirst() }">  </c:out></th>
+                          <td>Facebook</td>
+                          <td><c:out value="${DABal.get(1).getSecond() }">  </c:out></td>
                           
                         </tr>
                         <tr>
-                          <th>3</th>
-                          <td>Wipro</td>
-                          <td>20</td>
+                          <th><c:out value="${DABal.get(2).getFirst() }">  </c:out></th>
+                          <td>GE</td>
+                          <td><c:out value="${DABal.get(2).getSecond() }">  </c:out></td>
+                        </tr>
+                         <tr>
+                          <th><c:out value="${DABal.get(3).getFirst() }">  </c:out></th>
+                          <td>LinkedIn</td>
+                          <td><c:out value="${DABal.get(3).getSecond() }">  </c:out></td>
+                        </tr>
+                         <tr>
+                          <th><c:out value="${DABal.get(4).getFirst() }">  </c:out></th>
+                          <td>Walmart</td>
+                          <td><c:out value="${DABal.get(4).getSecond() }">  </c:out></td>
                         </tr>
                       </tbody>
                     </table>
@@ -215,7 +218,7 @@
                   </div>
                   <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
-                      Your Current Fund Balance is 
+                      
                     </p>
                     <table class="table table-hover">
                       <thead>
@@ -226,7 +229,7 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <th>$10,00,000</th>
+                          <th><c:out value="${BABal }">  </c:out></th>
                        
                         </tr>
                         

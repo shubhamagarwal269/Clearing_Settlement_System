@@ -1,6 +1,8 @@
 package com.servlets;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -39,14 +41,17 @@ public class AdminViewNettingServlet extends HttpServlet {
 		
 		GenerateMemberReport dao = new GenerateMemberReportImpl();
 		List<MemberReport> list = dao.viewAllMembersReports();
-		System.out.println(list.get(2).getObligation().get(5));
+		List<BigDecimal> fund = new ArrayList<>(); 
+		for(int i=0;i<list.size();i++)
+		{ fund.add(i, new BigDecimal(list.get(i).getObligation().get(5)).setScale(2, BigDecimal.ROUND_HALF_EVEN));
+		}
 		request.setAttribute("reps", list);
-		
+		request.setAttribute("fund", fund);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminViewNetting.jsp");
 		dispatcher.forward(request, response);
 		
 	}
 
-	
+		
 
 }

@@ -1,6 +1,10 @@
 package com.servlets;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.NumberFormatter;
 
 import com.dao.CommonFunctionalities;
 import com.dao.GenerateMemberReport;
@@ -59,18 +64,26 @@ public class memberHomeServlet extends HttpServlet {
 				obg = report.get(i).getObligation();
 			}
 		}
-
+		
 		request.setAttribute("report", obg);
-	
+		double fundObligation = obg.get(5);
+		request.setAttribute("report1", new BigDecimal(fundObligation).setScale(2, BigDecimal.ROUND_HALF_EVEN));
 	CommonFunctionalities func = new CommonFunctionalitiesImpl();
 	List<Double> balance = new ArrayList<>();
 	List<Pair<Integer, Integer>> securityList = new ArrayList<Pair<Integer, Integer>>();
 	securityList = func.viewDematAcBalanceByMemberId(memberId);
-	
+	double sec = 0d;
 	for(int i=0;i<5;i++)
 	{	
-
-		balance.add(securityList.get(i).getSecond()-obg.get(i));
+		if(obg.get(i)>0)
+			{
+				sec = 0d;
+			}
+		else
+		 {
+			sec = securityList.get(i).getSecond() - obg.get(i);
+		}
+		balance.add(sec);
 	}
 	request.setAttribute("DABal", securityList);
 	
@@ -78,8 +91,15 @@ public class memberHomeServlet extends HttpServlet {
 	double bankBal = dao1.viewBankAcBalance(memberId);
 	request.setAttribute("BABal", bankBal);
 	
-	double fundShortage = bankBal - obg.get(5);
-	request.setAttribute("fundShort", fundShortage);
+	double fundShortage;
+	if(obg.get(5)>0)
+		fundShortage=0;
+	else
+		fundShortage =  bankBal - obg.get(5);
+	
+	MathContext m = new MathContext(10);
+	
+	request.setAttribute("fundShort", new BigDecimal(fundShortage).setScale(2, BigDecimal.ROUND_HALF_EVEN));
     RequestDispatcher dispatcher = request.getRequestDispatcher("dashMember.jsp");
 	dispatcher.forward(request, response);
 	}

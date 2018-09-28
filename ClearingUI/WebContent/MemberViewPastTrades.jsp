@@ -51,7 +51,7 @@ int memberId = (int)session2.getAttribute("memberId");
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-bank"></i> </a>
+              <a href="memberHome" class="site_title"><i class="fa fa-bank"></i> </a>
             </div>
 
             <div class="clearfix"></div>
@@ -80,18 +80,12 @@ int memberId = (int)session2.getAttribute("memberId");
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <h3>Options</h3>
-                <ul class="nav side-menu">
-                  <li class="active"><a><i class="fa fa-bar-chart-o"></i> Obligation Report</a>
+                <ul class="nav side-menu">    
+                  <li><a href="balance" ><i class="fa fa-calculator"></i> View Balances </a>
+				    
+                  </li>  
+                  <li><a href="viewMemberTrades"><i class="fa fa-bell"></i> View Past Trades</a>
                   </li>
-                  <li><a><i class="fa fa-bell"></i> View Past Trades </a>
-                  </li>
-                  <li><a><i class="fa fa-money"></i> View Fund Balance </a>
-                    
-                  </li>
-                  <li><a><i class="fa fa-info"></i> View DEMAT Balance </span></a></li>
-				  
-				  <li><a><i class="fa fa-mail-reply"></i> View Past Reports </span></a></li>
-                  
                 
                 </ul>
               </div>
@@ -107,7 +101,7 @@ int memberId = (int)session2.getAttribute("memberId");
         </div>
 
         <!-- top navigation -->
-        <div class="top_nav">
+  <div class="top_nav">
           <div class="nav_menu">
             <nav>
               <div class="nav toggle">
@@ -117,7 +111,7 @@ int memberId = (int)session2.getAttribute("memberId");
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="dashboard/images/user.png" alt=""><c:forEach var="member" items="${members}">
+					  <img src="dashboard/images/user.png" alt=""><c:forEach var="member" items="${members}">
 	                   <c:if test="${member.memberId == memberId}">
 	                      	<c:out value="${member.memberName}"></c:out>
 	                   </c:if>
@@ -125,15 +119,11 @@ int memberId = (int)session2.getAttribute("memberId");
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
+                    
                     <li>
                       <a href="javascript:;">
-                    
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+            
+                    <li><a href="logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 

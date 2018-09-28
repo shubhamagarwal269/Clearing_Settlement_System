@@ -16,6 +16,7 @@ import com.dao.CommonFunctionalities;
 import com.dao.GenerateMemberReport;
 import com.dao_impl.CommonFunctionalitiesImpl;
 import com.dao_impl.GenerateMemberReportImpl;
+import com.pojo.Member;
 import com.pojo.Pair;
 
 /**
@@ -39,17 +40,23 @@ public class balanceServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		int id = (int)session.getAttribute("memberId");
-		request.setAttribute("id", id);
-		CommonFunctionalities func = new CommonFunctionalitiesImpl();
-		//List<Double> balance = new ArrayList<>();
-		List<Pair<Integer, Integer>> securityList = new ArrayList<Pair<Integer, Integer>>();
-		securityList = func.viewDematAcBalanceByMemberId(id);
-		request.setAttribute("DABal", securityList);
-		GenerateMemberReport dao = new GenerateMemberReportImpl();
-		
-		double bankBal = dao.viewBankAcBalance(id);
+		int memberId = (int)session.getAttribute("memberId");
+		request.setAttribute("id", memberId);
+	   
+		GenerateMemberReport dao = new GenerateMemberReportImpl();	
+		double bankBal = dao.viewBankAcBalance(memberId);
 		request.setAttribute("BABal", bankBal);
+		
+		CommonFunctionalities func = new CommonFunctionalitiesImpl();
+		List<Member> members = func.viewAllMembers();
+		request.setAttribute("members", members);
+		
+		List<Double> balance = new ArrayList<>();
+		List<Pair<Integer, Integer>> securityList = new ArrayList<Pair<Integer, Integer>>();
+		securityList = func.viewDematAcBalanceByMemberId(memberId);
+		request.setAttribute("DABal", securityList);
+		
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("memberBalances.jsp");
 		dispatcher.forward(request, response);
 	}

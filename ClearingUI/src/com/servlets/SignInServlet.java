@@ -54,7 +54,7 @@ public class SignInServlet extends HttpServlet {
 		SignInPage signindao = new SignInPageImpl();
 		if (option.equals("0") ) {
 			if(username.equals("cns065918@gmail.com") && password.equals("admin@123")) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("dashAdmin.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("adminHome");
 				dispatcher.forward(request, response);
 			} 
 			else {

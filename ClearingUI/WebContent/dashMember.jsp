@@ -51,7 +51,7 @@ HttpSession session2 = request.getSession();
           <div class="left_col scroll-view">
           
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-bank"></i> </a>
+              <a href="memberHome" class="site_title"><i class="fa fa-bank"></i> </a>
             </div>
 
             <div class="clearfix">
@@ -87,15 +87,10 @@ HttpSession session2 = request.getSession();
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <h3>Options</h3>
-                <ul class="nav side-menu">
-                  <li ><a href="dashMember.jsp" onclick="signin"><i class="fa fa-bar-chart-o"></i> Obligation Report</a>
-                  </li>
-
+                <ul class="nav side-menu">    
                   <li><a href="balance" ><i class="fa fa-calculator"></i> View Balances </a>
 				    
                   </li>  
-           
-
                   <li><a href="viewMemberTrades"><i class="fa fa-bell"></i> View Past Trades</a>
                   </li>
                 
@@ -131,14 +126,10 @@ HttpSession session2 = request.getSession();
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="profileupdate.html"> Profile</a></li>
+                 
                     <li>
                       <a href="javascript:;">
-                    
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
+            
                     <li><a href="logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
@@ -152,21 +143,39 @@ HttpSession session2 = request.getSession();
         <!-- page content -->
         <div class="right_col" role="main">
           <!-- top tiles -->
-          <div class="row tile_count">
-            <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-shopping-cart"></i> Securities Shortage</span>
-              <div class="count"><c:out value="${DABal.get(0).getFirst() }">  </c:out>  ":" <c:out value="${SecShort.get(0) }"></c:out><br>
-              <c:out value="${DABal.get(1).getFirst() }">  </c:out> <c:out value="${SecShort.get(1) }"></c:out><br>
-              <c:out value="${DABal.get(2).getFirst() }">  </c:out> <c:out value="${SecShort.get(2) }"></c:out><br>
-              <c:out value="${DABal.get(3).getFirst() }">  </c:out> <c:out value="${SecShort.get(3) }"></c:out><br>
-             <c:out value="${DABal.get(4).getFirst() }">  </c:out>  <c:out value="${SecShort.get(4) }"></c:out>
-              <br></div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+          <div class="row tile_count" style="text-align: center;" >
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-shopping-cart"></i> Apple Shortage</span>
+              <div class="count" style="font-size: 25px; color:#B23D3D"><c:out value="${SecShort.get(0) }"></c:out>
+              </div>
+            
             </div>
-            <div class="col-md-6 col-sm-4 col-xs-6 tile_stats_count">
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-shopping-cart"></i> Facebook Shortage</span>
+              <div class="count" style="font-size: 25px; color:#B23D3D"><c:out value="${SecShort.get(1) }"></c:out>
+             </div>
+            
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-shopping-cart"></i> GE Shortage</span>
+              <div class="count" style="font-size: 25px; color:#B23D3D"><c:out value="${SecShort.get(2) }"></c:out></div>
+            
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-shopping-cart"></i> LinkedIn Shortage</span>
+              <div class="count" style="font-size: 25px; color:#B23D3D"><c:out value="${SecShort.get(3) }"></c:out></div>
+            
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-shopping-cart"></i> Walmart Shortage</span>
+              <div class="count" style="font-size: 25px ; color:#B23D3D"><c:out value="${SecShort.get(4) }"></c:out></div>
+            
+            </div>
+            
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-money"></i> Funds Shortage</span>
-              <div class="count"><c:out value="${fundShort}">  </c:out> </div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+              <div class="count" style="font-size: 25px ; color:#B23D3D"><c:out value="${fundShort}">  </c:out> </div>
+            
             </div>
             
           </div>
@@ -180,19 +189,15 @@ HttpSession session2 = request.getSession();
             <div class="page-title">
               <div class="title_left">
 
-                <p><b><h3>Dear Clearing Member, 
-				<br>Your Obligation Report Is Mentioned </h3></b></p> 
+                <p></p> 
               </div>
-
-				<p><b><h3>Settlement Report</h3></b></p>
-
             <div class="clearfix"></div>
 
             <div class="row">
               <div class="col-md-6 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Securities Settlement</h2>
+                    <h2>Securities Obligation</h2>
                     
                     <div class="clearfix"></div>
                   </div>
@@ -217,29 +222,79 @@ HttpSession session2 = request.getSession();
                         <tr>
                           <th>1</th>
                           <td>Apple</td>
-                          <td><c:out value="${report.get(0) }"></c:out></td>
+                          <c:if  test="${report.get(0) <0}">
+                          <td  style="color:#B23D3D">
+                          <c:out value="${report.get(0)*-1}"></c:out>
+                          </td> 
+                          </c:if>
+                           <c:if  test="${report.get(0) >=0}">
+                          <td  style="color:#008000">
+                          <c:out value="${report.get(0)}"></c:out>
+                          </td>
+                          </c:if>
+                          
                        
                         </tr>
                         <tr>
                           <th>2</th>
                           <td>Facebook</td>
-                          <td><c:out value="${report.get(1) }"></c:out></td>
+                          <c:if  test="${report.get(1) <0}">
+                          <td  style="color:#B23D3D">
+                          <c:out value="${report.get(1)*-1}"></c:out>
+                          </td> 
+                          </c:if>
+                           <c:if  test="${report.get(1) >=0}">
+                          <td  style="color:#008000">
+                          <c:out value="${report.get(1)}"></c:out>
+                          </td>
+                          </c:if>
+                          
                           
                         </tr>
                         <tr>
                           <th>3</th>
                           <td>GE</td>
-                          <td><c:out value="${report.get(2) }"></c:out></td>
+                          <c:if  test="${report.get(2) <0}">
+                          <td  style="color:#B23D3D">
+                          <c:out value="${report.get(2)*-1}"></c:out>
+                          </td> 
+                          </c:if>
+                           <c:if  test="${report.get(2) >=0}">
+                          <td  style="color:#008000">
+                          <c:out value="${report.get(2)}"></c:out>
+                          </td>
+                          </c:if>
+                          
                         </tr>
                         <tr>
                           <th>4</th>
                           <td>LinkedIn</td>
-                          <td><c:out value="${report.get(3) }"></c:out></td>
+                          <c:if  test="${report.get(3) <0}">
+                          <td  style="color:#B23D3D">
+                          <c:out value="${report.get(3)*-1}"></c:out>
+                          </td> 
+                          </c:if>
+                           <c:if  test="${report.get(3) >=0}">
+                          <td  style="color:#008000">
+                          <c:out value="${report.get(3)}"></c:out>
+                          </td>
+                          </c:if>
+                          
                         </tr>
                         <tr>
                           <th>5</th>
                           <td>Walmart</td>
-                          <td><c:out value="${report.get(4) }"></c:out></td>
+                          <c:if  test="${report.get(4) <0}">
+                          <td  style="color:#B23D3D">
+                          <c:out value="${report.get(4)*-1}"></c:out>
+                          </td> 
+                          </c:if>
+                           <c:if  test="${report.get(4) >=0}">
+                          <td  style="color:#008000">
+                          <c:out value="${report.get(4)}"></c:out>
+                          </td>
+                          </c:if>
+                          
                         </tr>
                       </tbody>
                     </table>
@@ -263,13 +318,24 @@ HttpSession session2 = request.getSession();
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>Amount To Pay</th>
+                          <th>Fund Amount</th>
               
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <th><c:out value="${report.get(5) }"></c:out></th>
+                          
+                          <c:if  test="${report1 <0}">
+                          <td  style="color:#B23D3D">
+                          <c:out value="${report1*-1}"></c:out>
+                          </td> 
+                          </c:if>
+                           <c:if  test="${report1 >=0}">
+                          <td  style="color:#008000">
+                          <c:out value="${report1}"></c:out>
+                          </td>
+                          </c:if>
+                          
                        
                         </tr>
                         
