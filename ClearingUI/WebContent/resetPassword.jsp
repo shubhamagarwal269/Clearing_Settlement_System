@@ -31,7 +31,7 @@
 <body>
 
 
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		  <a class="navbar-brand" href="#">Group 5</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -44,7 +44,7 @@
 			  </li>
 			  
 			  <li class="nav-item active">
-				<a class="nav-link" href="signin.">Sign In<span class="sr-only">(current)</span></a>
+				<a class="nav-link" href="signin.jsp">Sign In<span class="sr-only">(current)</span></a>
 			  </li>
 			  <!-- 
 			  <li class="nav-item dropdown">
@@ -71,58 +71,58 @@
 		</nav>
 		
 
+	
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178">
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" action="resetmemberpassword" method="post">
 					<span class="login100-form-title">
-						Reset password using temporary password 
+						<h2>Reset Member Password</h2>
 					</span>
 
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter temporary password send to email Id">
-						<input class="input100" type="password" name="temppass" placeholder="Temporary Password">
+					<div class="wrap-input100 validate-input m-b-20" data-validate = "Please enter temporary passsord sent to your registered mail.">
+						<input class="input100" type="password" id ="temppass" name="temppass" placeholder="Temporary Password">
+						<span class="focus-input100"></span>
+					</div>
+										
+					<div class="wrap-input100 validate-input m-b-20" data-validate = "Minimum 6 characters, atleast one alphabet, number and special character">
+						<input class="input100" type="password" id ="pass" name="pass" placeholder="Password">
 						<span class="focus-input100"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter temporary password send to email Id">
-						<input class="input100" type="password" name="newpass" placeholder="New Password">
+					<div class="wrap-input100 validate-input m-b-30" data-validate = "Please enter same password as above">
+						<input class="input100" type="password" id="confirmpass" name="confirmpass" placeholder="Confirm Password">
 						<span class="focus-input100"></span>
 					</div>
-					
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter temporary password send to email Id">
-						<input class="input100" type="password" name="confirmpass" placeholder="Confirm Password">
-						<span class="focus-input100"></span>
-					</div>
-
-					
-					<div class="text-center p-t-13 p-b-23">
+<!-- 
+					<div class="text-right p-t-13 p-b-23">
 						<span class="txt1">
-							Temporary password will be sent to registered email-Id.
+							Forgot
 						</span>
 
-<!-- 						<a href="#" class="txt2">
+						<a href="#" class="txt2">
 							Username / Password?
-						</a> -->
-					</div>
+						</a>
+					</div> -->
 
 					<div class="container-login100-form-btn p-b-30">	
-	                        <input type="submit" value="Change password" class="login100-form-btn">
+	                        <input type="submit" id="register" value="Reset Passord" class="login100-form-btn">
 					</div>
 
-<!-- 					<div class="flex-col-c p-t-120 p-b-40">
+<!-- 					<div class="flex-col-c p-t-170 p-b-40">
 						<span class="txt1 p-b-9">
 							Don’t have an account?
 						</span>
 
-						<a href="registration.html" class="txt3">
+						<a href="#" class="txt3">
 							Sign up now
-						</a>
-					</div> -->
+						</a> -->
+					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-
+		
 	
 <!--===============================================================================================-->
 	<script src="login/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -140,7 +140,21 @@
 	<script src="login/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="login/js/main.js"></script>
-
-
+	
+	<!-- confirm password and password validation -->
+	<script type="text/javascript">
+	    $(function () {
+	        $("#register").click(function () {
+	            var password = $("#pass").val();
+	            var confirmPassword = $("#confirmpass").val();
+	            if (password != confirmPassword) {
+	                alert("Passwords do not match.");
+	                return false;
+	            }
+	            return true;
+	        });
+	    });
+	</script>
+	
 </body>
 </html>

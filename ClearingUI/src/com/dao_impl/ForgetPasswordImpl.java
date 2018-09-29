@@ -2,6 +2,7 @@ package com.dao_impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Random;
 
 import com.connections.MyConnection;
@@ -12,7 +13,7 @@ public class ForgetPasswordImpl implements ForgetPassword{
 	 static String tempPass = "abc";
 	 private static final String CHAR_LIST = 
 		        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-		    private static final int RANDOM_STRING_LENGTH = 10;
+		    private static final int RANDOM_STRING_LENGTH = 5;
 		     
 		    /**
 		     * This method generates random string
@@ -44,7 +45,7 @@ public class ForgetPasswordImpl implements ForgetPassword{
 		        }
 		    }
 	@Override
-	public void sendTempPassword(String emailId) {
+	public int sendTempPassword(String emailId) {
 		// TODO Auto-generated method stub
 		
 		ForgetPasswordImpl fp = new ForgetPasswordImpl();
@@ -57,30 +58,33 @@ public class ForgetPasswordImpl implements ForgetPassword{
         // outgoing message information
         String mailTo = emailId;
         String subject = "Reset Password";
+        tempPass = tempPass+"@1";
         String message = "Hello, your temporary password is: "+tempPass;
-        
+ 
         TestMail mailer = new TestMail();
-        
+ 
         try {
             mailer.sendPlainTextEmail(host, port, mailFrom, password, mailTo,
                     subject, message);
-            
-            int rowsUpdated = 0;
-            String UpdatePassword = "Update Member set memberPassword = ? where memberEmail = ?";
-            try(Connection con = MyConnection.openConnection()){
-    			
-    			PreparedStatement ps = con.prepareStatement(UpdatePassword);
-    			ps.setString(1, tempPass);			
-    			ps.setString(2, mailTo);
-    			rowsUpdated = ps.executeUpdate();
-            }
             System.out.println("Email sent.");
         } catch (Exception ex) {
             System.out.println("Failed to sent email.");
             ex.printStackTrace();
         }
-       
+        
+        int rowsUpdated = 0;
+		String LISTTEMPPASS = "insert into temppasslist values(?,?)";
 		
+		try(Connection con = MyConnection.openConnection()){
+			PreparedStatement ps = con.prepareStatement(LISTTEMPPASS);
+			ps.setString(1, tempPass);
+			ps.setString(2, emailId);
+		    rowsUpdated = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rowsUpdated;
 	}
-
 }

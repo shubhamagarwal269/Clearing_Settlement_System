@@ -608,6 +608,31 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 		
 		return rate;
 	}
+	
+	@Override
+	public String getMemberEmailForPassReset(String tempPass) {
+				
+		String memberMail = "mark";		
+		String FETCHMEMEMAIL  = "select MEMBERMAIL from TEMPPASSLIST where TEMPPASS = ?";
+		
+		try(Connection con=MyConnection.openConnection();)
+		{
+			PreparedStatement ps = con.prepareStatement(FETCHMEMEMAIL);
+			
+			ps.setString(1, tempPass);
+			
+			ResultSet set = ps.executeQuery();
+			
+			while(set.next()) {
+				memberMail = set.getString("MEMBERMAIL");
+			}
+		}catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return memberMail;
+
+	}
 		
 		
 		

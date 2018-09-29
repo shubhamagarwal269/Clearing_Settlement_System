@@ -30,4 +30,5 @@ public interface CommonFunctionalities {
 	public List<ObligationReport> viewAllObgReports();
 	public void settleTrades();
 	public double getFundBorrow();
+	public String getMemberEmailForPassReset(String tempPass);
 }

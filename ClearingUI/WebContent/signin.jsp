@@ -124,6 +124,9 @@
 							else if(type.equals("memRegistered")){
 								out.println("<div id='snackbar'>New Member registered, You can login using your credentials now</div>");
 							}
+							else if(type.equals("Passchanged")){
+								out.println("<div id='snackbar'>Password updated, You can login using your new credentials now</div>");
+							}
 							
 							
 							//TimeUnit.SECONDS.sleep(2);
