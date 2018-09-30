@@ -44,7 +44,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="dashAdmin.jsp" class="site_title"><span>Welcome</span></a>
+              <a href="adminHome" class="site_title"><span>Welcome</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -69,7 +69,7 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Main <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="dashAdmin.jsp">Home</a></li> 
+                      <li><a href="adminHome">Home</a></li> 
                       <li><a href="fetch">Trade List</a></li>
                     </ul>
                   </li>

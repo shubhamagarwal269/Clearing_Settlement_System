@@ -26,7 +26,26 @@ public class AdminHomeServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+   
+    
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		CommonFunctionalities dao = new CommonFunctionalitiesImpl();
+	
+		int trades = dao.totalTrades();
+		int members = dao.totalClearingMembers();
+		String FundShort = dao.maxFundShortage();
+		String SecShort = dao.maxSecurityShortage();
+		req.setAttribute("trade", trades);
+		req.setAttribute("member", members);
+		req.setAttribute("Funds", FundShort);
+		req.setAttribute("Security", SecShort);
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("dashAdmin.jsp");
+		dispatcher.forward(req, resp);
+}
+  
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

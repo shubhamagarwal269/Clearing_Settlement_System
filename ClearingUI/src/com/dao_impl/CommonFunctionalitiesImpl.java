@@ -699,7 +699,7 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 			shortage = report.get(i).getShortage();
 			for(int j=0;j<shortage.size()-1;j++)
 			{
-				if(shortage.get(j)<min)
+				if(shortage.get(j)>min)
 					{min = shortage.get(j);
 					  memName = report.get(i).getMemberName();
 					}
@@ -721,12 +721,11 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 		{    
 			List<Double> shortage = new ArrayList<>();
 			shortage = report.get(i).getShortage();
-			
-				if(shortage.get(5)<min)
+			System.out.println(report.get(i).getMemberId()+"Fund Shortage plus member ID" + shortage.get(5));
+				if(shortage.get(5)>min)
 					{min = shortage.get(5);
 					  memName = report.get(i).getMemberName();
 					}
-			
 			
 		}
 		
