@@ -30,7 +30,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#508ccc">
 		  <a class="navbar-brand" href="#">Group 5</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -77,7 +77,7 @@
 		</div>
 		
 		<p style="text-align: center;">
-		<iframe src="https://onedrive.live.com/embed?cid=FD203E0AA9294CA2&amp;resid=FD203E0AA9294CA2%21105&amp;authkey=AGPunUDT90XGwPs&amp;em=2&amp;wdAr=1.7777777777777777" width="962px" height="565px" frameborder="0">This is an embedded <a target="_blank" href="https://office.com">Microsoft Office</a> presentation, powered by <a target="_blank" href="https://office.com/webapps">Office Online</a>.</iframe>
+		<iframe src="https://onedrive.live.com/embed?cid=FD203E0AA9294CA2&amp;resid=FD203E0AA9294CA2%21110&amp;authkey=AP2Rips1zfLrvec&amp;em=2&amp;wdAr=1.7777777777777777" width="962px" height="565px" frameborder="0">This is an embedded <a target="_blank" href="https://office.com">Microsoft Office</a> presentation, powered by <a target="_blank" href="https://office.com/webapps">Office Online</a>.</iframe>
 		</p> 
 
 <!-- 

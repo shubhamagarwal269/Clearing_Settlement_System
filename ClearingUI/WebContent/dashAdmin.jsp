@@ -74,7 +74,15 @@
                       <li><a href="fetch">Trade List</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i>Clearing Member Stats<span class="fa fa-chevron-down"></span></a>
+                  
+                  <li><a><i class="fa fa-edit"></i>Reports<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="viewNetting">Netting Report</a></li>
+                      <li><a href="viewObligation">Member Obligation Reports</a></li>            
+                    </ul>
+                  </li>
+                  
+                  <!--  <li><a><i class="fa fa-edit"></i>Clearing Member Stats<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="form.html">Profiles</a></li>
                       <li><a href="form_advanced.html">Reports</a></li>
@@ -89,9 +97,9 @@
                       <li><a href="media_gallery.html">Metrics</a></li>
                      
                     </ul>
-                  </li>
+                  </li>-->
                   
-                  <li><a href="updateMarket.jsp"><i class="fa fa-bar-chart-o"></i> Update Market Stats <span class="fa fa-chevron"></span></a></li>
+                  <li><a href="fetchmarket"><i class="fa fa-bar-chart-o"></i> Update Market Stats <span class="fa fa-chevron"></span></a></li>
                   
                 </ul>
               </div>

@@ -84,13 +84,13 @@
                   
                   <li><a><i class="fa fa-edit"></i>Reports<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="AdminViewNetting.jsp">Netting Report</a></li>
-                      <li><a href="AdminViewObligation.jsp">Member Obligation Reports</a></li>            
+                      <li><a href="viewNetting">Netting Report</a></li>
+                      <li><a href="viewObligation">Member Obligation Reports</a></li>            
                     </ul>
                   </li>
             
                   
-                  <li><a href="updateMarket.jsp"><i class="fa fa-bar-chart-o"></i> Update Market Stats <span class="fa fa-chevron"></span></a></li>
+                  <li><a href="fetchmarket"><i class="fa fa-bar-chart-o"></i> Update Market Stats <span class="fa fa-chevron"></span></a></li>
                   
                 </ul>
               </div>
@@ -338,7 +338,6 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
           </div>
           <div class="clearfix"></div>
         </footer>
