@@ -37,6 +37,14 @@
 
     <!-- Custom Theme Style -->
     <link href="dashboard/build/css/custom.min.css" rel="stylesheet">
+    <style>
+    	.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  			background-color: #8cf7e2;
+		}
+		.enMoney::before {
+	    content:"$ ";
+	}
+    </style>
   </head>
 
   <body class="nav-md">

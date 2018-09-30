@@ -37,6 +37,14 @@
 
     <!-- Custom Theme Style -->
     <link href="dashboard/build/css/custom.min.css" rel="stylesheet">
+    <style>
+    	.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  			background-color: #8cf7e2;
+		}
+		.enMoney::before {
+	    content:"$ ";
+	}
+    </style>
   </head>
  <%
 HttpSession session2 = request.getSession(); 
@@ -178,29 +186,55 @@ HttpSession session2 = request.getSession();
                         <tr>
                           <th><c:out value="${DABal.get(0).getFirst() }">  </c:out></th>
                           <td>Apple</td>
-                          <td><c:out value="${DABal.get(0).getSecond() }">  </c:out></td>
+                           <c:if test="${DABal.get(0).getSecond()<0}">
+                          <td style="color:#B23D3D"><c:out value="${DABal.get(0).getSecond()*-1}">  </c:out></td>
+                          </c:if>
+                          <c:if test="${DABal.get(0).getSecond()>=0}">
+                          <td style="color:#008000"><c:out value="${DABal.get(0).getSecond() }">  </c:out></td>
+                          </c:if>
                        
                         </tr>
                         <tr>
                           <th><c:out value="${DABal.get(1).getFirst() }">  </c:out></th>
                           <td>Facebook</td>
-                          <td><c:out value="${DABal.get(1).getSecond() }">  </c:out></td>
+                          <c:if test="${DABal.get(1).getSecond()<0}">
+                          <td style="color:#B23D3D"><c:out value="${DABal.get(1).getSecond()*-1}">  </c:out></td>
+                          </c:if>
+                          <c:if test="${DABal.get(1).getSecond()>=0}">
+                          <td style="color:#008000"><c:out value="${DABal.get(1).getSecond() }">  </c:out></td>
+                          </c:if>
                           
                         </tr>
                         <tr>
                           <th><c:out value="${DABal.get(2).getFirst() }">  </c:out></th>
                           <td>GE</td>
-                          <td><c:out value="${DABal.get(2).getSecond() }">  </c:out></td>
+                          <c:if test="${DABal.get(2).getSecond()<0}">
+                          <td style="color:#B23D3D"><c:out value="${DABal.get(2).getSecond()*-1}">  </c:out></td>
+                          </c:if>
+                          <c:if test="${DABal.get(2).getSecond()>=0}">
+                          <td style="color:#008000"><c:out value="${DABal.get(2).getSecond() }">  </c:out></td>
+                          </c:if>
+                          
                         </tr>
                          <tr>
                           <th><c:out value="${DABal.get(3).getFirst() }">  </c:out></th>
                           <td>LinkedIn</td>
-                          <td><c:out value="${DABal.get(3).getSecond() }">  </c:out></td>
+                          <c:if test="${DABal.get(3).getSecond()<0}">
+                          <td style="color:#B23D3D"><c:out value="${DABal.get(3).getSecond()*-1}">  </c:out></td>
+                          </c:if>
+                          <c:if test="${DABal.get(3).getSecond()>=0}">
+                          <td style="color:#008000"><c:out value="${DABal.get(3).getSecond() }">  </c:out></td>
+                          </c:if>
                         </tr>
                          <tr>
                           <th><c:out value="${DABal.get(4).getFirst() }">  </c:out></th>
                           <td>Walmart</td>
-                          <td><c:out value="${DABal.get(4).getSecond() }">  </c:out></td>
+                          <c:if test="${DABal.get(4).getSecond()<0}">
+                          <td style="color:#B23D3D"><c:out value="${DABal.get(4).getSecond()*-1}">  </c:out></td>
+                          </c:if>
+                          <c:if test="${DABal.get(4).getSecond()>=0}">
+                          <td style="color:#008000"><c:out value="${DABal.get(4).getSecond() }">  </c:out></td>
+                          </c:if>
                         </tr>
                       </tbody>
                     </table>
@@ -229,7 +263,13 @@ HttpSession session2 = request.getSession();
                       </thead>
                       <tbody>
                         <tr>
-                          <th><c:out value="${BABal }">  </c:out></th>
+                        <c:if test="${BABal<0}">
+	                      	<th style="color:#B23D3D"><price><c:out value="${BABal*-1}">  </c:out></price></th>
+	                   </c:if>
+	                   <c:if test="${BABal>=0}">
+	                      	<th style="color:#008000"><price><c:out value="${BABal }">  </c:out></price></th>
+	                   </c:if>
+                          
                        
                         </tr>
                         
@@ -314,6 +354,21 @@ HttpSession session2 = request.getSession();
 
     <!-- Custom Theme Scripts -->
     <script src="dashboard/build/js/custom.min.js"></script>
+    <script>
+    $('* price').each(function () {
+        var item = $(this).text();
+        var num = Number(item).toLocaleString('en');    
+
+        if (Number(item) < 0) {
+            num = num.replace('-','');
+            $(this).addClass('negMoney');
+        }else{
+            $(this).addClass('enMoney');
+        }
+        
+        $(this).text(num);
+    });
+    </script>
 
 </body>
 </html>

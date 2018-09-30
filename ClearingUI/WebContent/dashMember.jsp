@@ -37,6 +37,14 @@
 
     <!-- Custom Theme Style -->
     <link href="dashboard/build/css/custom.min.css" rel="stylesheet">
+    <style>
+    	.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  			background-color: #8cf7e2;
+		}
+		.enMoney::before {
+	    content:"$ ";
+	}
+    </style>
   </head>
 
   <body class="nav-md">
@@ -146,24 +154,51 @@ HttpSession session2 = request.getSession();
           <div class="row tile_count" style="text-align: center;" >
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-shopping-cart"></i> Apple Shortage</span>
-              <div class="count" style="font-size: 25px; color:#B23D3D"><c:out value="${SecShort.get(0) }"></c:out>
+              <div class="count" style="font-size: 25px; color:#B23D3D">
+              <c:if  test="${SecShort.get(0) <0}">
+              <c:out value="${SecShort.get(0)*-1 }"></c:out>
+              </c:if>
+              <c:if  test="${SecShort.get(0) >=0}">
+              <c:out value="${SecShort.get(0) }"></c:out>
+              </c:if>
               </div>
             
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-shopping-cart"></i> Facebook Shortage</span>
-              <div class="count" style="font-size: 25px; color:#B23D3D"><c:out value="${SecShort.get(1) }"></c:out>
+              <div class="count" style="font-size: 25px; color:#B23D3D">
+              <c:if  test="${SecShort.get(1) <0}">
+              <c:out value="${SecShort.get(1)*-1 }"></c:out>
+              </c:if>
+              <c:if  test="${SecShort.get(1) >=0}">
+              <c:out value="${SecShort.get(1) }"></c:out>
+              </c:if>
+              
              </div>
             
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-shopping-cart"></i> GE Shortage</span>
-              <div class="count" style="font-size: 25px; color:#B23D3D"><c:out value="${SecShort.get(2) }"></c:out></div>
+              <div class="count" style="font-size: 25px; color:#B23D3D">
+              <c:if  test="${SecShort.get(2) <0}">
+              <c:out value="${SecShort.get(2)*-1}"></c:out>
+              </c:if>
+              <c:if  test="${SecShort.get(2) >=0}">
+              <c:out value="${SecShort.get(2)}"></c:out>
+              </c:if>
+              </div>
             
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-shopping-cart"></i> LinkedIn Shortage</span>
-              <div class="count" style="font-size: 25px; color:#B23D3D"><c:out value="${SecShort.get(3) }"></c:out></div>
+              <div class="count" style="font-size: 25px; color:#B23D3D">
+              <c:if  test="${SecShort.get(3) <0}">
+              <c:out value="${SecShort.get(3)*-1 }"></c:out>
+              </c:if>
+              <c:if  test="${SecShort.get(3) >=0}">
+              <c:out value="${SecShort.get(3) }"></c:out>
+              </c:if>
+              </div>
             
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -174,7 +209,14 @@ HttpSession session2 = request.getSession();
             
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-money"></i> Funds Shortage</span>
-              <div class="count" style="font-size: 25px ; color:#B23D3D"><c:out value="${fundShort}">  </c:out> </div>
+              <div class="count" style="font-size: 25px ; color:#B23D3D">
+              <c:if  test="${fundShort <0}">
+              <price><c:out value="${fundShort*-1 }"></c:out></price>
+              </c:if>
+              <c:if  test="${fundShort >=0}">
+              <price><c:out value="${fundShort}">  </c:out></price>
+              </c:if>
+               </div>
             
             </div>
             
@@ -425,6 +467,20 @@ HttpSession session2 = request.getSession();
 
     <!-- Custom Theme Scripts -->
     <script src="dashboard/build/js/custom.min.js"></script>
-	
+	 <script>
+    $('* price').each(function () {
+        var item = $(this).text();
+        var num = Number(item).toLocaleString('en');    
+
+        if (Number(item) < 0) {
+            num = num.replace('-','');
+            $(this).addClass('negMoney');
+        }else{
+            $(this).addClass('enMoney');
+        }
+        
+        $(this).text(num);
+    });
+    </script>
   </body>
 </html>
