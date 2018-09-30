@@ -31,4 +31,8 @@ public interface CommonFunctionalities {
 	public void settleTrades();
 	public double getFundBorrow();
 	public String getMemberEmailForPassReset(String tempPass);
+	public int totalTrades();
+	public int totalClearingMembers();
+	public String maxSecurityShortage();
+	public String maxFundShortage();
 }

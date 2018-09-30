@@ -1,4 +1,6 @@
 package com.dao_impl;
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +13,9 @@ import java.util.Random;
 import com.connections.MyConnection;
 import com.dao.AdminDashboard;
 import com.dao.CommonFunctionalities;
+import com.dao.GenerateMemberReport;
 import com.pojo.Member;
+import com.pojo.MemberReport;
 import com.pojo.ObligationReport;
 import com.pojo.Pair;
 import com.pojo.Security;
@@ -632,6 +636,101 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 		}
 		return memberMail;
 
+	}
+
+	@Override
+	public int totalTrades() {
+			int total = 0;
+		
+		String FetchTotalTrades = "SELECT count(TradeId) from Trade";
+		
+		Connection con = MyConnection.openConnection();
+		
+		Statement st;
+		
+		try {
+			st = con.createStatement();
+			ResultSet set = st.executeQuery(FetchTotalTrades);
+			while(set.next()) {
+				total = set.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return total;
+	}
+
+	@Override
+	public int totalClearingMembers() {
+			int total = 0;
+		
+			String FetchTotalMembers = "SELECT count(MemberId) from Member";
+		
+		Connection con = MyConnection.openConnection();
+		
+		Statement st;
+		
+		try {
+			st = con.createStatement();
+			ResultSet set = st.executeQuery(FetchTotalMembers);
+			while(set.next()) {
+				total = set.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return total;
+	}
+
+	@Override
+	public String maxSecurityShortage() {
+		// TODO Auto-generated method stub
+		GenerateMemberReport dao1 = new GenerateMemberReportImpl();
+		List<MemberReport> report = dao1.viewAllMembersReports();
+		List<Double> shortage = new ArrayList<>();
+		Double min = 0d;
+		String memName = null;
+		for(int i=0;i<report.size();i++)
+		{
+			shortage = report.get(i).getShortage();
+			for(int j=0;j<shortage.size()-1;j++)
+			{
+				if(shortage.get(j)<min)
+					{min = shortage.get(j);
+					  memName = report.get(i).getMemberName();
+					}
+			}
+			
+		}
+		
+		return memName;
+	}
+
+	@Override
+	public String maxFundShortage() {
+		GenerateMemberReport dao1 = new GenerateMemberReportImpl();
+		List<MemberReport> report = dao1.viewAllMembersReports();
+		//List<Double> shortage = new ArrayList<>();
+		Double min = 0d;
+		String memName = null;
+		for(int i=0;i<report.size();i++)
+		{    
+			List<Double> shortage = new ArrayList<>();
+			shortage = report.get(i).getShortage();
+			
+				if(shortage.get(5)<min)
+					{min = shortage.get(5);
+					  memName = report.get(i).getMemberName();
+					}
+			
+			
+		}
+		
+		return memName;
 	}
 		
 		

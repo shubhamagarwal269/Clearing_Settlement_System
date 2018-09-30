@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dao.CommonFunctionalities;
+import com.dao_impl.CommonFunctionalitiesImpl;
+
 /**
  * Servlet implementation class AdminHomeServlet
  */
@@ -27,6 +30,17 @@ public class AdminHomeServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		CommonFunctionalities dao = new CommonFunctionalitiesImpl();
+	
+		int trades = dao.totalTrades();
+		int members = dao.totalClearingMembers();
+		String FundShort = dao.maxFundShortage();
+		String SecShort = dao.maxSecurityShortage();
+		request.setAttribute("trade", trades);
+		request.setAttribute("member", members);
+		request.setAttribute("Funds", FundShort);
+		request.setAttribute("Security", SecShort);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("dashAdmin.jsp");
 		dispatcher.forward(request, response);

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -125,10 +126,7 @@
                 </li>
 
                 <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
-                  </a>
+               
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>
                       <a>
@@ -200,22 +198,22 @@
            <div class="row tile_count">
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Clearing Members</span>
-              <div class="count"><small style="font-size:75%">5</small></div>
+              <div class="count"><small style="font-size:75%"><c:out value="${member}"></c:out></small></div>
              
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-shopping-cart"></i> Total Trades</span>
-              <div class="count"><small style="font-size:75%">123</small></div>
+              <div class="count"><small style="font-size:75%"><c:out value="${trade}"></c:out></small></div>
              
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Member With Most Security Shortages</span>
-              <div class="count green"><small style="font-size:65%">Goldman Sachs</small></div>
+              <div class="count green"><small style="font-size:65%"><c:out value="${Security}"></c:out></small></div>
              
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Member With Most Fund Shortages</span>
-              <div class="count"><small style="font-size:65%">Deutsche Bank</small></div>
+              <div class="count"><small style="font-size:65%"><c:out value="${Funds}"></c:out></small></div>
             
             </div>
             
