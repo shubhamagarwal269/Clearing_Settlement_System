@@ -159,7 +159,7 @@ HttpSession session2 = request.getSession();
               <c:out value="${SecShort.get(0)*-1 }"></c:out>
               </c:if>
               <c:if  test="${SecShort.get(0) >=0}">
-              <c:out value="${SecShort.get(0) }"></c:out>
+              0
               </c:if>
               </div>
             
@@ -171,7 +171,7 @@ HttpSession session2 = request.getSession();
               <c:out value="${SecShort.get(1)*-1 }"></c:out>
               </c:if>
               <c:if  test="${SecShort.get(1) >=0}">
-              <c:out value="${SecShort.get(1) }"></c:out>
+              0
               </c:if>
               
              </div>
@@ -184,7 +184,7 @@ HttpSession session2 = request.getSession();
               <c:out value="${SecShort.get(2)*-1}"></c:out>
               </c:if>
               <c:if  test="${SecShort.get(2) >=0}">
-              <c:out value="${SecShort.get(2)}"></c:out>
+              0
               </c:if>
               </div>
             
@@ -196,14 +196,20 @@ HttpSession session2 = request.getSession();
               <c:out value="${SecShort.get(3)*-1 }"></c:out>
               </c:if>
               <c:if  test="${SecShort.get(3) >=0}">
-              <c:out value="${SecShort.get(3) }"></c:out>
+              0
               </c:if>
               </div>
             
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-shopping-cart"></i> Walmart Shortage</span>
-              <div class="count" style="font-size: 25px ; color:#B23D3D"><c:out value="${SecShort.get(4) }"></c:out></div>
+              <div class="count" style="font-size: 25px ; color:#B23D3D">
+              <c:if  test="${SecShort.get(4) <0}">
+              <c:out value="${SecShort.get(4)*-1 }"></c:out>
+              </c:if>
+              <c:if  test="${SecShort.get(4) >=0}">
+              0
+              </c:if></div>
             
             </div>
             
@@ -214,7 +220,7 @@ HttpSession session2 = request.getSession();
               <price><c:out value="${fundShort*-1 }"></c:out></price>
               </c:if>
               <c:if  test="${fundShort >=0}">
-              <price><c:out value="${fundShort}">  </c:out></price>
+              <price>0</price>
               </c:if>
                </div>
             
