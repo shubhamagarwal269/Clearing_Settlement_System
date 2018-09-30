@@ -409,12 +409,12 @@
                           </c:if>
                           <c:if  test="${MemberReport.shortage.get(3) <=0}">
                           <td  style="color:#008000">
-                   		  <c:out value="${MemberReport.shortage.get(3)}"></c:out>
+                   		  <c:out value="${}"></c:out>
                    		  </td> 
                           </c:if>
 						  <td><c:out value="${MemberReport.marketPriceList.get(3) }"></c:out></td>
 						  <td><c:out value="${MemberReport.borrowingRateList.get(3) }"></c:out></td>
-						  <td><c:out value="${MemberReport.settlementCost.get(3) }"></c:out></td>
+						  <td><c:out value="${fundSettlement[status.index] }"></c:out></td>
                         </tr>
                         
                         
@@ -422,48 +422,48 @@
                           <td>Walmart</td>
                          	<c:if test="${MemberReport.currentBalance.get(4) <0}"> 
                          	<td style="color:#FF0000">
-                         		<c:out value="${MemberReport.currentBalance.get(4) *-1}"></c:out>
+                         		<c:out value="${fundBalance4[status.index] *-1}"></c:out>
                          	</td>
                          	</c:if>
                          	<c:if test="${MemberReport.currentBalance.get(4) >=0}"> 
                          	<td style="color:#008000">
-                         		<c:out value="${MemberReport.currentBalance.get(4) }"></c:out>
+                         		<c:out value="${fundBalance4[status.index] }"></c:out>
                          	</td>
                          	</c:if>
                            <c:if  test="${MemberReport.obligation.get(4) <0}">
                           <td  style="color:#FF0000">
-                   		  <c:out value="${MemberReport.obligation.get(4)*-1}"></c:out>
+                   		  <c:out value="${fundObligation4[status.index]*-1}"></c:out>
                    		  </td> 
                           </c:if>
                           <c:if  test="${MemberReport.obligation.get(4) >=0}">
                           <td  style="color:#008000">
-                   		  <c:out value="${MemberReport.obligation.get(4)}"></c:out>
+                   		  <c:out value="${fundObligation4[status.index]}"></c:out>
                    		  </td> 
                           </c:if>
                           <c:if  test="${MemberReport.shortage.get(4) >0}">
                           <td  style="color:#FF0000">
-                   		  <c:out value="${MemberReport.shortage.get(4)}"></c:out>
+                   		  <c:out value="${fundShortage4[status.index]*-1}"></c:out>
                    		  </td> 
                           </c:if>
                           <c:if  test="${MemberReport.shortage.get(4) <=0}">
                           <td  style="color:#008000">
-                   		  <c:out value="${MemberReport.shortage.get(4)}"></c:out>
+                   		  <c:out value="${fundShortage4[status.index]}"></c:out>
                    		  </td> 
                           </c:if>
 						  <td><c:out value="${MemberReport.marketPriceList.get(4) }"></c:out></td>
 						  <td><c:out value="${MemberReport.borrowingRateList.get(4) }"></c:out></td>
-						  <td><c:out value="${MemberReport.settlementCost.get(4) }"></c:out></td>
+						  <td><c:out value="${fundSettlement4[status.index] }"></c:out></td>
                         </tr> 
 						<tr>
                           <td><b>Funds</b></td>
                           <c:if  test="${MemberReport.currentBalance.get(5) <0}">
                           <td  style="color:#FF0000">
-                   		  <c:out value="${fundBalance[status.index]*-1}"></c:out>
+                   		  <c:out value="${fundBalance5[status.index]*-1}"></c:out>
                    		  </td> 
                           </c:if>
                           <c:if  test="${MemberReport.currentBalance.get(5) >=0}">
                           <td  style="color:#008000">
-                   		  <c:out value="${fundBalance[status.index]}"></c:out>
+                   		  <c:out value="${fundBalance5[status.index]}"></c:out>
                    		  </td> 
                           </c:if>
                           
@@ -471,27 +471,27 @@
                           
                            <c:if  test="${MemberReport.obligation.get(5) <0}">
                           <td  style="color:#FF0000">
-                   		  <c:out value="${fundObligation[status.index]*-1}"></c:out>
+                   		  <c:out value="${fundObligation5[status.index]*-1}"></c:out>
                    		  </td> 
                           </c:if>
                           <c:if  test="${MemberReport.obligation.get(5) >=0}">
                           <td  style="color:#008000">
-                   		  <c:out value="${fundObligation[status.index]}"></c:out>
+                   		  <c:out value="${fundObligation5[status.index]}"></c:out>
                    		  </td> 
                           </c:if>
                           <c:if  test="${MemberReport.shortage.get(5) >0}">
                           <td  style="color:#FF0000">
-                   		  <c:out value="${fundShortage[status.index]}"></c:out>
+                   		  <c:out value="${fundShortage5[status.index]}"></c:out>
                    		  </td> 
                           </c:if>
                           <c:if  test="${MemberReport.shortage.get(5) <=0}">
                           <td  style="color:#008000">
-                   		  <c:out value="${fundShortage[status.index]}"></c:out>
+                   		  <c:out value="${fundShortage5[status.index]}"></c:out>
                    		  </td> 
                           </c:if>
 						  <td> &nbsp;&nbsp;&nbsp;&nbsp;-</td>
 						  <td>1.25</td>
-						  <td><c:out value="${fundSettlement[status.index] }"></c:out></td>
+						  <td><c:out value="${fundSettlement5[status.index] }"></c:out></td>
                         </tr>
                       </tbody>
                       

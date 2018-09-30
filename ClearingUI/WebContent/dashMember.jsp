@@ -62,7 +62,7 @@ HttpSession session2 = request.getSession();
             <div class="profile clearfix">
             
 	              <div class="profile_pic">
-	                <img href="memberHome" src="images/user.png" alt="..." class="img-circle profile_img">
+	                <img href="memberHome" src="dashboard/images/user.png" alt="..." class="img-circle profile_img">
 	              </div>
 	              
               <div class="profile_info">

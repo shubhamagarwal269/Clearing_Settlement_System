@@ -1,6 +1,5 @@
 package com.dao_impl;
-import java.math.BigDecimal;
-import java.math.MathContext;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,6 +46,27 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 		
 		Random random=new Random();
 		
+		if(newBatch) {
+			for(int i=0;i<memList.size();i++) {
+				int changeInBalance = (random.nextInt((120-95)+1)+95);
+				int quantity = (random.nextInt((1200-950)+1)+950);
+				while(changeInBalance==0) {
+					changeInBalance = random.nextInt(100);
+				}
+				while(quantity==0) {
+					quantity = random.nextInt(100);
+				}
+				changeInBalance=1000*changeInBalance;
+				commonFunc.updateBankBalance(memList.get(i).getMemberId(), changeInBalance);
+
+				for(int j=0;j<secList.size();j++) {
+					commonFunc.updateDematBalance(memList.get(i).getMemberId(), secList.get(j).getISIN(),quantity);
+				}
+			}
+			
+		}
+		
+		
 		int tradeCount = commonFunc.getNextTradeId();
 		int batchNum = getNextBatchNum();
 		if(!newBatch)
@@ -58,13 +78,12 @@ public class CommonFunctionalitiesImpl implements CommonFunctionalities{
 			int sellerId = random.nextInt(noOfMembers); //random index for Seller
 		
 			int securityId = random.nextInt(noOfSecurities); //random index for security
-			int quantity = random.nextInt(100);
+			int quantity = random.nextInt(1000);
 			
 			while(quantity==0) {
-				quantity = random.nextInt(100);
+				quantity = random.nextInt(1000);
 			}
 			
-			quantity=1000*quantity;
 			
 			double price = secList.get(securityId).getMarketPrice();
 			
