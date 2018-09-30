@@ -269,11 +269,11 @@
 								</select>
 								</td>
 	                          
-	                          <td><input type="number" min= 1 name="quantity"/></td>
+	                          <td><input type="number" min= 1 name="quantity" style="width:150px"/></td>
 	                          
 	                          <td>
 	                          
-	                          <input type="number" min= 1 name="price" step="any"/>
+	                          <input type="number" min= 1 name="price" step="any" style="width:150px"/>
 	                          
 	                          </td>
 	                          
