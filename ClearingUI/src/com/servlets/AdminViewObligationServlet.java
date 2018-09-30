@@ -189,6 +189,37 @@ public class AdminViewObligationServlet extends HttpServlet {
 		request.setAttribute("fundShortage1", fundShortage1);
 		request.setAttribute("fundSettlement1", fundSettlement1);
 		
+		List<BigDecimal> fundBalance0 = new ArrayList<>(); 
+		for(int i=0;i<list.size();i++)
+		{ 
+			fundBalance0.add(new BigDecimal(list.get(i).getCurrentBalance().get(0)).setScale(2, BigDecimal.ROUND_HALF_EVEN));	 
+		}
+		
+		List<BigDecimal> fundObligation0 = new ArrayList<>(); 
+		for(int i=0;i<list.size();i++)
+		{ 
+			fundObligation0.add(new BigDecimal(list.get(i).getObligation().get(0)).setScale(2, BigDecimal.ROUND_HALF_EVEN));	 
+		}
+		
+		List<BigDecimal> fundShortage0 = new ArrayList<>(); 
+		for(int i=0;i<list.size();i++)
+		{ 
+			fundShortage0.add(new BigDecimal(list.get(i).getShortage().get(0)).setScale(2, BigDecimal.ROUND_HALF_EVEN));	 
+		}
+		
+		List<BigDecimal> fundSettlement0 = new ArrayList<>(); 
+		for(int i=0;i<list.size();i++)
+		{ 
+			fundSettlement0.add(new BigDecimal(list.get(i).getSettlementCost().get(0)).setScale(2, BigDecimal.ROUND_HALF_EVEN));	 
+		}
+		
+		request.setAttribute("fundBalance0", fundBalance0);
+		request.setAttribute("fundObligation0", fundObligation0);
+		
+		request.setAttribute("fundShortage0", fundShortage0);
+		request.setAttribute("fundSettlement0", fundSettlement0);
+		
+		
 		request.setAttribute("reps", list);
 		
 			

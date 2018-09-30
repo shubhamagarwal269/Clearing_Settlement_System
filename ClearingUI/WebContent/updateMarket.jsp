@@ -35,7 +35,14 @@
 
     <!-- Custom Theme Style -->
     <link href="dashboard/build/css/custom.min.css" rel="stylesheet">
-
+	<style>
+    	.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  			background-color: #8cf7e2;
+		}
+		.enMoney::before {
+	    content:"$ ";
+	}
+    </style>
 </head>
 
   <body class="nav-md">
@@ -223,7 +230,7 @@
 	                        <form action="updatemarketdata">  
 	                          <td><c:out value="${security.ISIN}"></c:out><input type="hidden" value="<c:out value='${security.ISIN}'></c:out>" name="isinA"></input></td>
 	                          <td><c:out value="${security.securityName}"></c:out></td>
-	                          <td><c:out value="${security.marketPrice}"></c:out></td>
+	                          <td><price><c:out value="${security.marketPrice}"></c:out></price></td>
 	                          <td><input type="number" min="0" step="0.01" name="newmarketprice"></td>
 							  <td>
 							  <button type="submit" class="btn btn-primary">
@@ -385,7 +392,21 @@
 
     <!-- Custom Theme Scripts -->
     <script src="dashboard/build/js/custom.min.js"></script>
-	
+	<script>
+    $('* price').each(function () {
+        var item = $(this).text();
+        var num = Number(item).toLocaleString('en');    
+
+        if (Number(item) < 0) {
+            num = num.replace('-','');
+            $(this).addClass('negMoney');
+        }else{
+            $(this).addClass('enMoney');
+        }
+        
+        $(this).text(num);
+    });
+    </script>
   </body>
 
 </html>
