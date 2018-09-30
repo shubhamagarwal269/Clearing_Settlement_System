@@ -1,6 +1,8 @@
 package com.servlets;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -37,12 +39,38 @@ public class AdminViewObligationServlet extends HttpServlet {
 		
 		GenerateMemberReport dao = new GenerateMemberReportImpl();
 		List<MemberReport> list = dao.viewAllMembersReports();
+		List<BigDecimal> fundBalance1 = new ArrayList<>(); 
+		for(int i=0;i<list.size();i++)
+		{ 
+			fundBalance1.add(new BigDecimal(list.get(i).getCurrentBalance().get(5)).setScale(2, BigDecimal.ROUND_HALF_EVEN));	 
+		}
+		
+		List<BigDecimal> fundObligation1 = new ArrayList<>(); 
+		for(int i=0;i<list.size();i++)
+		{ 
+			fundObligation1.add(new BigDecimal(list.get(i).getObligation().get(5)).setScale(2, BigDecimal.ROUND_HALF_EVEN));	 
+		}
+		
+		List<BigDecimal> fundShortage1 = new ArrayList<>(); 
+		for(int i=0;i<list.size();i++)
+		{ 
+			fundShortage1.add(new BigDecimal(list.get(i).getShortage().get(5)).setScale(2, BigDecimal.ROUND_HALF_EVEN));	 
+		}
+		
+		List<BigDecimal> fundSettlement = new ArrayList<>(); 
+		for(int i=0;i<list.size();i++)
+		{ 
+			fundSettlement.add(new BigDecimal(list.get(i).getSettlementCost().get(5)).setScale(2, BigDecimal.ROUND_HALF_EVEN));	 
+		}
+		
+		request.setAttribute("fundBalance", fundBalance1);
+		request.setAttribute("fundObligation", fundObligation1);
+		
+		request.setAttribute("fundShortage", fundShortage1);
+		request.setAttribute("fundSettlement", fundSettlement);
 		
 		request.setAttribute("reps", list);
-		System.out.println("list size:-"+list.size());
-		for(int i=0; i<list.size(); i++) {
-		    System.out.println(list.get(i));
-		}
+		
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminViewObligation.jsp");
 		dispatcher.forward(request, response);

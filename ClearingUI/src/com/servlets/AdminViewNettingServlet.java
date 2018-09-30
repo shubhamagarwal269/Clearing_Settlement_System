@@ -46,8 +46,10 @@ public class AdminViewNettingServlet extends HttpServlet {
 		{ 
 			fund.add(new BigDecimal(list.get(i).getObligation().get(5)).setScale(2, BigDecimal.ROUND_HALF_EVEN));	 
 		}
+		
 		request.setAttribute("reps", list);
 		request.setAttribute("fund", fund);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminViewNetting.jsp");
 		dispatcher.forward(request, response);
 		

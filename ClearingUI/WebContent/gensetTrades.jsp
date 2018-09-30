@@ -36,6 +36,14 @@
     <!-- Custom Theme Style -->
     <link href="dashboard/build/css/custom.min.css" rel="stylesheet">
 
+<style>
+    	.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  			background-color: #8cf7e2;
+		}
+		.enMoney::before {
+	    content:"$ ";
+	}
+    </style>
 </head>
 
   <body class="nav-md">
@@ -368,7 +376,7 @@
 							  </c:choose>
 	                          </td>
 	                          <td><c:out value="${trade.quantity}"></c:out></td>
-	                          <td><c:out value="${trade.price}"></c:out></td>
+	                          <td><price><c:out value="${trade.price}"></c:out></price></td>
 	                          <td>
 		                          <c:forEach var="member" items="${members}">
 			                          <c:if test="${trade.buyerMemberId == member.memberId}">
@@ -488,7 +496,21 @@
     <script src="dashboard/vendors/jszip/dist/jszip.min.js"></script>
     <script src="dashboard/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="dashboard/vendors/pdfmake/build/vfs_fonts.js"></script>
-    
+    <script>
+    $('* price').each(function () {
+        var item = $(this).text();
+        var num = Number(item).toLocaleString('en');    
+
+        if (Number(item) < 0) {
+            num = num.replace('-','');
+            $(this).addClass('negMoney');
+        }else{
+            $(this).addClass('enMoney');
+        }
+        
+        $(this).text(num);
+    });
+    </script>
 	
   </body>
 
