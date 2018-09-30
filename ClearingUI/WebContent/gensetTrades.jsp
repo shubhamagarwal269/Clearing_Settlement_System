@@ -202,7 +202,7 @@
                       <thead>
                         <tr>
                           <th style="vertical-align: middle;text-align: center;"><h5><b>Enter Trade List Size:</b></h5></th>
-                          <th style="vertical-align: middle;text-align: center;"><input type="text" name="noOfTrade"></th>
+                          <th style="vertical-align: middle;text-align: center;"><input type="number" min="1" name="noOfTrade"id="noOfTrade"></th>
                           <th style="vertical-align: middle;text-align: center;">
                              <select name="batch">
                              	  <option value="2">Add in previous batch</option>
@@ -488,6 +488,7 @@
     <script src="dashboard/vendors/jszip/dist/jszip.min.js"></script>
     <script src="dashboard/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="dashboard/vendors/pdfmake/build/vfs_fonts.js"></script>
+    
 	
   </body>
 

@@ -43,7 +43,8 @@ public class AdminViewNettingServlet extends HttpServlet {
 		List<MemberReport> list = dao.viewAllMembersReports();
 		List<BigDecimal> fund = new ArrayList<>(); 
 		for(int i=0;i<list.size();i++)
-		{ fund.add(i, new BigDecimal(list.get(i).getObligation().get(5)).setScale(2, BigDecimal.ROUND_HALF_EVEN));
+		{ 
+			fund.add(new BigDecimal(list.get(i).getObligation().get(5)).setScale(2, BigDecimal.ROUND_HALF_EVEN));	 
 		}
 		request.setAttribute("reps", list);
 		request.setAttribute("fund", fund);

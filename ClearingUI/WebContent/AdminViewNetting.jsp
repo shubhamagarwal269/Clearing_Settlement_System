@@ -43,6 +43,15 @@
 
     <!-- Custom Theme Style -->
     <link href="dashboard/build/css/custom.min.css" rel="stylesheet">
+    
+    <style>
+    	.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  			background-color: #8cf7e2;
+		}
+		.enMoney::before {
+	    content:"$ ";
+	}
+    </style>
 
 </head>
 
@@ -207,16 +216,7 @@
                 <h3>Netting Report</h3>
               </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
+              
             </div>
 
             <div class="clearfix"></div>
@@ -253,7 +253,7 @@
                       </thead>
                       <tbody>
                       
-                        <c:forEach var="MemberReport"  items="${reps}">
+                        <c:forEach var="MemberReport"  items="${reps}" varStatus="status">
                         <tr>
 						  <td><c:out value="${MemberReport.memberName }"></c:out></td>
                          
@@ -315,13 +315,15 @@
                           
                           <c:if  test="${MemberReport.obligation.get(5) <0}">
                           <td  style="color:#FF0000">
-                   		  <c:out value="${MemberReport.obligation.get(5)*-1}"></c:out>
+                   		  <price><c:out value="${fund[status.index]*-1}"></c:out></price>
                    		  </td> 
                           </c:if>
+                          
                           <c:if  test="${MemberReport.obligation.get(5) >=0}">
                           <td  style="color:#008000">
-                   		  <c:out value="${MemberReport.obligation.get(5)}"></c:out>
+                   		  <price><c:out value="${fund[status.index]}"></c:out></price>
                    		  </td> 
+                   		  
                           </c:if>
                           
                         </tr>
@@ -390,6 +392,21 @@
 
     <!-- Custom Theme Scripts -->
     <script src="dashboard/build/js/custom.min.js"></script>
+    <script>
+    $('* price').each(function () {
+        var item = $(this).text();
+        var num = Number(item).toLocaleString('en');    
+
+        if (Number(item) < 0) {
+            num = num.replace('-','');
+            $(this).addClass('negMoney');
+        }else{
+            $(this).addClass('enMoney');
+        }
+        
+        $(this).text(num);
+    });
+    </script>
 	
   </body>
 

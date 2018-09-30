@@ -216,7 +216,7 @@
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Member With Most Security Shortages</span>
-              <div class="count green"><small style="font-size:65%"><c:out value="${Security}"></c:out></small></div>
+              <div class="count"><small style="font-size:65%"><c:out value="${Security}"></c:out></small></div>
              
             </div>
             <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
