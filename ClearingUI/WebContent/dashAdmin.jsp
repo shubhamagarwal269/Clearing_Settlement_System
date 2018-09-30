@@ -251,7 +251,7 @@
               </div>
               <!-- /bar charts group -->
               <!-- bar chart -->
-              <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="col-md-12 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>Funds Chart <small>X-Axis: Clearing Member , Y-Axis: Funds</small></h2>
@@ -270,21 +270,7 @@
 
               
 
-              <!-- pie chart -->
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Percentage Of Shortages </h2>
-                    
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content2">
-                    <div id="graph_donut" style="width:100%; height:300px;"></div>
-                  </div>
-                </div>
-              </div>
-              <!-- /Pie chart -->
-
+              
               
               </div>
               

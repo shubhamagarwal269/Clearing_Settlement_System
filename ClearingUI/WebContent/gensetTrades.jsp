@@ -205,8 +205,8 @@
                           <th style="vertical-align: middle;text-align: center;"><input type="text" name="noOfTrade"></th>
                           <th style="vertical-align: middle;text-align: center;">
                              <select name="batch">
+                             	  <option value="2">Add in previous batch</option>
 								  <option value="1">Add in new batch</option>
-								  <option value="2">Add in previous batch</option>
 							 </select>
 						  </th>
                           <th style="vertical-align: middle;text-align: center;">					
@@ -286,8 +286,9 @@
 	                          <td>
 	                          
 	                          <select name="batch">
+	                          	<option value="2">Add in previous batch</option>
 								  <option value="1">Add in new batch</option>
-								  <option value="2">Add in previous batch</option>
+								  
 							 </select>
 	                          
 	                          </td>
