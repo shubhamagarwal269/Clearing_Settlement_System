@@ -72,14 +72,46 @@ insert into SECURITY values(2,'Facebook', 76.5, 7);
 insert into SECURITY values(3,'LinkedIn', 45.5, 11);
 insert into SECURITY values(4,'Walmart', 155, 6);
 
-insert into MEMBER values(0,'Citi','citi@123','citi@gmail.com',0,0);
-insert into MEMBER values(1,'DB','db@123','db@gmail.com',0,0);
-insert into MEMBER values(2,'GS','gs@123','gs@gmail.com',0,0);
-insert into MEMBER values(3,'JP','jp@123','jp@gmail.com',0,0);
+insert into MEMBER values(0,'Citi','citi@123','citi@gmail.com',123456,123456);
+insert into MEMBER values(1,'Detusche Bank','db@123','db@gmail.com',234567,234567);
+insert into MEMBER values(2,'Goldman Sachs','gs@123','gs@gmail.com',345678,345678);
+insert into MEMBER values(3,'JP Morgan','jp@123','jp@gmail.com',456789,456789);
+
+insert into BANK_DETAILS values(123456,0,1000000);
+insert into BANK_DETAILS values(234567,1,1000000);
+insert into BANK_DETAILS values(345678,2,1000000);
+insert into BANK_DETAILS values(456789,3,1000000);
+
+insert into DEMAT_DETAILS values(123456,0,0,1000);
+insert into DEMAT_DETAILS values(123456,0,1,1000);
+insert into DEMAT_DETAILS values(123456,0,2,1000);
+insert into DEMAT_DETAILS values(123456,0,3,1000);
+insert into DEMAT_DETAILS values(123456,0,4,1000);
+
+insert into DEMAT_DETAILS values(234567,1,0,1000);
+insert into DEMAT_DETAILS values(234567,1,1,1000);
+insert into DEMAT_DETAILS values(234567,1,2,1000);
+insert into DEMAT_DETAILS values(234567,1,3,1000);
+insert into DEMAT_DETAILS values(234567,1,4,1000);
+
+insert into DEMAT_DETAILS values(345678,2,0,1000);
+insert into DEMAT_DETAILS values(345678,2,1,1000);
+insert into DEMAT_DETAILS values(345678,2,2,1000);
+insert into DEMAT_DETAILS values(345678,2,3,1000);
+insert into DEMAT_DETAILS values(345678,2,4,1000);
+
+insert into DEMAT_DETAILS values(456789,3,0,1000);
+insert into DEMAT_DETAILS values(456789,3,1,1000);
+insert into DEMAT_DETAILS values(456789,3,2,1000);
+insert into DEMAT_DETAILS values(456789,3,3,1000);
+insert into DEMAT_DETAILS values(456789,3,4,1000);
 
 select * from MEMBER;
+select * from BANK_DETAILS;
+select * from DEMAT_DETAILS;
 select * from SECURITY;
 select * from trade;
 select * from OBG_REPORT;
+select * from FUNDBORROW;
 
 insert into FUNDBORROW values(.0125);
