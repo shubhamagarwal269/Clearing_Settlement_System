@@ -43,8 +43,20 @@ public class AddTrade extends HttpServlet {
 		
 		int tradeId = commFunc.getNextTradeId();
 		String security = request.getParameter("security");
-		int quantity  = Integer.parseInt(request.getParameter("quantity"));
-		double price = Double.parseDouble(request.getParameter("price"));
+		
+		String temp1 = "set";
+		temp1 = request.getParameter("quantity");
+		if (temp1.equals("")) {
+			temp1="0";
+		} 
+		int quantity  = Integer.parseInt(temp1);
+		String temp2 = "set";
+		temp2 = request.getParameter("price");
+		if (temp2.equals("")) {
+			temp2="0";
+		} 
+		double price = Double.parseDouble(temp2);
+		
 		String buyerMember = request.getParameter("buyer");
 		String sellerMember = request.getParameter("seller");
 		int batchNum = Integer.parseInt(request.getParameter("batch"));

@@ -32,7 +32,12 @@ public class AddRandomTrade extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int noOfTrade  = Integer.parseInt(request.getParameter("noOfTrade"));
+		String temp = "set";
+		temp = request.getParameter("noOfTrade");
+		if (temp.equals("")) {
+			temp="0";
+		} 
+		int noOfTrade  = Integer.parseInt(temp);
 		int batchNum = Integer.parseInt(request.getParameter("batch"));
 		boolean newBatch = false;
 		if(batchNum==1)
