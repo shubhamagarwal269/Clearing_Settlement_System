@@ -91,12 +91,17 @@ public class memberHomeServlet extends HttpServlet {
 	double bankBal = dao1.viewBankAcBalance(memberId);
 	request.setAttribute("BABal", bankBal);
 	
-	double fundShortage = obg.get(5) + securityList.get(5).getSecond();
-	if(fundShortage<0)
-		fundShortage= fundShortage;
-	else
-		fundShortage =  0d;
 	
+		double fundShortage = obg.get(5) + bankBal;
+		if(fundShortage<0){
+			fundShortage = fundShortage;
+			System.out.println(sec);
+		}
+		else {
+			fundShortage = 0d;
+		}
+	
+
 	
 	MathContext m = new MathContext(10);
 	
