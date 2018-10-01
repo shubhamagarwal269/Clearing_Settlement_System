@@ -97,7 +97,7 @@ public class memberHomeServlet extends HttpServlet {
 			fundShortage = fundShortage;
 			System.out.println(sec);
 		}
-		else {
+		else { 
 			fundShortage = 0d;
 		}
 	
