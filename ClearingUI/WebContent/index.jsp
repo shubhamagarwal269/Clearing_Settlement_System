@@ -77,7 +77,7 @@
 		</div>
 		
 		<p style="text-align: center;">
-		<iframe src="https://onedrive.live.com/embed?cid=FD203E0AA9294CA2&amp;resid=FD203E0AA9294CA2%21110&amp;authkey=AP2Rips1zfLrvec&amp;em=2&amp;wdAr=1.7777777777777777" width="962px" height="565px" frameborder="0">This is an embedded <a target="_blank" href="https://office.com">Microsoft Office</a> presentation, powered by <a target="_blank" href="https://office.com/webapps">Office Online</a>.</iframe>
+		<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vR4ujz70iz2kP5p3A7v9_oDgFfVZY0OiOJurjZPJCdt7QIAL0euPzmYBsMwh69xQjuDtNvf9jNo0436/embed?start=false&loop=false&delayms=30000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 		</p> 
 
 <!-- 
