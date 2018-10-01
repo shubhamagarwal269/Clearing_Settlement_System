@@ -74,14 +74,14 @@ public class memberHomeServlet extends HttpServlet {
 	securityList = func.viewDematAcBalanceByMemberId(memberId);
 	double sec = 0d;
 	for(int i=0;i<5;i++)
-	{	
-		if(obg.get(i)>0)
-			{
-				sec = 0d;
-			}
-		else
-		 {
-			sec = securityList.get(i).getSecond() - obg.get(i);
+	{
+		Double sum = obg.get(i) + securityList.get(i).getSecond();
+		if(sum<0){
+			sec = sum;
+			System.out.println(sec);
+		}
+		else {
+			sec = 0d;
 		}
 		balance.add(sec);
 	}
